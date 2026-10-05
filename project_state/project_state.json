@@ -346,8 +346,8 @@
     {
       "id": "dec_018",
       "status": "committed",
-      "decision": "The implemented v1 alpha metric and graph-operator sets documented in API_SPEC.md are the reference built-in sets for this release.",
-      "rationale": "Resolved from implemented package behavior during documentation reconciliation."
+      "decision": "The implemented v1 alpha metric and graph-operator sets documented in the package are the reference built-in sets for this release; operator additions that change scientific semantics require project-state, changelog, tests, and documentation synchronization.",
+      "rationale": "Updated after signed-graph compatibility work added explicit signed Laplacian operators while preserving the operator-based spectral architecture."
     },
     {
       "id": "dec_019",
@@ -364,7 +364,7 @@
     {
       "id": "dec_021",
       "status": "committed",
-      "decision": "PCSCS visualization parity is a required baseline, generalized by Eigenflow component, percolation, spectral, eigenspace, factor, layer\u00d7control, robustness, and interpretation views.",
+      "decision": "PCSCS visualization parity is a required baseline, generalized by Eigenflow component, percolation, spectral, eigenspace, factor, layer×control, robustness, and interpretation views.",
       "rationale": "Visualization ontology implementation phase."
     },
     {
@@ -372,6 +372,24 @@
       "status": "committed",
       "decision": "Canonical visualization documentation must pair real generated output with code, intended use, permitted inference, alternatives, and common misinterpretation.",
       "rationale": "Visualization ontology implementation phase."
+    },
+    {
+      "id": "dec_024_operator_compatibility_contract",
+      "status": "committed",
+      "decision": "Graph operators declare and enforce mathematical compatibility requirements before numerical construction; unsupported graph/operator pairings are represented as structured incompatibilities rather than allowed to propagate NaN/Inf or opaque linear-algebra failures.",
+      "rationale": "Package-wide pressure testing exposed signed weighted graphs reaching ordinary normalized degree operators. The relational measurement is valid, but the operator semantics are not. Compatibility therefore belongs at the graph/operator boundary."
+    },
+    {
+      "id": "dec_025_signed_graph_operators",
+      "status": "committed",
+      "decision": "Signed relational graphs remain first-class measurements. Eigenflow does not silently clip, shift, or absolutize negative weights; deliberate signed spectral analysis uses explicit signed_laplacian or signed_normalized_laplacian operators based on absolute weighted degree.",
+      "rationale": "Negative cosine/dot-product similarities are legitimate experimental outcomes. Silent coercion would alter the measurement semantics."
+    },
+    {
+      "id": "dec_026_eigenspace_ambient_space",
+      "status": "committed",
+      "decision": "Eigenspace overlap and principal-angle trajectories require a common ambient space. Operators such as non-backtracking that act in filtration-dependent directed-edge spaces return structured changing_ambient_space incompatibility records unless an explicit alignment method is supplied.",
+      "rationale": "Pressure testing showed that non-backtracking spectra are valid while naive cross-snapshot eigenspace products fail when edge-space dimension changes."
     }
   ],
   "assumptions": [
@@ -914,6 +932,20 @@
           "dev_task_030",
           "dev_task_031"
         ]
+      },
+      {
+        "id": "prov_change_operator_compatibility_001",
+        "source_type": "pressure_test_remediation",
+        "source_description": "Package-wide pressure testing identified two concentrated failure families: signed weighted graphs reaching ordinary normalized-degree operators and non-backtracking eigenspace comparison across changing directed-edge dimensions. The package was updated with structured compatibility validation, explicit signed Laplacian operators, structured eigenspace incompatibility records, regression tests, documentation, and changelog synchronization.",
+        "created_at": "2026-10-05T21:59:03.533734+00:00",
+        "affected_ids": [
+          "dec_018",
+          "dec_024_operator_compatibility_contract",
+          "dec_025_signed_graph_operators",
+          "dec_026_eigenspace_ambient_space",
+          "sc_003",
+          "sc_005"
+        ]
       }
     ]
   },
@@ -1104,7 +1136,7 @@
         "status": "complete",
         "assessment": "Only states the core idea; does not teach experimental design or inference.",
         "notes": [
-          "Formalize the hypothesis \u2192 probe design \u2192 representation population \u2192 relational geometry \u2192 observable \u2192 inference workflow.",
+          "Formalize the hypothesis → probe design → representation population → relational geometry → observable → inference workflow.",
           "Explain manipulated factors, controls, matched/factorial designs, confounds, probe metadata, sampling balance, and reproducibility.",
           "Provide at least two complete experimental examples with competing hypotheses and predicted structural outcomes.",
           "Discuss the epistemic boundary between structural evidence and claims about latent features, including alternative explanations and robustness checks across metrics/reducers."
@@ -1835,7 +1867,7 @@
           ],
           [
             "Core experimental object",
-            "Represent the method as probe population \u2192 layerwise representations \u2192 relational geometry \u2192 filtration \u2192 structural observables \u2192 bounded inference."
+            "Represent the method as probe population → layerwise representations → relational geometry → filtration → structural observables → bounded inference."
           ],
           [
             "When to use / not use",
@@ -1877,7 +1909,7 @@
           ],
           [
             "Concept dependency map",
-            "Expose the recommended order: experimental model \u2192 measurement geometry \u2192 structural observables \u2192 execution \u2192 interpretation."
+            "Expose the recommended order: experimental model → measurement geometry → structural observables → execution → interpretation."
           ],
           [
             "Task-based navigation",
@@ -1953,7 +1985,7 @@
           ],
           [
             "Giant component",
-            "Explain what P\u221e measures and what early/late growth can indicate."
+            "Explain what P∞ measures and what early/late growth can indicate."
           ],
           [
             "Second-largest component",
@@ -2085,11 +2117,11 @@
           ],
           [
             "Visualize",
-            "Plot at least one layer\u00d7control observable and one spectral/percolation trajectory."
+            "Plot at least one layer×control observable and one spectral/percolation trajectory."
           ],
           [
             "Interpret",
-            "Produce observation \u2192 inference \u2192 alternatives \u2192 unsupported claim."
+            "Produce observation → inference → alternatives → unsupported claim."
           ],
           [
             "Robustness",
@@ -2111,7 +2143,7 @@
         "sections": [
           [
             "Interpretation protocol",
-            "Apply observation \u2192 candidate inference \u2192 alternatives \u2192 unsupported claim."
+            "Apply observation → candidate inference → alternatives → unsupported claim."
           ],
           [
             "Components and merge structure",
@@ -2299,7 +2331,7 @@
         "sections": [
           [
             "Object chain",
-            "Define ProbePopulation \u2192 RepresentationCollection \u2192 RelationalMatrix \u2192 GraphFiltration \u2192 AnalysisResult \u2192 ExperimentResult."
+            "Define ProbePopulation → RepresentationCollection → RelationalMatrix → GraphFiltration → AnalysisResult → ExperimentResult."
           ],
           [
             "Identity/order invariants",
@@ -2349,7 +2381,7 @@
         "sections": [
           [
             "Actual execution order",
-            "Describe current extraction \u2192 metric \u2192 filtration \u2192 analyses path exactly."
+            "Describe current extraction → metric → filtration → analyses path exactly."
           ],
           [
             "Dependency graph",
@@ -2625,7 +2657,7 @@
           ],
           [
             "Mutation cycle",
-            "Read \u2192 propose \u2192 validate \u2192 persist \u2192 derive \u2192 checkpoint."
+            "Read → propose → validate → persist → derive → checkpoint."
           ],
           [
             "Schema evolution",
@@ -2924,7 +2956,7 @@
                 "move_05",
                 "move_06"
               ],
-              "objective": "Teach P\u221e as global coalescence observable."
+              "objective": "Teach P∞ as global coalescence observable."
             },
             {
               "title": "Second-largest component",
@@ -3153,7 +3185,7 @@
               "objective": "Retrieve actual outputs correctly."
             },
             {
-              "title": "Visualize layer \u00d7 control behavior",
+              "title": "Visualize layer × control behavior",
               "moves": [
                 "move_06"
               ],
@@ -3192,7 +3224,7 @@
               "moves": [
                 "move_07"
               ],
-              "objective": "Establish observation \u2192 inference \u2192 alternatives \u2192 unsupported claim."
+              "objective": "Establish observation → inference → alternatives → unsupported claim."
             },
             {
               "title": "Connected components and merge structure",
@@ -4426,7 +4458,7 @@
         "acceptance_criteria": [
           "Runs from a clean Google Colab session against a pinned Eigenflow commit.",
           "Generates every canonical visualization type, including component-count trajectory, merge events, dendrogram, combined-layer view, static spectrum, spectral flow, and spectral-properties view.",
-          "Generates generalized Eigenflow views for factor alignment, graph snapshots, eigenspace stability, and layer\u00d7control summaries.",
+          "Generates generalized Eigenflow views for factor alignment, graph snapshots, eigenspace stability, and layer×control summaries.",
           "Produces numerical outputs and metadata required to reproduce every figure."
         ],
         "completed_at": "2026-10-05T02:37:59.250762+00:00"
@@ -4588,7 +4620,7 @@
           "ProbePopulation.metadata"
         ],
         "required_analysis": "components",
-        "encoding": "probe \u00d7 control matrix colored by component identity, optionally ordered by factor",
+        "encoding": "probe × control matrix colored by component identity, optionally ordered by factor",
         "permitted_inference": "Assess persistence, group stability, and which probes change membership relationships across scale.",
         "common_misinterpretation": "Interpreting component color identity as stable semantic labels when components merge and labels may be arbitrary.",
         "dependencies": [
@@ -4781,7 +4813,7 @@
       },
       {
         "id": "view_015",
-        "name": "Layer \u00d7 control heatmap",
+        "name": "Layer × control heatmap",
         "tier": "primary evidential",
         "question": "Where in network depth and relational scale does a structural observable change?",
         "source_objects": [
@@ -4789,7 +4821,7 @@
           "scalar AnalysisResult observable"
         ],
         "required_analysis": "any scalar trajectory",
-        "encoding": "site/layer \u00d7 control heatmap",
+        "encoding": "site/layer × control heatmap",
         "permitted_inference": "Locate depth-dependent emergence, strengthening, weakening, or movement of structural regimes.",
         "common_misinterpretation": "Treating non-equivalent sites across architectures as metrically interchangeable.",
         "dependencies": [
@@ -4860,7 +4892,7 @@
           "multiple ExperimentResult objects"
         ],
         "required_analysis": "comparison layer",
-        "encoding": "difference heatmaps, aligned trajectories, model \u00d7 layer summaries",
+        "encoding": "difference heatmaps, aligned trajectories, model × layer summaries",
         "permitted_inference": "Compare structural consequences of training state, architecture, or intervention under matched probe designs.",
         "common_misinterpretation": "Attributing differences to architecture/training when probe preprocessing or site alignment also changed.",
         "dependencies": [
@@ -4879,7 +4911,7 @@
           "selected analyses"
         ],
         "required_analysis": "multiple",
-        "encoding": "curated panel combining factor alignment, structural transition, layer\u00d7control, selected graph, and robustness evidence",
+        "encoding": "curated panel combining factor alignment, structural transition, layer×control, selected graph, and robustness evidence",
         "permitted_inference": "Synthesize complementary evidence into a bounded experimental conclusion.",
         "common_misinterpretation": "Treating the dashboard as an automated explanation rather than a structured evidence display.",
         "dependencies": [
@@ -5178,7 +5210,7 @@
         "title": "Implement longitudinal visualizations",
         "priority": "critical",
         "status": "complete",
-        "objective": "Add layer\u00d7control\u00d7time summaries, checkpoint trajectories, baseline-relative displacement maps, transition-time plots, and structural-change heatmaps.",
+        "objective": "Add layer×control×time summaries, checkpoint trajectories, baseline-relative displacement maps, transition-time plots, and structural-change heatmaps.",
         "completed_at": "2026-10-05T03:49:48.315456+00:00"
       },
       {

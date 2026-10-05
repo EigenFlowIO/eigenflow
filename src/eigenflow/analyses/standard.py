@@ -6,6 +6,7 @@ from .base import Analysis,AnalysisResult
 from ..graphs import component_labels,component_sizes,bridge_edges,kcore_nodes,communities,degree_array
 from ..percolation import percolation_observables
 from ..operators import resolve_operator
+from ..exceptions import OperatorCompatibilityError
 from ..spectra import solve_spectrum,ipr,spectral_entropy,effective_rank,graph_energy,spectral_gaps,SpectralSnapshot,SpectralTrajectory,eigenspace_overlap,principal_angle_values
 
 class ComponentsAnalysis(Analysis):
@@ -40,27 +41,92 @@ class PercolationAnalysis(Analysis):
 
 class SpectralAnalysis(Analysis):
     name="spectra"
-    def __init__(self,operator="normalized_laplacian",k=None,vectors=True): self.operator=resolve_operator(operator); self.k=k; self.vectors=vectors
+    def __init__(self,operator="normalized_laplacian",k=None,vectors=True):
+        self.operator=resolve_operator(operator); self.k=k; self.vectors=vectors
     def run(self,ctx):
-        snaps=[]; rec=[]
+        snaps=[]; rec=[]; incompatible=0
         for s in ctx.filtration:
-            vals,vecs=solve_spectrum(self.operator.matrix(s),k=self.k,vectors=self.vectors)
-            o={"spectral_radius":float(np.max(np.abs(vals))) if len(vals) else 0.,"spectral_entropy":spectral_entropy(vals),"effective_rank":effective_rank(vals),"energy":graph_energy(vals),"gaps":spectral_gaps(vals).tolist(),"ipr":ipr(vecs).tolist() if vecs is not None else None}
-            if self.operator.name in {"laplacian","normalized_laplacian"}: o["algebraic_connectivity"]=float(vals[1]) if len(vals)>1 else 0.
-            snaps.append(SpectralSnapshot(s.parameter,vals,vecs,self.operator.name,o)); rec.append({"parameter":s.parameter,**o,"eigenvalues":vals.tolist()})
-        return AnalysisResult(self.name,{"trajectory":SpectralTrajectory(snaps,self.operator.name)},rec,{"operator":self.operator.name})
+            try:
+                M=self.operator.matrix(s)
+                vals,vecs=solve_spectrum(M,k=self.k,vectors=self.vectors)
+                o={"status":"ok","spectral_radius":float(np.max(np.abs(vals))) if len(vals) else 0.,"spectral_entropy":spectral_entropy(vals),"effective_rank":effective_rank(vals),"energy":graph_energy(vals),"gaps":spectral_gaps(vals).tolist(),"ipr":ipr(vecs).tolist() if vecs is not None else None}
+                if self.operator.name in {"laplacian","normalized_laplacian","signed_laplacian","signed_normalized_laplacian"}:
+                    o["algebraic_connectivity"]=float(vals[1]) if len(vals)>1 else 0.
+                snaps.append(SpectralSnapshot(s.parameter,vals,vecs,self.operator.name,o))
+                rec.append({"parameter":s.parameter,**o,"eigenvalues":vals.tolist()})
+            except OperatorCompatibilityError as exc:
+                incompatible += 1
+                o=exc.as_dict()
+                o.update({"spectral_radius":None,"spectral_entropy":None,"effective_rank":None,"energy":None,"gaps":None,"ipr":None})
+                snaps.append(SpectralSnapshot(s.parameter,np.array([]),None,self.operator.name,o))
+                rec.append({"parameter":s.parameter,**o,"eigenvalues":None})
+        return AnalysisResult(
+            self.name,
+            {"trajectory":SpectralTrajectory(snaps,self.operator.name)},
+            rec,
+            {"operator":self.operator.name,"operator_space":getattr(self.operator,"space","node"),"incompatible_snapshots":incompatible},
+        )
 
 class EigenspaceAnalysis(Analysis):
     name="eigenspaces"
-    def __init__(self,operator="normalized_laplacian",dimensions=3): self.operator=resolve_operator(operator); self.dimensions=dimensions
+    def __init__(self,operator="normalized_laplacian",dimensions=3):
+        self.operator=resolve_operator(operator); self.dimensions=dimensions
     def run(self,ctx):
-        prev=None; rec=[]
+        prev=None; rec=[]; incompatible=0
         for s in ctx.filtration:
-            vals,V=solve_spectrum(self.operator.matrix(s),vectors=True)
-            d=min(self.dimensions,V.shape[1] if V is not None else 0); cur=V[:,:d] if d else None
-            rec.append({"parameter":s.parameter,"overlap":None if prev is None or cur is None else eigenspace_overlap(prev,cur).tolist(),"principal_angles":None if prev is None or cur is None else principal_angle_values(prev,cur).tolist()})
+            try:
+                M=self.operator.matrix(s)
+                vals,V=solve_spectrum(M,vectors=True)
+            except OperatorCompatibilityError as exc:
+                incompatible += 1
+                rec.append({
+                    "parameter":s.parameter,
+                    "overlap":None,
+                    "principal_angles":None,
+                    "ambient_dimension":None,
+                    **exc.as_dict(),
+                })
+                prev=None
+                continue
+
+            d=min(self.dimensions,V.shape[1] if V is not None else 0)
+            cur=V[:,:d] if d else None
+            row={
+                "parameter":s.parameter,
+                "overlap":None,
+                "principal_angles":None,
+                "ambient_dimension":None if cur is None else int(cur.shape[0]),
+                "status":"ok",
+            }
+            if prev is not None and cur is not None:
+                if prev.shape[0] != cur.shape[0]:
+                    incompatible += 1
+                    row.update({
+                        "status":"incompatible",
+                        "reason":"changing_ambient_space",
+                        "message":(
+                            f"Cannot compare consecutive {self.operator.name} eigenspaces "
+                            f"with ambient dimensions {prev.shape[0]} and {cur.shape[0]}."
+                        ),
+                        "previous_ambient_dimension":int(prev.shape[0]),
+                        "current_ambient_dimension":int(cur.shape[0]),
+                        "operator_space":getattr(self.operator,"space","node"),
+                    })
+                else:
+                    row["overlap"]=eigenspace_overlap(prev,cur).tolist()
+                    row["principal_angles"]=principal_angle_values(prev,cur).tolist()
+            rec.append(row)
             prev=cur
-        return AnalysisResult(self.name,records=rec,metadata={"operator":self.operator.name,"dimensions":self.dimensions})
+        return AnalysisResult(
+            self.name,
+            records=rec,
+            metadata={
+                "operator":self.operator.name,
+                "operator_space":getattr(self.operator,"space","node"),
+                "dimensions":self.dimensions,
+                "incompatible_comparisons":incompatible,
+            },
+        )
 
 class BridgesAnalysis(Analysis):
     name="bridges"

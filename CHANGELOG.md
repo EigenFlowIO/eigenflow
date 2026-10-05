@@ -4,6 +4,20 @@ All notable user-visible changes to Eigenflow should be recorded here.
 
 The project is currently at **1.0.0a1**, an alpha release. Public interfaces and persistence behavior may still change before a stable 1.0 release.
 
+## Unreleased
+
+### Added
+
+- Structured graph/operator compatibility validation via `OperatorCompatibilityError`.
+- Explicit `signed_laplacian` and `signed_normalized_laplacian` operators using absolute weighted degree.
+- Structured eigenspace incompatibility records when consecutive operator matrices live in different ambient spaces.
+
+### Changed
+
+- Ordinary `normalized_laplacian` and `random_walk` operators now reject negative weighted graphs before numerical normalization instead of permitting NaN/Inf propagation.
+- `SpectralAnalysis`, `EigenspaceAnalysis`, and `LocalizationAnalysis` preserve mathematically incompatible snapshots as explicit result records rather than surfacing opaque downstream linear-algebra failures.
+- Non-backtracking eigenspace trajectories now report `changing_ambient_space` when filtration snapshots have different directed-edge dimensions.
+
 ## 1.0.0a1 — 2026-10-04 — initial alpha
 
 ### Added

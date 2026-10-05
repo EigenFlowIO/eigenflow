@@ -556,3 +556,8 @@ Use [Interpreting results](docs/guides/interpreting_results.md) after running an
 Use the [API](docs/spec/API_SPEC.md), [data-model](docs/spec/DATA_MODEL_SPEC.md), and [execution](docs/spec/EXECUTION_SPEC.md) specifications as technical reference material rather than as the primary instructional path.
 
 Existing PCSCS users can begin with [`examples/pcscs_compatibility.py`](examples/pcscs_compatibility.py) and then expand the preset into explicit Eigenflow configuration.
+
+
+## Operator compatibility
+
+See [`docs/OPERATOR_COMPATIBILITY.md`](docs/OPERATOR_COMPATIBILITY.md) for signed-weight and changing-ambient-space semantics.
