@@ -2,10 +2,10 @@
   "manifest_format": "eigenflow-execution-manifest",
   "version": "0.1.0",
   "project_id": "proj_eigenflow",
-  "state_revision": 6,
-  "last_committed_unit": "unit_130_documentation_audit",
+  "state_revision": 7,
+  "last_committed_unit": "unit_141_instructional_architecture",
   "current_unit": null,
-  "resume_unit": "unit_140_documentation_completion",
+  "resume_unit": "unit_142_content_dependency_map",
   "units": [
     {
       "id": "unit_000_initialize_persistent_state",
@@ -164,17 +164,94 @@
     },
     {
       "id": "unit_140_documentation_completion",
-      "title": "Complete human-facing documentation and reconcile docs with implementation",
-      "status": "pending",
+      "title": "Human-facing surface completion phase (inverse instructional design)",
+      "status": "in_progress",
       "depends_on": [
         "unit_130_documentation_audit"
       ],
       "outputs": [
-        "revised README/governance docs",
-        "expanded concept docs and guides",
-        "reconciled API/data/execution specs",
-        "instructional examples",
-        "documentation index and result-interpretation guide"
+        "complete instructional documentation surface governed by instr_design_001"
+      ]
+    },
+    {
+      "id": "unit_141_instructional_architecture",
+      "title": "Define objective reader state, epistemic graph, representation tasks, and backstepping trajectory",
+      "status": "complete",
+      "depends_on": [
+        "unit_130_documentation_audit"
+      ],
+      "outputs": [
+        "docs/INSTRUCTIONAL_ARCHITECTURE.md",
+        "project_state instructional_design"
+      ],
+      "completed_at": "2026-10-05T00:59:55.118092+00:00"
+    },
+    {
+      "id": "unit_142_content_dependency_map",
+      "title": "Map every human-facing file and section to epistemic prerequisites and representation tasks",
+      "status": "pending",
+      "depends_on": [
+        "unit_141_instructional_architecture"
+      ],
+      "outputs": [
+        "documentation content dependency map",
+        "revised per-file task acceptance criteria"
+      ]
+    },
+    {
+      "id": "unit_143_core_instructional_surface",
+      "title": "Rewrite README, docs index, experimental model, and interpretation guide along the instructional trajectory",
+      "status": "pending",
+      "depends_on": [
+        "unit_142_content_dependency_map"
+      ],
+      "outputs": [
+        "README.md",
+        "docs/index.md",
+        "docs/concepts/experimental_model.md",
+        "docs/guides/interpreting_results.md"
+      ]
+    },
+    {
+      "id": "unit_144_analysis_and_execution_guides",
+      "title": "Complete percolation/spectral concepts, worked VGG16/PCSCS guides, and annotated examples",
+      "status": "pending",
+      "depends_on": [
+        "unit_143_core_instructional_surface"
+      ],
+      "outputs": [
+        "concept docs",
+        "worked guides",
+        "annotated examples"
+      ]
+    },
+    {
+      "id": "unit_145_reference_reconciliation",
+      "title": "Reconcile API/data/execution specs and public metadata with implementation",
+      "status": "pending",
+      "depends_on": [
+        "unit_144_analysis_and_execution_guides"
+      ],
+      "outputs": [
+        "reconciled specs",
+        "CONTRIBUTING",
+        "CHANGELOG",
+        "SECURITY",
+        "CITATION",
+        "pyproject metadata"
+      ]
+    },
+    {
+      "id": "unit_146_reader_state_validation",
+      "title": "Validate human-facing surface against objective reader-state representation tasks",
+      "status": "pending",
+      "depends_on": [
+        "unit_145_reference_reconciliation"
+      ],
+      "outputs": [
+        "instructional validation report",
+        "all documentation tasks dispositioned",
+        "documentation completion checkpoint"
       ]
     }
   ],
@@ -183,5 +260,5 @@
     "resume_at_first_pending_unit_whose_dependencies_are_complete": true,
     "invalidate_dependents_on_dependency_change": true
   },
-  "completion_status": "complete"
+  "completion_status": "in_progress"
 }

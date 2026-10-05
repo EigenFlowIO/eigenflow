@@ -1,7 +1,7 @@
 {
   "state_format": {
     "name": "eigenflow-project-state",
-    "version": "0.1.0",
+    "version": "0.2.0",
     "status": "provisional-stable",
     "schema_evolution_allowed": true
   },
@@ -74,6 +74,10 @@
     {
       "id": "sc_007",
       "statement": "The final deliverable can be unzipped and immediately used as a Git repository with package source, tests, documentation, examples, project-state artifacts, and coherent initial commit history."
+    },
+    {
+      "id": "sc_008",
+      "statement": "A first-time technically competent analyst or neural-network systems architect can progress through the human-facing surface to justified competence in deciding when/how to use Eigenflow and in producing bounded, human-interpretable inferences about internal representation from experimental outputs."
     }
   ],
   "constraints": [
@@ -314,6 +318,12 @@
       "status": "committed",
       "decision": "The primary project deliverable is a ZIP archive of the complete initial Eigenflow Git repository, including the .git directory and usable commit history.",
       "rationale": "The repository itself is the durable implementation artifact; specifications, documentation, tests, and examples should live inside and evolve with it."
+    },
+    {
+      "id": "dec_014",
+      "status": "committed",
+      "decision": "The human-facing surface will be developed by backward instructional design over an epistemological-semantic graph, from justified experimental competence to the first-encounter reader state.",
+      "rationale": "Documentation completeness is defined by the reader states and evidential judgments it enables, not by topical coverage alone."
     }
   ],
   "assumptions": [
@@ -517,15 +527,34 @@
           "doc_task_019",
           "doc_task_020"
         ]
+      },
+      {
+        "id": "prov_change_005",
+        "source_type": "user_directive",
+        "source_description": "Human-facing surface phase reframed as an inverse instructional-design problem over an epistemological-semantic graph with objective reader state, representation tasks, and backstepping tasks.",
+        "created_at": "2026-10-05T00:59:55.118092+00:00",
+        "affected_ids": [
+          "instr_design_001",
+          "reader_initial_001",
+          "reader_target_001",
+          "dec_014",
+          "sc_008",
+          "unit_141_instructional_architecture",
+          "unit_142_content_dependency_map",
+          "unit_143_core_instructional_surface",
+          "unit_144_analysis_and_execution_guides",
+          "unit_145_reference_reconciliation",
+          "unit_146_reader_state_validation"
+        ]
       }
     ]
   },
   "execution": {
-    "current_phase": "documentation_completion",
-    "last_committed_unit": "unit_130_documentation_audit",
+    "current_phase": "human_facing_surface_completion",
+    "last_committed_unit": "unit_141_instructional_architecture",
     "active_unit": null,
-    "resume_from": "unit_140_documentation_completion",
-    "state_revision": 6
+    "resume_from": "unit_142_content_dependency_map",
+    "state_revision": 7
   },
   "completion": {
     "project_complete": false,
@@ -578,7 +607,14 @@
           "Add navigation links to conceptual docs, guides, API/spec docs, examples, and PCSCS migration/compatibility material.",
           "Document important limitations and current implementation status, including any features described in design specs but not yet implemented."
         ],
-        "acceptance": "A technically competent first-time user can install Eigenflow, run an experiment, inspect outputs, and understand what conclusions are and are not supported without consulting source code."
+        "acceptance": "A technically competent first-time user can install Eigenflow, run an experiment, inspect outputs, and understand what conclusions are and are not supported without consulting source code.",
+        "instructional_requirements": [
+          "traj_001",
+          "traj_004",
+          "traj_006",
+          "representation task rt_003 preview",
+          "clear indication/non-indication decision support"
+        ]
       },
       {
         "id": "doc_task_002",
@@ -592,7 +628,8 @@
           "Define PR expectations, regression-test requirements, numerical/scientific validation expectations, and documentation requirements.",
           "Explain the persistent-state workflow and when changes must update project_state, execution manifest, specs, tests, and derivative documentation."
         ],
-        "acceptance": "A new contributor can set up the project and make a compliant extension without reverse-engineering repository conventions."
+        "acceptance": "A new contributor can set up the project and make a compliant extension without reverse-engineering repository conventions.",
+        "instructional_requirements": []
       },
       {
         "id": "doc_task_003",
@@ -605,7 +642,8 @@
           "List known limitations and incomplete/documentation-sensitive features.",
           "Establish changelog conventions for breaking API changes, behavioral changes, deprecations, bug fixes, and scientific-method changes."
         ],
-        "acceptance": "Users can determine what changed, what is supported, and what limitations apply in each release."
+        "acceptance": "Users can determine what changed, what is supported, and what limitations apply in each release.",
+        "instructional_requirements": []
       },
       {
         "id": "doc_task_004",
@@ -618,7 +656,8 @@
           "Document supported versions and disclosure/response expectations.",
           "Expand model/data safety guidance: untrusted torch/pickle artifacts, arbitrary callables/custom metrics, dependency risks, resource-exhaustion considerations, and handling of sensitive probe data."
         ],
-        "acceptance": "The file provides an actionable vulnerability-reporting path and describes the main security boundaries relevant to Eigenflow."
+        "acceptance": "The file provides an actionable vulnerability-reporting path and describes the main security boundaries relevant to Eigenflow.",
+        "instructional_requirements": []
       },
       {
         "id": "doc_task_005",
@@ -632,7 +671,8 @@
           "Add DOI/archive metadata if a Zenodo or equivalent release DOI is created.",
           "Ensure repository URL/casing and software title match the canonical GitHub project."
         ],
-        "acceptance": "Citation metadata matches the actual release, authorship, canonical repository, and archival identifier if available."
+        "acceptance": "Citation metadata matches the actual release, authorship, canonical repository, and archival identifier if available.",
+        "instructional_requirements": []
       },
       {
         "id": "doc_task_006",
@@ -644,7 +684,8 @@
           "Adopt or adapt a recognized code of conduct (for example Contributor Covenant) with scope, unacceptable behavior, enforcement responsibilities, and reporting process.",
           "Preserve the project-specific expectation that methodological disagreements are resolved through evidence and reproducible tests."
         ],
-        "acceptance": "Contributors have clear behavioral expectations, reporting procedures, and enforcement scope."
+        "acceptance": "Contributors have clear behavioral expectations, reporting procedures, and enforcement scope.",
+        "instructional_requirements": []
       },
       {
         "id": "doc_task_007",
@@ -656,7 +697,8 @@
           "Verify copyright year and legal copyright holder/name match the intended project ownership before release.",
           "Confirm README, pyproject metadata, and CITATION.cff consistently identify the same license and owner."
         ],
-        "acceptance": "License metadata is legally and bibliographically consistent across the repository."
+        "acceptance": "License metadata is legally and bibliographically consistent across the repository.",
+        "instructional_requirements": []
       },
       {
         "id": "doc_task_008",
@@ -670,7 +712,15 @@
           "Provide at least two complete experimental examples with competing hypotheses and predicted structural outcomes.",
           "Discuss the epistemic boundary between structural evidence and claims about latent features, including alternative explanations and robustness checks across metrics/reducers."
         ],
-        "acceptance": "A reader can design a controlled post hoc interpretability experiment and state appropriately bounded conclusions from its outputs."
+        "acceptance": "A reader can design a controlled post hoc interpretability experiment and state appropriately bounded conclusions from its outputs.",
+        "instructional_requirements": [
+          "traj_002",
+          "traj_003",
+          "traj_007",
+          "rt_001",
+          "rt_005",
+          "rt_006"
+        ]
       },
       {
         "id": "doc_task_009",
@@ -685,7 +735,12 @@
           "Provide synthetic or worked examples showing characteristic curves and how an experimenter should interpret peaks/transitions.",
           "Distinguish descriptive percolation-style analysis from claims of criticality, phase transition, scaling exponents, or universality."
         ],
-        "acceptance": "A reader can select, compute, and interpret the implemented percolation observables in neural-network probe experiments."
+        "acceptance": "A reader can select, compute, and interpret the implemented percolation observables in neural-network probe experiments.",
+        "instructional_requirements": [
+          "traj_005",
+          "rt_004",
+          "observable-to-inference boundary"
+        ]
       },
       {
         "id": "doc_task_010",
@@ -700,7 +755,12 @@
           "Add concrete neural-network interpretation examples and warnings against treating spectral signatures as semantic explanations without probe evidence.",
           "Document numerical/solver considerations, full versus partial spectra, and scale/performance implications."
         ],
-        "acceptance": "A reader can choose an operator and spectral observable, understand its numerical meaning, and interpret it in a controlled experimental context."
+        "acceptance": "A reader can choose an operator and spectral observable, understand its numerical meaning, and interpret it in a controlled experimental context.",
+        "instructional_requirements": [
+          "traj_005",
+          "rt_004",
+          "eigenspace interpretation and localization caveats"
+        ]
       },
       {
         "id": "doc_task_011",
@@ -717,7 +777,17 @@
           "Show exact result-access syntax, plots, serialization, and human interpretation of observed class/group transitions.",
           "Include reproducibility, batching/device, memory/performance, and expected activation-shape commentary."
         ],
-        "acceptance": "The guide is copy-runnable and takes a user from raw probe images to interpretable multi-layer Eigenflow results."
+        "acceptance": "The guide is copy-runnable and takes a user from raw probe images to interpretable multi-layer Eigenflow results.",
+        "instructional_requirements": [
+          "traj_003",
+          "traj_004",
+          "traj_006",
+          "traj_008",
+          "rt_001",
+          "rt_002",
+          "rt_003",
+          "rt_004"
+        ]
       },
       {
         "id": "doc_task_012",
@@ -732,7 +802,12 @@
           "Document ExtractionConfig site/reducer semantics and callable/collate behavior.",
           "Define compatibility/deprecation expectations for the public v1 API."
         ],
-        "acceptance": "Every public API claim is executable against the current package and sufficiently precise to serve as the stable v1 contract."
+        "acceptance": "Every public API claim is executable against the current package and sufficiently precise to serve as the stable v1 contract.",
+        "instructional_requirements": [
+          "reference role after conceptual prerequisites",
+          "actual implementation consistency",
+          "executable examples"
+        ]
       },
       {
         "id": "doc_task_013",
@@ -746,7 +821,12 @@
           "Define JSON/array portability, eigenvector persistence policy, versioning, backward compatibility, and provenance fields.",
           "Provide concrete serialized examples and result-navigation examples."
         ],
-        "acceptance": "The data model spec exactly matches implementation and is sufficient to implement independent readers/writers for persisted results."
+        "acceptance": "The data model spec exactly matches implementation and is sufficient to implement independent readers/writers for persisted results.",
+        "instructional_requirements": [
+          "reference role after conceptual prerequisites",
+          "actual implementation consistency",
+          "executable examples"
+        ]
       },
       {
         "id": "doc_task_014",
@@ -760,7 +840,12 @@
           "Describe batching/device behavior, failure handling, partial results, performance characteristics, and future disk/distributed cache extension points.",
           "Add execution examples demonstrating what is recomputed when metric, filtration, or analysis configuration changes."
         ],
-        "acceptance": "The execution spec describes actual behavior and gives developers a precise contract for caching, invalidation, and recomputation."
+        "acceptance": "The execution spec describes actual behavior and gives developers a precise contract for caching, invalidation, and recomputation.",
+        "instructional_requirements": [
+          "reference role after conceptual prerequisites",
+          "actual implementation consistency",
+          "executable examples"
+        ]
       },
       {
         "id": "doc_task_015",
@@ -775,7 +860,12 @@
           "Access concrete component/percolation/spectral/factor outputs instead of only summary(), and plot or save representative results.",
           "Add commentary explaining what the resulting values would mean experimentally and what they do not establish."
         ],
-        "acceptance": "The example functions as an annotated first tutorial, not only a smoke test."
+        "acceptance": "The example functions as an annotated first tutorial, not only a smoke test.",
+        "instructional_requirements": [
+          "syntax-to-experiment mapping",
+          "worked output interpretation",
+          "bounded claims"
+        ]
       },
       {
         "id": "doc_task_016",
@@ -790,7 +880,12 @@
           "Provide an equivalent expanded Experiment configuration so users can see how the preset maps onto general Eigenflow primitives.",
           "Add interpretation commentary and a migration note for users moving existing PCSCS experiments into Eigenflow."
         ],
-        "acceptance": "A PCSCS user can understand, reproduce, inspect, and customize the compatibility preset in Eigenflow."
+        "acceptance": "A PCSCS user can understand, reproduce, inspect, and customize the compatibility preset in Eigenflow.",
+        "instructional_requirements": [
+          "syntax-to-experiment mapping",
+          "worked output interpretation",
+          "bounded claims"
+        ]
       },
       {
         "id": "doc_task_017",
@@ -803,7 +898,8 @@
           "Add explicit repository/remote synchronization guidance so a committed local state mutation is not confused with a pushed GitHub state.",
           "Cross-reference the documentation-audit/open-task mechanism introduced by this work cycle."
         ],
-        "acceptance": "Maintainers can distinguish canonical development state, local Git state, and remote GitHub state without ambiguity."
+        "acceptance": "Maintainers can distinguish canonical development state, local Git state, and remote GitHub state without ambiguity.",
+        "instructional_requirements": []
       },
       {
         "id": "doc_task_018",
@@ -817,7 +913,8 @@
           "Consider optional documentation dependencies and any performance/visualization extras if the package grows.",
           "Ensure supported Python/PyTorch versions documented here remain synchronized with README and CI/test policy."
         ],
-        "acceptance": "Package-index metadata directs users to all major project resources and accurately states compatibility."
+        "acceptance": "Package-index metadata directs users to all major project resources and accurately states compatibility.",
+        "instructional_requirements": []
       },
       {
         "id": "doc_task_019",
@@ -829,7 +926,10 @@
           "Create a documentation index organized by getting started, experimental design, concepts, API/specification, worked guides, examples, and interpretation.",
           "Give readers recommended paths for first-time users, PCSCS users, contributors, and researchers designing controlled experiments."
         ],
-        "acceptance": "All human-facing documentation is discoverable from a single navigable landing page."
+        "acceptance": "All human-facing documentation is discoverable from a single navigable landing page.",
+        "instructional_requirements": [
+          "route readers through traj_001 to traj_008 according to role and prior knowledge"
+        ]
       },
       {
         "id": "doc_task_020",
@@ -842,8 +942,473 @@
           "For each output, include what it measures, indicative patterns, plausible neural-network interpretations, alternative explanations, and claims that are not warranted.",
           "Include examples of convergent evidence across multiple observables and robustness checks across metrics/reducers."
         ],
-        "acceptance": "Experimenters can interpret Eigenflow outputs as evidence about latent feature organization without relying on undocumented intuition."
+        "acceptance": "Experimenters can interpret Eigenflow outputs as evidence about latent feature organization without relying on undocumented intuition.",
+        "instructional_requirements": [
+          "traj_005",
+          "traj_007",
+          "rt_004",
+          "rt_005",
+          "rt_006"
+        ]
       }
+    ],
+    "instructional_governance": "instr_design_001"
+  },
+  "schema_migrations": [
+    {
+      "id": "mig_004_instructional_epistemic_graph",
+      "from_version": "0.1.0",
+      "to_version": "0.2.0",
+      "status": "applied",
+      "rationale": "The human-facing documentation phase requires durable representation of target reader states, epistemic dependencies, representation tasks, and backward instructional steps.",
+      "introduced_collections": [
+        "instructional_design"
+      ],
+      "backfill": "Existing documentation_audit tasks remain valid and become implementation targets governed by the new instructional design.",
+      "validated_at": "2026-10-05T00:59:55.118092+00:00"
+    }
+  ],
+  "instructional_design": {
+    "id": "instr_design_001",
+    "status": "committed",
+    "phase": "human_facing_surface_completion",
+    "design_method": "inverse_problem_epistemological_semantic_graph",
+    "design_principle": "Solve backward from the objective reader state to the initial reader state. Every instructional object must justify its role as a prerequisite, representation task, backstepping task, worked demonstration, or evidential bridge.",
+    "audience": {
+      "id": "reader_initial_001",
+      "name": "first-encounter analyst or neural-network systems architect",
+      "assumed_capabilities": [
+        "technical competence with neural networks and Python-level tooling",
+        "ability to understand tensors, layers/modules, embeddings/representations, and ordinary model evaluation",
+        "ability to follow mathematical notation when motivated by the experimental question"
+      ],
+      "not_assumed": [
+        "prior familiarity with Eigenflow or PCSCS",
+        "prior familiarity with graph filtrations, percolation observables, spectral graph analysis, or eigenspace tracking",
+        "knowledge of how to design controlled probe populations for post hoc interpretability",
+        "knowledge of the epistemic limits of inferences from structural representation analysis"
+      ]
+    },
+    "objective_reader_state": {
+      "id": "reader_target_001",
+      "name": "justified experimental competence",
+      "statement": "The reader can make informed, justified decisions about whether and how to use Eigenflow in neural-network feature-interpretation experiments, can design the experiment so its outputs bear on an explicit interpretive question, and can interpret those outputs in a manner consistent with the experimental design, the intrinsic scope of each observable, and the distinction between structural evidence and claims about latent features.",
+      "competencies": [
+        {
+          "id": "comp_001",
+          "statement": "Determine whether an interpretability question is suitable for a probe-population relational experiment and identify what evidence would count for or against the relevant hypotheses."
+        },
+        {
+          "id": "comp_002",
+          "statement": "Construct a probe population whose manipulated factors, controls, balance, metadata, and contrasts make the intended inference identifiable enough to be scientifically useful."
+        },
+        {
+          "id": "comp_003",
+          "statement": "Choose representation sites/reducers, similarity or distance metrics, and filtration/control coordinates for reasons connected to the hypothesis rather than convenience alone."
+        },
+        {
+          "id": "comp_004",
+          "statement": "Configure and execute an Eigenflow experiment using the actual public API and inspect the resulting structured outputs."
+        },
+        {
+          "id": "comp_005",
+          "statement": "Explain what component, percolation, spectral/eigenspace, factor-alignment, bridge, k-core, community, and transition observables measure and what patterns they can reveal about representation populations."
+        },
+        {
+          "id": "comp_006",
+          "statement": "Translate structural patterns into bounded candidate interpretations of latent feature organization while identifying alternative explanations and unsupported claims."
+        },
+        {
+          "id": "comp_007",
+          "statement": "Use convergent evidence and robustness checks across layers, metrics, reducers, filtrations, sample sizes, and probe manipulations to strengthen or weaken an interpretation."
+        },
+        {
+          "id": "comp_008",
+          "statement": "Produce a human-interpretable experimental account connecting the original hypothesis, probe design, observed structural changes, robustness evidence, and justified conclusion."
+        }
+      ]
+    },
+    "epistemic_graph": {
+      "nodes": [
+        {
+          "id": "e0",
+          "kind": "reader_state",
+          "label": "Initial encounter: knows NNs, not Eigenflow method"
+        },
+        {
+          "id": "e1",
+          "kind": "belief",
+          "label": "NN layers induce population representations that can be studied relationally"
+        },
+        {
+          "id": "e2",
+          "kind": "belief",
+          "label": "A probe population is an experimental instrument, not merely a dataset sample"
+        },
+        {
+          "id": "e3",
+          "kind": "belief",
+          "label": "Metric and representation choices define an observational geometry and therefore constrain interpretation"
+        },
+        {
+          "id": "e4",
+          "kind": "belief",
+          "label": "A filtration exposes multiscale relational organization rather than one arbitrary graph or clustering"
+        },
+        {
+          "id": "e5",
+          "kind": "belief",
+          "label": "Different observables answer different structural questions and have distinct inferential scopes"
+        },
+        {
+          "id": "e6",
+          "kind": "skill",
+          "label": "Can execute and navigate a complete Eigenflow experiment"
+        },
+        {
+          "id": "e7",
+          "kind": "skill",
+          "label": "Can map observed structural patterns to experimentally relevant candidate interpretations"
+        },
+        {
+          "id": "e8",
+          "kind": "belief",
+          "label": "Convergent and robustness evidence changes confidence in an interpretation"
+        },
+        {
+          "id": "e9",
+          "kind": "skill",
+          "label": "Can distinguish observation, inference, alternative explanation, and overclaim"
+        },
+        {
+          "id": "e10",
+          "kind": "reader_state",
+          "label": "Objective: justified experimental competence and human-interpretable insight"
+        }
+      ],
+      "edges": [
+        {
+          "id": "ie_001",
+          "source": "e0",
+          "target": "e1",
+          "type": "instructional_prerequisite"
+        },
+        {
+          "id": "ie_002",
+          "source": "e1",
+          "target": "e2",
+          "type": "instructional_prerequisite"
+        },
+        {
+          "id": "ie_003",
+          "source": "e2",
+          "target": "e3",
+          "type": "instructional_prerequisite"
+        },
+        {
+          "id": "ie_004",
+          "source": "e3",
+          "target": "e4",
+          "type": "instructional_prerequisite"
+        },
+        {
+          "id": "ie_005",
+          "source": "e4",
+          "target": "e5",
+          "type": "instructional_prerequisite"
+        },
+        {
+          "id": "ie_006",
+          "source": "e3",
+          "target": "e6",
+          "type": "procedural_prerequisite"
+        },
+        {
+          "id": "ie_007",
+          "source": "e4",
+          "target": "e6",
+          "type": "procedural_prerequisite"
+        },
+        {
+          "id": "ie_008",
+          "source": "e5",
+          "target": "e7",
+          "type": "semantic_prerequisite"
+        },
+        {
+          "id": "ie_009",
+          "source": "e6",
+          "target": "e7",
+          "type": "procedural_prerequisite"
+        },
+        {
+          "id": "ie_010",
+          "source": "e7",
+          "target": "e8",
+          "type": "evidential_prerequisite"
+        },
+        {
+          "id": "ie_011",
+          "source": "e8",
+          "target": "e9",
+          "type": "epistemic_prerequisite"
+        },
+        {
+          "id": "ie_012",
+          "source": "e9",
+          "target": "e10",
+          "type": "sufficiency_contribution"
+        },
+        {
+          "id": "ie_013",
+          "source": "e7",
+          "target": "e10",
+          "type": "sufficiency_contribution"
+        },
+        {
+          "id": "ie_014",
+          "source": "e6",
+          "target": "e10",
+          "type": "sufficiency_contribution"
+        }
+      ]
+    },
+    "representation_tasks": [
+      {
+        "id": "rt_001",
+        "target": [
+          "comp_001",
+          "comp_002"
+        ],
+        "task": "Given an interpretability question and two competing feature hypotheses, specify a probe design and state predicted structural outcomes that would discriminate between them.",
+        "evidence_of_mastery": "The design identifies manipulated factors, controls, metadata, confounds, and what result would favor each hypothesis."
+      },
+      {
+        "id": "rt_002",
+        "target": [
+          "comp_003"
+        ],
+        "task": "Given one representation population and two plausible metrics/reducers/filtrations, justify a configuration and identify what interpretive assumptions the choice introduces.",
+        "evidence_of_mastery": "The reader connects configuration choices to invariances, geometry, comparability, and the experimental question."
+      },
+      {
+        "id": "rt_003",
+        "target": [
+          "comp_004"
+        ],
+        "task": "Run a complete experiment from probes and model through result access, plotting, and persistence using only documented public interfaces.",
+        "evidence_of_mastery": "The reader can reproduce the run and locate layer-, control-, factor-, and analysis-level outputs."
+      },
+      {
+        "id": "rt_004",
+        "target": [
+          "comp_005",
+          "comp_006"
+        ],
+        "task": "Interpret a worked result containing component, percolation, spectral, and factor-alignment outputs.",
+        "evidence_of_mastery": "The reader correctly states what each observable measures, identifies convergent/divergent patterns, and gives bounded latent-feature interpretations."
+      },
+      {
+        "id": "rt_005",
+        "target": [
+          "comp_006",
+          "comp_007"
+        ],
+        "task": "Given a compelling initial interpretation, enumerate alternative explanations and design metric/reducer/probe/sample-size robustness checks.",
+        "evidence_of_mastery": "The reader can explain how each check would change confidence without treating agreement as proof."
+      },
+      {
+        "id": "rt_006",
+        "target": [
+          "comp_008"
+        ],
+        "task": "Write a concise experimental interpretation memo from hypothesis through conclusion.",
+        "evidence_of_mastery": "The memo clearly separates observations, inferences, robustness evidence, residual uncertainty, and claims not warranted."
+      }
+    ],
+    "backstepping_tasks": [
+      {
+        "id": "bs_001",
+        "from": "reader_target_001",
+        "requires": [
+          "comp_008"
+        ],
+        "task": "Backstep from final justified interpretation to the evidence chain that must be visible in a worked demonstration."
+      },
+      {
+        "id": "bs_002",
+        "from": "comp_008",
+        "requires": [
+          "comp_006",
+          "comp_007"
+        ],
+        "task": "Establish how bounded interpretation and robustness jointly support a final human-readable conclusion."
+      },
+      {
+        "id": "bs_003",
+        "from": "comp_006",
+        "requires": [
+          "comp_005",
+          "comp_001"
+        ],
+        "task": "Teach observable semantics together with hypothesis-relative interpretation; do not teach metrics as context-free numbers."
+      },
+      {
+        "id": "bs_004",
+        "from": "comp_007",
+        "requires": [
+          "comp_003",
+          "comp_005"
+        ],
+        "task": "Teach why metric/reducer/filtration comparisons are robustness tests rather than mere configuration variants."
+      },
+      {
+        "id": "bs_005",
+        "from": "comp_005",
+        "requires": [
+          "e4"
+        ],
+        "task": "Establish the control-parameter family before introducing individual observables so every curve/statistic has a common structural referent."
+      },
+      {
+        "id": "bs_006",
+        "from": "comp_004",
+        "requires": [
+          "comp_002",
+          "comp_003"
+        ],
+        "task": "Delay full API execution until the reader can state what the probes, representation choices, metric, and filtration mean experimentally."
+      },
+      {
+        "id": "bs_007",
+        "from": "comp_003",
+        "requires": [
+          "e1",
+          "e2"
+        ],
+        "task": "Introduce metric/reducer/filtration choice only after population representations and probe semantics are understood."
+      },
+      {
+        "id": "bs_008",
+        "from": "comp_002",
+        "requires": [
+          "e2"
+        ],
+        "task": "Move from generic examples to controlled probe design using matched and factorial contrasts."
+      },
+      {
+        "id": "bs_009",
+        "from": "e2",
+        "requires": [
+          "e1"
+        ],
+        "task": "Establish that the unit of analysis is relational organization of the probe population across layers, not a single activation trajectory."
+      },
+      {
+        "id": "bs_010",
+        "from": "e1",
+        "requires": [
+          "e0"
+        ],
+        "task": "Begin with a familiar NN forward-pass example and reframe intermediate activations as population representations."
+      }
+    ],
+    "instructional_trajectory": [
+      {
+        "stage": 1,
+        "id": "traj_001",
+        "name": "Orientation and indication",
+        "reader_gain": "Understands what Eigenflow is for, when it is indicated, and what kind of claim it can support.",
+        "primary_docs": [
+          "README.md",
+          "docs/index.md"
+        ]
+      },
+      {
+        "stage": 2,
+        "id": "traj_002",
+        "name": "Population representation model",
+        "reader_gain": "Understands layers as population representation states and the distinction between first-kind and second-kind features.",
+        "primary_docs": [
+          "docs/concepts/experimental_model.md"
+        ]
+      },
+      {
+        "stage": 3,
+        "id": "traj_003",
+        "name": "Probe design as experimental design",
+        "reader_gain": "Can construct contrasts that make latent-feature hypotheses empirically discriminable.",
+        "primary_docs": [
+          "docs/concepts/experimental_model.md",
+          "docs/guides/vgg16_probe_experiment.md"
+        ]
+      },
+      {
+        "stage": 4,
+        "id": "traj_004",
+        "name": "Measurement geometry",
+        "reader_gain": "Can choose reducer, metric, and control coordinate with awareness of their epistemic consequences.",
+        "primary_docs": [
+          "README.md",
+          "docs/guides/vgg16_probe_experiment.md",
+          "docs/spec/API_SPEC.md"
+        ]
+      },
+      {
+        "stage": 5,
+        "id": "traj_005",
+        "name": "Multiscale structural observables",
+        "reader_gain": "Understands components, percolation, spectra/eigenspaces, factor alignment, bridges, k-core, communities, and transitions as distinct observables.",
+        "primary_docs": [
+          "docs/concepts/percolation.md",
+          "docs/concepts/spectral_analysis.md",
+          "docs/guides/interpreting_results.md"
+        ]
+      },
+      {
+        "stage": 6,
+        "id": "traj_006",
+        "name": "Execution and result navigation",
+        "reader_gain": "Can run the package and retrieve/visualize the evidence needed for the experiment.",
+        "primary_docs": [
+          "README.md",
+          "examples/basic_mlp.py",
+          "docs/guides/vgg16_probe_experiment.md",
+          "docs/spec/API_SPEC.md",
+          "docs/spec/DATA_MODEL_SPEC.md"
+        ]
+      },
+      {
+        "stage": 7,
+        "id": "traj_007",
+        "name": "Interpretation and triangulation",
+        "reader_gain": "Can convert patterns into bounded interpretations and test them against alternatives/robustness checks.",
+        "primary_docs": [
+          "docs/guides/interpreting_results.md",
+          "docs/concepts/experimental_model.md"
+        ]
+      },
+      {
+        "stage": 8,
+        "id": "traj_008",
+        "name": "Full demonstrations",
+        "reader_gain": "Can independently design and interpret realistic feature-interpretation experiments.",
+        "primary_docs": [
+          "docs/guides/vgg16_probe_experiment.md",
+          "examples/pcscs_compatibility.py",
+          "additional worked demonstrations to be created"
+        ]
+      }
+    ],
+    "content_rules": [
+      "Every major concept page must state indication: when the concept is useful and what question it answers.",
+      "Every major API surface must include executable syntax using the actual implementation.",
+      "Every analysis family must include at least one worked output and interpretation in neural-network experimental context.",
+      "Every interpretation section must separate observation, candidate inference, alternative explanations, and unsupported claims.",
+      "Configuration guidance must explain why a reader would choose an option, not only how to spell it.",
+      "Worked demonstrations should begin with an explicit hypothesis and end with a bounded evidence statement.",
+      "Cross-metric/reducer/filtration comparison should be taught as epistemic robustness, not merely feature breadth.",
+      "PCSCS documentation should serve both compatibility and conceptual continuity with the broader Eigenflow framework."
     ]
   }
 }
