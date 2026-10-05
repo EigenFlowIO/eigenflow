@@ -1,0 +1,146 @@
+{
+  "manifest_format": "eigenflow-execution-manifest",
+  "version": "0.1.0",
+  "project_id": "proj_eigenflow",
+  "state_revision": 3,
+  "last_committed_unit": "unit_000_initialize_persistent_state",
+  "current_unit": null,
+  "resume_unit": "unit_005_repo_scaffold",
+  "units": [
+    {
+      "id": "unit_000_initialize_persistent_state",
+      "title": "Initialize persistent project state",
+      "status": "complete",
+      "depends_on": [],
+      "outputs": [
+        "project_state.json",
+        "STATE_PROTOCOL.md",
+        "execution_manifest.json"
+      ]
+    },
+    {
+      "id": "unit_005_repo_scaffold",
+      "title": "Initialize live Eigenflow Git repository and embed project-state artifacts",
+      "status": "pending",
+      "depends_on": [
+        "unit_000_initialize_persistent_state"
+      ],
+      "outputs": [
+        "live Eigenflow Git repository scaffold with .git",
+        "canonical state/protocol/manifest embedded in repository",
+        "initial repository commit"
+      ]
+    },
+    {
+      "id": "unit_010_public_api_spec",
+      "title": "Specify v1 public API and core protocols",
+      "status": "pending",
+      "depends_on": [
+        "unit_005_repo_scaffold"
+      ],
+      "outputs": [
+        "docs/spec/API_SPEC.md committed in repository",
+        "state updates for interfaces and dependencies"
+      ]
+    },
+    {
+      "id": "unit_020_data_model_spec",
+      "title": "Specify persistent in-package data models and result hierarchy",
+      "status": "pending",
+      "depends_on": [
+        "unit_010_public_api_spec"
+      ],
+      "outputs": [
+        "DATA_MODEL_SPEC.md"
+      ]
+    },
+    {
+      "id": "unit_030_execution_dag_spec",
+      "title": "Specify execution DAG, caching, invalidation, and dependency resolution",
+      "status": "pending",
+      "depends_on": [
+        "unit_010_public_api_spec",
+        "unit_020_data_model_spec"
+      ],
+      "outputs": [
+        "EXECUTION_SPEC.md"
+      ]
+    },
+    {
+      "id": "unit_050_probe_extraction",
+      "title": "Implement probe and PyTorch extraction subsystems",
+      "status": "pending",
+      "depends_on": [
+        "unit_005_repo_scaffold",
+        "unit_030_execution_dag_spec"
+      ]
+    },
+    {
+      "id": "unit_060_metrics_filtrations",
+      "title": "Implement metrics and filtrations",
+      "status": "pending",
+      "depends_on": [
+        "unit_005_repo_scaffold",
+        "unit_030_execution_dag_spec"
+      ]
+    },
+    {
+      "id": "unit_070_graph_spectral_percolation",
+      "title": "Implement graph, spectral, and percolation subsystems",
+      "status": "pending",
+      "depends_on": [
+        "unit_060_metrics_filtrations"
+      ]
+    },
+    {
+      "id": "unit_080_factor_transition_compare",
+      "title": "Implement factor, transition, and comparison subsystems",
+      "status": "pending",
+      "depends_on": [
+        "unit_070_graph_spectral_percolation"
+      ]
+    },
+    {
+      "id": "unit_090_visualization_results",
+      "title": "Implement visualization, result, serialization, and provenance layers",
+      "status": "pending",
+      "depends_on": [
+        "unit_080_factor_transition_compare",
+        "unit_030_execution_dag_spec"
+      ]
+    },
+    {
+      "id": "unit_100_pcscs_compat",
+      "title": "Implement PCSCS preset and compatibility regression tests",
+      "status": "pending",
+      "depends_on": [
+        "unit_070_graph_spectral_percolation",
+        "unit_090_visualization_results"
+      ]
+    },
+    {
+      "id": "unit_110_docs_examples_validation",
+      "title": "Complete documentation, examples, validation, and release checks",
+      "status": "pending",
+      "depends_on": [
+        "unit_100_pcscs_compat"
+      ]
+    },
+    {
+      "id": "unit_120_package_repo",
+      "title": "Finalize initial repository history and produce ZIP deliverable",
+      "status": "pending",
+      "depends_on": [
+        "unit_110_docs_examples_validation"
+      ],
+      "outputs": [
+        "eigenflow-initial-repo.zip containing .git"
+      ]
+    }
+  ],
+  "resume_rules": {
+    "do_not_repeat_complete_units": true,
+    "resume_at_first_pending_unit_whose_dependencies_are_complete": true,
+    "invalidate_dependents_on_dependency_change": true
+  }
+}

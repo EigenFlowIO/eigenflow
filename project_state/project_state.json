@@ -1,0 +1,485 @@
+{
+  "state_format": {
+    "name": "eigenflow-project-state",
+    "version": "0.1.0",
+    "status": "provisional-stable",
+    "schema_evolution_allowed": true
+  },
+  "project": {
+    "id": "proj_eigenflow",
+    "name": "Eigenflow",
+    "status": "initialized",
+    "objective": "Build a PyTorch-first, architecture-agnostic, metric-agnostic post hoc neural-network interpretability toolkit for controlled probe experiments on the relational organization of learned representations across network depth and control scale.",
+    "interpretive_goal": "Extract structural features of learned representations so human experimenters can make empirical inferences about latent representational features.",
+    "canonical_state_file": "project_state.json",
+    "protocol_file": "STATE_PROTOCOL.md",
+    "manifest_file": "execution_manifest.json",
+    "primary_output_objective": "Produce a ZIP archive containing a complete initial Eigenflow Git repository, including its .git directory/history, suitable for immediate use as the project repository."
+  },
+  "scope": {
+    "id": "scope_v1",
+    "version_target": "v1",
+    "status": "committed",
+    "included": [
+      "Probe-population preparation and experimental design utilities",
+      "PyTorch model inspection and activation extraction via standard module hooks",
+      "Population-level representation capture across selected or default-eligible internal modules",
+      "Representation reducers and transforms",
+      "Metric abstraction and built-in similarity/distance metrics",
+      "Filtration abstraction and built-in graph-family constructions",
+      "Graph structural analysis",
+      "Percolation-style analysis",
+      "Spectral and eigenspace analysis",
+      "Factor/class alignment analysis using probe metadata",
+      "Transition detection and comparison",
+      "Cross-layer, cross-metric, cross-filtration, cross-model, cross-checkpoint, and cross-probe comparison",
+      "Visualization",
+      "Provenance, serialization, caching, and reproducibility",
+      "PCSCS compatibility as a canonical special-case preset"
+    ],
+    "deferred_not_required_for_v1": [
+      "Framework support beyond PyTorch",
+      "Distributed execution",
+      "Highly specialized domain adapters",
+      "Automatic probe generation",
+      "Exotic graph operators beyond the initial defined set",
+      "Aggressive performance optimization beyond clean sparse-capable architecture"
+    ]
+  },
+  "success_criteria": [
+    {
+      "id": "sc_001",
+      "statement": "A user can define a probe population, supply a PyTorch model, choose or configure a metric and filtration, select analyses, and run a reproducible experiment end-to-end."
+    },
+    {
+      "id": "sc_002",
+      "statement": "The analysis core does not require model-architecture-specific logic after representations have been extracted."
+    },
+    {
+      "id": "sc_003",
+      "statement": "The same representation population can be analyzed under multiple metrics, filtrations, graph operators, and structural analyses without re-extracting activations."
+    },
+    {
+      "id": "sc_004",
+      "statement": "PCSCS can be represented as a preset/configuration within the general framework rather than as a separate incompatible implementation."
+    },
+    {
+      "id": "sc_005",
+      "statement": "Results preserve sufficient provenance and dependency information to support comparison, regeneration, selective invalidation, and resumption."
+    },
+    {
+      "id": "sc_006",
+      "statement": "The package supports population-level analysis across network depth and control scale, producing structural observables Q(layer, control_parameter)."
+    },
+    {
+      "id": "sc_007",
+      "statement": "The final deliverable can be unzipped and immediately used as a Git repository with package source, tests, documentation, examples, project-state artifacts, and coherent initial commit history."
+    }
+  ],
+  "constraints": [
+    {
+      "id": "con_001",
+      "type": "design",
+      "statement": "PyTorch handles model-specific forward execution; Eigenflow wraps extraction and performs architecture-independent downstream analysis."
+    },
+    {
+      "id": "con_002",
+      "type": "design",
+      "statement": "Do not require the package to infer semantic meaning of arbitrary internal modules automatically."
+    },
+    {
+      "id": "con_003",
+      "type": "epistemic",
+      "statement": "Structural observables are empirical evidence about latent feature organization, not automatic semantic explanations."
+    },
+    {
+      "id": "con_004",
+      "type": "scientific",
+      "statement": "Percolation terminology must distinguish descriptive percolation-style observables from stronger claims of literal criticality or universality."
+    },
+    {
+      "id": "con_005",
+      "type": "scientific",
+      "statement": "Spectral eigenvector tracking must account for crossings and degeneracies using eigenspace-aware correspondence rather than naive sorted-index identity."
+    },
+    {
+      "id": "con_006",
+      "type": "product",
+      "statement": "v1 should be conceptually complete rather than intentionally minimal."
+    }
+  ],
+  "terminology": [
+    {
+      "id": "term_probe_population",
+      "term": "probe population",
+      "definition": "A deliberately constructed set of model inputs, optionally with metadata and controlled factors, used as an experimental instrument for post hoc interpretability."
+    },
+    {
+      "id": "term_representation_site",
+      "term": "representation site",
+      "definition": "An internal PyTorch module/output location where activations for the entire probe population are captured. User-facing language may say 'layer' where appropriate."
+    },
+    {
+      "id": "term_representation_population",
+      "term": "representation population",
+      "definition": "The collection Z^(l) of vector representations of all probes at one internal site l."
+    },
+    {
+      "id": "term_relational_geometry",
+      "term": "relational geometry",
+      "definition": "The pairwise similarity, distance, affinity, or kernel structure induced over a representation population by a chosen metric."
+    },
+    {
+      "id": "term_filtration",
+      "term": "filtration",
+      "definition": "A parameterized family of graphs or weighted relational structures generated from a relational matrix as a control parameter varies."
+    },
+    {
+      "id": "term_structural_observable",
+      "term": "structural observable",
+      "definition": "A measurable property of a representation-induced graph/operator family, such as component count, giant-component fraction, susceptibility, spectral gap, IPR, or factor alignment."
+    },
+    {
+      "id": "term_second_kind_feature",
+      "term": "second-kind feature",
+      "definition": "A structural feature of the learned representation geometry/topology, used as evidence about first-kind latent representational features."
+    },
+    {
+      "id": "term_first_kind_feature",
+      "term": "first-kind feature",
+      "definition": "A latent feature or organizing representational property learned by the neural network, inferred indirectly from controlled structural evidence."
+    }
+  ],
+  "entities": [
+    {
+      "id": "obj_pcscs",
+      "type": "existing_method",
+      "name": "PCSCS",
+      "status": "existing",
+      "description": "Progressive Cosine Similarity Classification Sifting; existing EigenFlowIO repository and special case of the broader project."
+    },
+    {
+      "id": "obj_experiment",
+      "type": "core_abstraction",
+      "name": "Experiment",
+      "status": "planned",
+      "description": "Top-level declarative orchestration object containing model, probes, extraction configuration, metric, filtration, and analyses."
+    },
+    {
+      "id": "obj_probe_population",
+      "type": "core_abstraction",
+      "name": "ProbePopulation",
+      "status": "planned"
+    },
+    {
+      "id": "obj_rep_collection",
+      "type": "core_abstraction",
+      "name": "RepresentationCollection",
+      "status": "planned"
+    },
+    {
+      "id": "obj_metric",
+      "type": "core_abstraction",
+      "name": "Metric",
+      "status": "planned"
+    },
+    {
+      "id": "obj_filtration",
+      "type": "core_abstraction",
+      "name": "GraphFiltration",
+      "status": "planned"
+    },
+    {
+      "id": "obj_analysis",
+      "type": "core_abstraction",
+      "name": "Analysis",
+      "status": "planned"
+    },
+    {
+      "id": "obj_result",
+      "type": "core_abstraction",
+      "name": "ExperimentResult",
+      "status": "planned"
+    }
+  ],
+  "relations": [
+    {
+      "id": "rel_001",
+      "type": "special_case_of",
+      "source": "obj_pcscs",
+      "target": "proj_eigenflow"
+    },
+    {
+      "id": "rel_002",
+      "type": "contains",
+      "source": "obj_experiment",
+      "target": "obj_probe_population"
+    },
+    {
+      "id": "rel_003",
+      "type": "produces",
+      "source": "obj_experiment",
+      "target": "obj_rep_collection"
+    },
+    {
+      "id": "rel_004",
+      "type": "uses",
+      "source": "obj_experiment",
+      "target": "obj_metric"
+    },
+    {
+      "id": "rel_005",
+      "type": "uses",
+      "source": "obj_experiment",
+      "target": "obj_filtration"
+    },
+    {
+      "id": "rel_006",
+      "type": "dispatches",
+      "source": "obj_experiment",
+      "target": "obj_analysis"
+    },
+    {
+      "id": "rel_007",
+      "type": "produces",
+      "source": "obj_experiment",
+      "target": "obj_result"
+    }
+  ],
+  "decisions": [
+    {
+      "id": "dec_001",
+      "status": "committed",
+      "decision": "Eigenflow is PyTorch-first for v1.",
+      "rationale": "PyTorch already performs model-specific execution and exposes generic module inspection and forward hooks."
+    },
+    {
+      "id": "dec_002",
+      "status": "committed",
+      "decision": "Downstream analysis is architecture-agnostic after activation extraction.",
+      "rationale": "The scientific core operates on population representation matrices rather than model internals."
+    },
+    {
+      "id": "dec_003",
+      "status": "committed",
+      "decision": "The default analytical object is the relational organization of the entire probe population at each internal site, not single-input activation trajectories."
+    },
+    {
+      "id": "dec_004",
+      "status": "committed",
+      "decision": "The principal domain is a two-dimensional layer-by-control space, with observables Q(l, p)."
+    },
+    {
+      "id": "dec_005",
+      "status": "committed",
+      "decision": "Probe design is a first-class subsystem, because the probe population is an experimental instrument."
+    },
+    {
+      "id": "dec_006",
+      "status": "committed",
+      "decision": "Metric and filtration are separate abstractions."
+    },
+    {
+      "id": "dec_007",
+      "status": "committed",
+      "decision": "Edge density is a first-class canonical control coordinate for cross-metric comparison where applicable."
+    },
+    {
+      "id": "dec_008",
+      "status": "committed",
+      "decision": "Spectral analysis is operator-based and not synonymous with Laplacian analysis."
+    },
+    {
+      "id": "dec_009",
+      "status": "committed",
+      "decision": "PCSCS remains a named canonical special case/preset within Eigenflow."
+    },
+    {
+      "id": "dec_010",
+      "status": "committed",
+      "decision": "v1 should implement the full conceptual architecture rather than an intentionally narrow core."
+    },
+    {
+      "id": "dec_011",
+      "status": "committed",
+      "decision": "The package should support preparation/configuration tools for probe populations, metrics, and filtrations rather than only accepting prebuilt objects."
+    },
+    {
+      "id": "dec_012",
+      "status": "committed",
+      "decision": "Raw structural observations and interpretive claims remain explicitly separated."
+    },
+    {
+      "id": "dec_013",
+      "status": "committed",
+      "decision": "The primary project deliverable is a ZIP archive of the complete initial Eigenflow Git repository, including the .git directory and usable commit history.",
+      "rationale": "The repository itself is the durable implementation artifact; specifications, documentation, tests, and examples should live inside and evolve with it."
+    }
+  ],
+  "assumptions": [
+    {
+      "id": "asm_001",
+      "status": "provisional",
+      "statement": "Most v1 users will provide standard PyTorch nn.Module models whose useful internal activations are hookable."
+    },
+    {
+      "id": "asm_002",
+      "status": "provisional",
+      "statement": "A default broad capture policy can be defined, but actual scientific analysis may need filtering to avoid trivial or redundant modules."
+    },
+    {
+      "id": "asm_003",
+      "status": "provisional",
+      "statement": "Flatten can remain available for PCSCS compatibility, but no single representation reducer should be treated as scientifically universal."
+    }
+  ],
+  "unresolved_questions": [
+    {
+      "id": "q_001",
+      "status": "open",
+      "priority": "high",
+      "question": "What exact public Python API and protocol/interface signatures should be frozen for v1?"
+    },
+    {
+      "id": "q_002",
+      "status": "open",
+      "priority": "high",
+      "question": "What is the default module-capture policy for arbitrary PyTorch models: literally all hookable modules, filtered eligible modules, or named structural boundaries?"
+    },
+    {
+      "id": "q_003",
+      "status": "open",
+      "priority": "high",
+      "question": "What is the default representation reduction behavior when module outputs are not already 2D sample-by-feature matrices?"
+    },
+    {
+      "id": "q_004",
+      "status": "open",
+      "priority": "medium",
+      "question": "Which built-in metrics and kernels are mandatory for v1 versus extension candidates?"
+    },
+    {
+      "id": "q_005",
+      "status": "open",
+      "priority": "medium",
+      "question": "Which graph operators are mandatory for v1, particularly whether modularity and non-backtracking belong in the initial release?"
+    },
+    {
+      "id": "q_006",
+      "status": "open",
+      "priority": "medium",
+      "question": "What result serialization format and compatibility policy should be used for long-lived experiment artifacts?"
+    },
+    {
+      "id": "q_007",
+      "status": "open",
+      "priority": "medium",
+      "question": "How should analysis keyword aliases map to explicit typed analysis configurations?"
+    }
+  ],
+  "planned_outputs": [
+    {
+      "id": "out_001",
+      "type": "implementation_spec",
+      "status": "pending",
+      "name": "Public API and class/protocol specification"
+    },
+    {
+      "id": "out_002",
+      "type": "git_repository",
+      "status": "pending",
+      "name": "Complete initial Eigenflow Git repository"
+    },
+    {
+      "id": "out_003",
+      "type": "documentation",
+      "status": "pending",
+      "name": "Conceptual and API documentation"
+    },
+    {
+      "id": "out_004",
+      "type": "compatibility_layer",
+      "status": "pending",
+      "name": "PCSCS preset and compatibility path"
+    },
+    {
+      "id": "out_005",
+      "type": "tests",
+      "status": "pending",
+      "name": "Unit, integration, regression, and property tests"
+    },
+    {
+      "id": "out_006",
+      "type": "examples",
+      "status": "pending",
+      "name": "VGG16, ResNet, ViT, metric comparison, factorial probe, and model comparison examples"
+    },
+    {
+      "id": "out_007",
+      "type": "zip_archive",
+      "status": "pending",
+      "name": "Eigenflow initial repository ZIP including .git history",
+      "depends_on": [
+        "out_002",
+        "out_003",
+        "out_004",
+        "out_005",
+        "out_006"
+      ]
+    }
+  ],
+  "provenance": {
+    "initialization": {
+      "id": "prov_init_001",
+      "source_type": "conversation_synthesis",
+      "source_description": "Project state synthesized from the existing conversation, including prior discussion of PCSCS repository behavior and the formally sketched Eigenflow package.",
+      "created_at": "2026-10-05T00:20:22.549970+00:00",
+      "author": "ChatGPT",
+      "notes": "The conversation is initialization source material only; this file is canonical after creation."
+    },
+    "changes": [
+      {
+        "id": "prov_change_002",
+        "source_type": "user_directive",
+        "source_description": "User established the primary output objective as a ZIP archive containing the initial repository with .git.",
+        "created_at": "2026-10-05T00:23:16.582578+00:00",
+        "affected_ids": [
+          "proj_eigenflow",
+          "out_002",
+          "out_007",
+          "dec_013",
+          "sc_007",
+          "unit_040_repo_scaffold",
+          "unit_120_package_repo"
+        ]
+      },
+      {
+        "id": "prov_change_003",
+        "source_type": "workflow_refinement",
+        "source_description": "Repository initialization moved ahead of remaining specification work so all future specifications and implementation artifacts are created and committed inside the canonical Git repository.",
+        "created_at": "2026-10-05T00:23:33.622147+00:00",
+        "affected_ids": [
+          "unit_005_repo_scaffold",
+          "unit_010_public_api_spec",
+          "unit_020_data_model_spec",
+          "proj_eigenflow"
+        ]
+      }
+    ]
+  },
+  "execution": {
+    "current_phase": "architecture_specification",
+    "last_committed_unit": "unit_000_initialize_persistent_state",
+    "active_unit": null,
+    "resume_from": "unit_005_repo_scaffold",
+    "state_revision": 3
+  },
+  "completion": {
+    "project_complete": false,
+    "architecture_complete": false,
+    "implementation_complete": false,
+    "testing_complete": false,
+    "documentation_complete": false,
+    "primary_deliverable_complete": false
+  }
+}

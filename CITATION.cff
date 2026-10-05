@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+title: Eigenflow
+message: "If you use Eigenflow, please cite this software release."
+type: software
+version: 1.0.0-alpha.1
+date-released: 2026-10-05
+authors:
+  - name: EigenFlowIO
+repository-code: https://github.com/eigenflowio/eigenflow
+license: MIT
