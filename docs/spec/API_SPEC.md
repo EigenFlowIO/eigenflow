@@ -28,6 +28,7 @@ ef.percolation
 ef.transitions
 ef.visualization
 ef.presets
+ef.development
 ```
 
 ## `Experiment`
@@ -43,6 +44,8 @@ class Experiment:
     extraction: ExtractionConfig = ExtractionConfig()
     device: object = None
     collate_fn: object = None
+    preprocessing: object = None
+    measurement_metadata: dict = {}
 ```
 
 Run:
@@ -125,6 +128,14 @@ Device passed to the `PyTorchExtractor`. If omitted, the extractor uses the devi
 ### `collate_fn`
 
 Optional callable used to combine non-tensor probe inputs into a model batch. If probe inputs are tensors and no `collate_fn` is supplied, Eigenflow uses `torch.stack`.
+
+### `preprocessing`
+
+Optional user-supplied descriptor of preprocessing relevant to comparison compatibility. Eigenflow does not execute this descriptor; it records it in the experiment specification so repeated experiments can detect preprocessing mismatches.
+
+### `measurement_metadata`
+
+Optional serializable metadata describing the measurement or development condition. This metadata is copied into the generated `ExperimentSpec` and is useful for audit/reporting.
 
 ## Probe population
 
@@ -609,7 +620,9 @@ results/run_01/result.json
 
 NumPy arrays are converted to lists, NumPy scalar values are converted to Python scalars, and dataclass-like results are recursively converted. Spectral eigenvectors are deliberately omitted from JSON serialization.
 
-There is **no current `ExperimentResult.load()` API** and no NPZ sidecar written by `save()`.
+There is no `ExperimentResult.load()` method. `eigenflow.serialization.load_result_object(path)` can reconstruct a **portable** `ExperimentResult` from saved JSON for downstream reporting and experiment-series persistence; runtime artifacts and spectral eigenvectors are not restored.
+
+For multi-checkpoint/model work, `eigenflow.development.save_series(...)` and `load_series(...)` provide a higher-order persistence surface. A series directory contains `series.json`, one portable `result.json` per entry, and a compressed `arrays.npz` sidecar for numeric observables that are useful for external inspection.
 
 ## Visualization
 
@@ -673,7 +686,145 @@ percolation_dashboard(layer_result, fig=None)
 interpretation_dashboard(layer_result, factor="class", fig=None)
 ```
 
+Development/longitudinal views:
+
+```python
+checkpoint_trajectory(longitudinal, site, analysis, observable, control_index=None, aggregate="mean", ax=None)
+longitudinal_surface(longitudinal, site, analysis, observable, baseline_delta=False, ax=None)
+layer_time_heatmap(longitudinal, analysis, observable, aggregate="mean", baseline_delta=False, ax=None)
+structural_diff_heatmap(diff, analysis, observable, ax=None)
+architecture_comparison(series, analysis="percolation", observable="susceptibility_peak_parameter", ax=None)
+retention_dashboard(series_by_role, site=None, factor="class", metric="nmi", fig=None)
+development_dashboard(series, site=None, structural_analysis="factor_alignment", factor="class", metric="nmi", fig=None)
+```
+
 `eigenflow_plot(...)` is a compatibility alias for the generalized spectral-flow view. The visualization guide documents the analyst question, evidential tier, interpretation boundary, and worked output for every canonical view.
+
+## Development instrumentation
+
+The development subsystem is available as:
+
+```python
+from eigenflow.development import (
+    ProbeSuite,
+    ExperimentSpec,
+    ComparisonSpec,
+    CompatibilityReport,
+    SiteAlignment,
+    BehavioralRecord,
+    ExperimentSeries,
+    StructuralDiff,
+    LongitudinalResult,
+    DevelopmentReport,
+    validate_compatibility,
+    retention_summary,
+    peft_targeting_scores,
+    select_checkpoint,
+    training_data_diagnostics,
+    development_report,
+    save_series,
+    load_series,
+)
+```
+
+### `ExperimentSpec`
+
+`ExperimentSpec.from_experiment(experiment)` returns a serializable description of the measurement contract. It includes probe fingerprint/design/count, sites, reducer, batch size, metric, filtration, configured analyses, preprocessing descriptor, and measurement metadata.
+
+Every newly produced `ExperimentResult` stores `experiment_spec` in `result.metadata`.
+
+### `ComparisonSpec` and `validate_compatibility`
+
+```python
+report = validate_compatibility(left_spec, right_spec)
+```
+
+The default comparison requires the same probe fingerprint, sites, reducer, metric, filtration, analyses, and preprocessing. `report.compatible` is false when an error-level mismatch is present.
+
+`ComparisonSpec(allow_site_alignment=True)` permits site mismatches to be handled by an explicit `SiteAlignment`; it does not make differently named/depth sites semantically equivalent automatically.
+
+### `ProbeSuite`
+
+```python
+suite = ProbeSuite(
+    {"target": target_probes, "retain": retain_probes},
+    name="post_training_suite",
+    version="v1",
+)
+```
+
+`ProbeSuite.fingerprint` and `save_manifest(...)` provide a versionable manifest over role names, probe IDs, metadata, design metadata, and per-population fingerprints. Probe inputs themselves are not serialized by the manifest.
+
+### `ExperimentSeries`
+
+```python
+series = ExperimentSeries("checkpoints")
+series.add_experiment("baseline", experiment, time=0)
+series.add_result("step_100", result, time=100)
+longitudinal = series.longitudinal("baseline")
+```
+
+Each entry is validated against the first entry under the series' `ComparisonSpec`.
+
+`ExperimentSeries.run_checkpoints(...)` is a convenience helper for existing checkpoints. Eigenflow loads/runs models through user-provided functions; it does not own a training loop.
+
+### `StructuralDiff`
+
+```python
+diff = StructuralDiff.between(left_entry, right_entry)
+```
+
+Numeric observables with matching shapes are retained as left value, right value, signed difference, mean absolute difference, and maximum absolute difference. Non-numeric/mismatched observables are recorded in `diff.skipped` rather than coerced.
+
+### `LongitudinalResult`
+
+```python
+trajectory = longitudinal.trajectory(site, analysis, observable)
+delta = longitudinal.baseline_delta(site, analysis, observable)
+```
+
+The leading dimension is the series/checkpoint axis. Remaining dimensions are the original observable shape, commonly the filtration/control axis.
+
+### `SiteAlignment`
+
+```python
+alignment = SiteAlignment.exact(left_sites, right_sites)
+alignment = SiteAlignment({"encoder": "block4"}, strategy="declared")
+alignment = SiteAlignment.normalized_depth(left_sites, right_sites)
+```
+
+Normalized-depth alignment is approximate and carries an explicit warning note.
+
+### `BehavioralRecord`
+
+```python
+BehavioralRecord(
+    metrics={"accuracy": 0.91},
+    efficiency={"latency_ms": 8.2},
+)
+```
+
+These are externally computed measurements attached to a series entry; Eigenflow does not train/evaluate the model automatically.
+
+### Diagnostics and checkpoint selection
+
+```python
+retention_summary(series_by_role)
+peft_targeting_scores(series)
+training_data_diagnostics(result)
+select_checkpoint(series, objective_callable)
+```
+
+`peft_targeting_scores` and training-data diagnostics are diagnostic surfaces, not automatic intervention recommendations. `select_checkpoint` requires the caller to supply the objective function explicitly.
+
+### Series persistence
+
+```python
+save_series(series, "results/checkpoints")
+loaded = load_series("results/checkpoints")
+```
+
+Portable loading restores numeric/result records needed for comparison/reporting but cannot reconstruct runtime-only relational matrices, graph filtrations, probe inputs, or spectral eigenvectors that were deliberately omitted by `ExperimentResult.save()`.
 
 ## Presets
 
@@ -707,8 +858,10 @@ The v1 alpha interface does not currently provide:
 
 - an `operators=` parameter on `Experiment`;
 - a `cache=` parameter or persistent content-addressed execution cache;
-- `ExperimentResult.load()`;
+- an `ExperimentResult.load()` method (portable loading is available through `eigenflow.serialization.load_result_object` and `development.load_series`);
 - raw-activation persistence despite the existing `retain_raw` configuration field;
-- automatic semantic selection of "meaningful" layers for arbitrary architectures.
+- automatic semantic selection of "meaningful" layers for arbitrary architectures;
+- automatic adapter placement, architecture modification, or model-training decisions;
+- a universal representation-quality or structural early-stopping score.
 
 These are intentionally stated here so reference documentation does not promise behavior absent from the current implementation.

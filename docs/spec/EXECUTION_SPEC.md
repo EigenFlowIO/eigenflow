@@ -233,6 +233,34 @@ The representation matrix changes, so the metric and every downstream object are
 
 This is a new measurement configuration.
 
+## Higher-order development execution
+
+Development instrumentation does not alter the atomic `Experiment.run()` dependency graph. Instead, `ExperimentSeries` orchestrates repeated atomic runs and validates their measurement contracts.
+
+### Adding an existing result
+
+`series.add_result(...)` reads the `experiment_spec` embedded in a current `ExperimentResult` unless an explicit `ExperimentSpec` is supplied. The new entry is rejected when error-level compatibility mismatches exist.
+
+### Running existing checkpoints
+
+`ExperimentSeries.run_checkpoints(checkpoints, model_loader, experiment_factory, ...)` loops over caller-owned checkpoints. `model_loader` returns a model and `experiment_factory` returns an `Experiment`. Eigenflow owns neither checkpoint production nor training.
+
+### Structural diff execution
+
+`StructuralDiff.between(...)` first validates compatibility, then compares aligned sites and common analyses/observables. Only numeric observables with identical shapes are differenced automatically. This prevents interpolation or control-coordinate alignment from occurring silently.
+
+### Longitudinal execution
+
+`LongitudinalResult.trajectory(...)` stacks the same numeric observable across entries. If observable shape changes, execution fails and the caller must explicitly align control coordinates before interpreting a trajectory.
+
+### Series persistence
+
+`save_series(...)` saves each `ExperimentResult` using the existing JSON persistence contract and writes a series index plus compressed numeric arrays. `load_series(...)` reconstructs portable result objects for comparison/reporting. Runtime-only artifacts are not recovered.
+
+### Reproducibility boundary
+
+A checkpoint/model series is interpretable only when the `ComparisonSpec` and `CompatibilityReport` make the controlled and varying dimensions explicit. Higher-order execution therefore treats compatibility validation as part of the scientific computation rather than as optional reporting metadata.
+
 ## Future optimization boundary
 
 Caching, parallel execution, incremental graph updates, and warm-start eigensolvers can be added behind the current semantic boundaries without changing what an experiment means.

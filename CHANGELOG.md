@@ -48,3 +48,13 @@ The project is currently at **1.0.0a1**, an alpha release. Public interfaces and
 Results are conditional on the probe population, representation sites, reducer, metric, filtration, control range, graph operator, and analysis. Changes to any of these can affect the meaning and comparability of outputs.
 
 When upgrading between alpha releases, rerun important experiments or explicitly verify that the relevant measurement semantics have not changed.
+
+## Development instrumentation phase
+
+- Added first-class experiment specifications and compatibility validation for controlled cross-model/checkpoint comparisons.
+- Added versioned `ProbeSuite`, `ExperimentSeries`, `StructuralDiff`, `LongitudinalResult`, `SiteAlignment`, `BehavioralRecord`, and `DevelopmentReport` abstractions.
+- Added portable experiment-series persistence with result subdirectories and compressed numeric-array sidecars.
+- Added retention/forgetting summaries, PEFT-targeting diagnostics, transparent checkpoint selection, and training-data diagnostics.
+- Added checkpoint, longitudinal-surface, layer×checkpoint, structural-diff, architecture-comparison, retention, and development-dashboard visualizations.
+- Added runnable architecture-comparison and fine-tuning/checkpoint examples plus a Colab launcher.
+- Added development-instrumentation, architecture-development, fine-tuning/post-training, and longitudinal-interpretation documentation.

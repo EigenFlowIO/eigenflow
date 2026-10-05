@@ -2,10 +2,10 @@
   "manifest_format": "eigenflow-execution-manifest",
   "version": "0.1.0",
   "project_id": "proj_eigenflow",
-  "state_revision": 19,
+  "state_revision": 21,
   "last_committed_unit": "unit_141_instructional_architecture",
-  "current_unit": null,
-  "resume_unit": "release_visualization_phase_git_package",
+  "current_unit": "unit_170_post_development_review",
+  "resume_unit": "unit_170_post_development_review",
   "units": [
     {
       "id": "unit_000_initialize_persistent_state",
@@ -387,6 +387,33 @@
         "updated final hashes"
       ],
       "completed_at": "2026-10-05T02:58:02.367133+00:00"
+    },
+    {
+      "id": "unit_160_development_instrumentation",
+      "title": "Development Instrumentation and Longitudinal Representation Analysis",
+      "status": "complete",
+      "depends_on": [],
+      "outputs": [
+        "higher-order comparison/series architecture",
+        "longitudinal Q(layer, control, time) support",
+        "structural diff and compatibility validation",
+        "probe suites and site alignment",
+        "development visualizations and dashboards",
+        "architecture and fine-tuning examples",
+        "fully adjudicated documentation"
+      ],
+      "completed_at": "2026-10-05T03:49:48.317336+00:00"
+    },
+    {
+      "id": "unit_170_post_development_review",
+      "title": "Post-development release/research review",
+      "status": "pending",
+      "depends_on": [
+        "unit_160_development_instrumentation"
+      ],
+      "outputs": [
+        "release decision or next research phase"
+      ]
     }
   ],
   "resume_rules": {

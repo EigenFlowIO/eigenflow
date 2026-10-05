@@ -1,0 +1,1 @@
+eaff0a98f4a0b177a9f5d47ecc035dd64af261a828ba35befeb95c14a826cc4e  docs/guides/architecture_development.md

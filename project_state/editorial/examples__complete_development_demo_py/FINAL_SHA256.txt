@@ -1,0 +1,1 @@
+d493677680b3a2fd3bedc02fc90dbc7470d672871454b833e80acab5047b5797  examples/complete_development_demo.py

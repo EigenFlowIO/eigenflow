@@ -834,15 +834,95 @@
         "affected_ids": [
           "unit_152_incremental_visualization_doc_adjudication"
         ]
+      },
+      {
+        "id": "prov_development_instrumentation_phase",
+        "source_type": "project_phase_definition",
+        "source_description": "Formalized development instrumentation and longitudinal representation analysis as the next Eigenflow project phase, based on the development-use-case design document and the gap analysis of the current package.",
+        "created_at": "2026-10-05T03:30:55.349839+00:00",
+        "affected_ids": [
+          "phase_development_instrumentation",
+          "dev_task_001",
+          "dev_task_002",
+          "dev_task_003",
+          "dev_task_004",
+          "dev_task_005",
+          "dev_task_006",
+          "dev_task_007",
+          "dev_task_008",
+          "dev_task_009",
+          "dev_task_010",
+          "dev_task_011",
+          "dev_task_012",
+          "dev_task_013",
+          "dev_task_014",
+          "dev_task_015",
+          "dev_task_016",
+          "dev_task_017",
+          "dev_task_018",
+          "dev_task_019",
+          "dev_task_020",
+          "dev_task_021",
+          "dev_task_022",
+          "dev_task_023",
+          "dev_task_024",
+          "dev_task_025",
+          "dev_task_026",
+          "dev_task_027",
+          "dev_task_028",
+          "dev_task_029",
+          "dev_task_030",
+          "dev_task_031"
+        ]
+      },
+      {
+        "id": "prov_development_instrumentation_complete",
+        "source_type": "phase_completion",
+        "source_description": "Implemented and validated the Development Instrumentation and Longitudinal Representation Analysis phase, including comparison contracts, series/diffs/longitudinal results, persistence, diagnostics, visualizations, runnable examples, and adjudicated documentation.",
+        "created_at": "2026-10-05T03:49:48.317321+00:00",
+        "affected_ids": [
+          "phase_development_instrumentation",
+          "dev_task_001",
+          "dev_task_002",
+          "dev_task_003",
+          "dev_task_004",
+          "dev_task_005",
+          "dev_task_006",
+          "dev_task_007",
+          "dev_task_008",
+          "dev_task_009",
+          "dev_task_010",
+          "dev_task_011",
+          "dev_task_012",
+          "dev_task_013",
+          "dev_task_014",
+          "dev_task_015",
+          "dev_task_016",
+          "dev_task_017",
+          "dev_task_018",
+          "dev_task_019",
+          "dev_task_020",
+          "dev_task_021",
+          "dev_task_022",
+          "dev_task_023",
+          "dev_task_024",
+          "dev_task_025",
+          "dev_task_026",
+          "dev_task_027",
+          "dev_task_028",
+          "dev_task_029",
+          "dev_task_030",
+          "dev_task_031"
+        ]
       }
     ]
   },
   "execution": {
-    "current_phase": "visualization_surface_complete_and_human_facing_reconciled",
+    "current_phase": "development_instrumentation_complete",
     "last_committed_unit": "unit_141_instructional_architecture",
     "active_unit": null,
-    "resume_from": "release_visualization_phase_git_package",
-    "state_revision": 19,
+    "resume_from": "unit_170_post_development_review",
+    "state_revision": 21,
     "git_note": "Release package will be committed as a child of the known user remote baseline 9ca109c327f0af3fcd99c79f08451748d2b8c839; the parent object is configured as a promisor-object dependency on origin because outbound Git fetch is unavailable in the sandbox."
   },
   "completion": {
@@ -856,7 +936,8 @@
     "release_metadata_complete": true,
     "visualization_ontology_complete": true,
     "visualization_surface_complete": true,
-    "incremental_human_facing_adjudication_complete": true
+    "incremental_human_facing_adjudication_complete": true,
+    "development_instrumentation_phase_complete": true
   },
   "validation": {
     "v1_release": {
@@ -4826,5 +4907,402 @@
       "probe_accuracy": 1.0,
       "generated_at": "2026-10-05T02:41:01.132910+00:00"
     }
+  },
+  "development_instrumentation_phase": {
+    "id": "phase_development_instrumentation",
+    "name": "Development Instrumentation and Longitudinal Representation Analysis",
+    "status": "complete",
+    "objective": "Extend Eigenflow from a single-model representation experiment engine into a first-class representation observability system for architecture development, fine-tuning, checkpoint analysis, PEFT targeting, dataset diagnosis, retention/forgetting analysis, and longitudinal model-development workflows.",
+    "governing_principles": [
+      "Preserve Experiment -> ExperimentResult as the atomic measurement layer.",
+      "Add higher-order abstractions above ExperimentResult rather than replacing the core experiment engine.",
+      "Treat longitudinal and cross-model comparisons as controlled experiments, not arbitrary result subtraction.",
+      "Require compatibility validation before structural comparisons are interpreted.",
+      "Keep probe design and measurement configuration explicit, versioned, and reproducible.",
+      "Do not collapse representation structure into a universal quality score.",
+      "Keep behavioral performance, computational efficiency, and representation structure as distinct evidence channels.",
+      "Documentation and implementation must evolve together and remain implementation-faithful."
+    ],
+    "target_use_cases": [
+      "architecture-stage analysis and localization of meaningful representation change",
+      "architecture comparison under matched probe designs",
+      "bottleneck, residual, attention, and module-level structural diagnosis",
+      "checkpoint trajectories and Q(layer, control, time)",
+      "pretrained-versus-fine-tuned structural comparison",
+      "representational forgetting and retention analysis",
+      "PEFT / LoRA / adapter targeting and comparison",
+      "structural early stopping and checkpoint selection",
+      "training-data and bridge-case diagnosis",
+      "multi-run training comparison",
+      "development dashboards combining behavior, efficiency, and representation structure"
+    ],
+    "new_first_class_concepts": [
+      {
+        "name": "ProbeSuite",
+        "purpose": "Versioned, reusable collections of probe populations for target, retention, nuisance, boundary, or other experimental roles."
+      },
+      {
+        "name": "ExperimentSpec",
+        "purpose": "Serializable, comparable specification of model-independent measurement configuration and probe design."
+      },
+      {
+        "name": "ExperimentSeries",
+        "purpose": "Ordered or indexed collection of compatible experiments/results across checkpoints, models, architectures, runs, or conditions."
+      },
+      {
+        "name": "ComparisonSpec",
+        "purpose": "Explicit declaration of which dimensions vary and which must remain controlled for a comparison."
+      },
+      {
+        "name": "CompatibilityReport",
+        "purpose": "Machine-readable validation of probe, preprocessing, site, reducer, metric, filtration, and analysis compatibility."
+      },
+      {
+        "name": "StructuralDiff",
+        "purpose": "Structured delta between compatible ExperimentResults, including observable-level and layer/control differences."
+      },
+      {
+        "name": "LongitudinalResult",
+        "purpose": "Representation of Q(layer, control, time) and associated trajectories across checkpoints/training progress."
+      },
+      {
+        "name": "SiteAlignment",
+        "purpose": "Explicit semantic or normalized correspondence between representation sites across architectures or checkpoints."
+      },
+      {
+        "name": "BehavioralRecord",
+        "purpose": "Attach externally computed behavioral metrics to structural results without making Eigenflow responsible for training/evaluation."
+      },
+      {
+        "name": "DevelopmentReport",
+        "purpose": "Synthesize matched behavioral, computational, and structural evidence without reducing them to a single generic score."
+      }
+    ],
+    "workstreams": [
+      {
+        "id": "devws_01",
+        "name": "Comparison and compatibility foundation",
+        "goal": "Make controlled comparison between ExperimentResults explicit, safe, and inspectable."
+      },
+      {
+        "id": "devws_02",
+        "name": "Longitudinal checkpoint analysis",
+        "goal": "Support Q(layer, control, time), checkpoint trajectories, pretrained baselines, and structural displacement."
+      },
+      {
+        "id": "devws_03",
+        "name": "Probe suites and benchmark semantics",
+        "goal": "Support reusable target/retain/nuisance/boundary probe suites with versioning and reproducibility metadata."
+      },
+      {
+        "id": "devws_04",
+        "name": "Architecture and site comparison",
+        "goal": "Support matched architecture comparisons and declared site correspondences."
+      },
+      {
+        "id": "devws_05",
+        "name": "Post-training diagnostics",
+        "goal": "Support forgetting, retention, PEFT targeting, checkpoint selection, and dataset-diagnostic workflows."
+      },
+      {
+        "id": "devws_06",
+        "name": "Persistence and scale",
+        "goal": "Provide storage suitable for series of results, checkpoints, arrays, and derived comparisons."
+      },
+      {
+        "id": "devws_07",
+        "name": "Visualization and reporting",
+        "goal": "Add longitudinal surfaces, structural diffs, retention dashboards, model/run comparisons, and development reports."
+      },
+      {
+        "id": "devws_08",
+        "name": "Documentation and instructional integration",
+        "goal": "Teach development use cases with the same instructional-planning and incremental-adjudication protocols used elsewhere."
+      }
+    ],
+    "non_goals": [
+      "Eigenflow will not become a neural-network training framework.",
+      "Eigenflow will not automatically prescribe architecture edits, adapter placement, or data-removal decisions.",
+      "Eigenflow will not define a universal representation-quality scalar.",
+      "Eigenflow will not infer causal feature semantics from structural observables alone.",
+      "Eigenflow will not treat unmatched model/checkpoint results as directly comparable."
+    ],
+    "completion_criteria": [
+      "Multiple checkpoints/models can be represented and analyzed as one controlled series.",
+      "Compatibility validation prevents or clearly flags invalid structural comparisons.",
+      "Structural diffs and longitudinal trajectories are first-class result objects.",
+      "Probe suites and comparison specifications are serializable and versionable.",
+      "Cross-architecture site alignment is explicit rather than implied by raw layer index.",
+      "Behavioral metrics can be attached and jointly reported without semantic conflation.",
+      "Persistence supports practical multi-checkpoint studies.",
+      "Longitudinal and comparative visualizations are implemented and tested.",
+      "At least one architecture-comparison example and one fine-tuning/checkpoint example are fully runnable.",
+      "All new/mutated human-facing files follow the incremental adjudication protocol.",
+      "API, data-model, execution, conceptual, guide, example, and README documentation agree with implementation."
+    ],
+    "completed_at": "2026-10-05T03:49:48.315479+00:00"
+  },
+  "development_instrumentation_backlog": {
+    "status": "open",
+    "tasks": [
+      {
+        "id": "dev_task_001",
+        "title": "Formalize development-instrumentation data model",
+        "priority": "critical",
+        "status": "complete",
+        "objective": "Specify ProbeSuite, ExperimentSpec, ExperimentSeries, ComparisonSpec, CompatibilityReport, StructuralDiff, LongitudinalResult, SiteAlignment, BehavioralRecord, and DevelopmentReport.",
+        "completed_at": "2026-10-05T03:49:48.315417+00:00"
+      },
+      {
+        "id": "dev_task_002",
+        "title": "Implement ExperimentSpec extraction and canonicalization",
+        "priority": "critical",
+        "status": "complete",
+        "objective": "Create a stable serializable experiment specification from current Experiment configuration, probes, preprocessing metadata, sites, reducers, metrics, filtrations, analyses, and relevant runtime settings.",
+        "completed_at": "2026-10-05T03:49:48.315433+00:00"
+      },
+      {
+        "id": "dev_task_003",
+        "title": "Implement compatibility validation",
+        "priority": "critical",
+        "status": "complete",
+        "objective": "Compare two or more ExperimentSpecs and produce machine-readable compatibility reports distinguishing controlled differences from invalidating mismatches.",
+        "completed_at": "2026-10-05T03:49:48.315436+00:00"
+      },
+      {
+        "id": "dev_task_004",
+        "title": "Implement ProbeSuite",
+        "priority": "critical",
+        "status": "complete",
+        "objective": "Add named, versioned collections of probe populations with roles such as target, retain, nuisance, boundary, and custom roles.",
+        "completed_at": "2026-10-05T03:49:48.315437+00:00"
+      },
+      {
+        "id": "dev_task_005",
+        "title": "Implement ExperimentSeries",
+        "priority": "critical",
+        "status": "complete",
+        "objective": "Support ordered/indexed collections of ExperimentResults across checkpoints, models, architectures, runs, and conditions.",
+        "completed_at": "2026-10-05T03:49:48.315439+00:00"
+      },
+      {
+        "id": "dev_task_006",
+        "title": "Implement baseline and structural diff semantics",
+        "priority": "critical",
+        "status": "complete",
+        "objective": "Compute structured observable differences only after compatibility checks; retain absolute values and deltas.",
+        "completed_at": "2026-10-05T03:49:48.315440+00:00"
+      },
+      {
+        "id": "dev_task_007",
+        "title": "Implement LongitudinalResult",
+        "priority": "critical",
+        "status": "complete",
+        "objective": "Represent and query Q(layer, control, time) across compatible checkpoint series, including baseline-relative displacement.",
+        "completed_at": "2026-10-05T03:49:48.315442+00:00"
+      },
+      {
+        "id": "dev_task_008",
+        "title": "Implement site alignment",
+        "priority": "high",
+        "status": "complete",
+        "objective": "Support exact-name, declared semantic, and normalized-depth alignment strategies with explicit warnings about non-equivalence.",
+        "completed_at": "2026-10-05T03:49:48.315443+00:00"
+      },
+      {
+        "id": "dev_task_009",
+        "title": "Attach behavioral and efficiency metadata",
+        "priority": "high",
+        "status": "complete",
+        "objective": "Allow externally computed task metrics and optional computational metrics to be associated with models/checkpoints/results without making Eigenflow a trainer.",
+        "completed_at": "2026-10-05T03:49:48.315444+00:00"
+      },
+      {
+        "id": "dev_task_010",
+        "title": "Implement persistence for experiment series",
+        "priority": "critical",
+        "status": "complete",
+        "objective": "Design scalable series persistence separating metadata from large arrays and avoiding one monolithic JSON payload.",
+        "completed_at": "2026-10-05T03:49:48.315447+00:00"
+      },
+      {
+        "id": "dev_task_011",
+        "title": "Implement checkpoint-series execution helpers",
+        "priority": "high",
+        "status": "complete",
+        "objective": "Provide ergonomic APIs to run or append compatible experiments over existing checkpoints without owning the training loop.",
+        "completed_at": "2026-10-05T03:49:48.315448+00:00"
+      },
+      {
+        "id": "dev_task_012",
+        "title": "Implement architecture-comparison workflows",
+        "priority": "high",
+        "status": "complete",
+        "objective": "Support matched probe/configuration analysis across candidate architectures and aligned sites.",
+        "completed_at": "2026-10-05T03:49:48.315449+00:00"
+      },
+      {
+        "id": "dev_task_013",
+        "title": "Implement retention and forgetting analysis",
+        "priority": "critical",
+        "status": "complete",
+        "objective": "Support baseline-relative analysis over target and retention probe suites, including layer/control localization of unwanted structural displacement.",
+        "completed_at": "2026-10-05T03:49:48.315451+00:00"
+      },
+      {
+        "id": "dev_task_014",
+        "title": "Implement PEFT targeting diagnostics",
+        "priority": "high",
+        "status": "complete",
+        "objective": "Provide diagnostics that identify deficient or changing sites relevant to adapter/LoRA placement while keeping recommendations non-automatic.",
+        "completed_at": "2026-10-05T03:49:48.315452+00:00"
+      },
+      {
+        "id": "dev_task_015",
+        "title": "Implement structural checkpoint-selection primitives",
+        "priority": "high",
+        "status": "complete",
+        "objective": "Support user-defined multi-objective checkpoint criteria combining behavioral metrics with structural retention/acquisition evidence.",
+        "completed_at": "2026-10-05T03:49:48.315454+00:00"
+      },
+      {
+        "id": "dev_task_016",
+        "title": "Implement training-data diagnostic summaries",
+        "priority": "medium",
+        "status": "complete",
+        "objective": "Aggregate bridge cases, factor-confounded structure, outliers, and unexpected alignment into inspectable candidate data issues.",
+        "completed_at": "2026-10-05T03:49:48.315455+00:00"
+      },
+      {
+        "id": "dev_task_017",
+        "title": "Implement longitudinal visualizations",
+        "priority": "critical",
+        "status": "complete",
+        "objective": "Add layer\u00d7control\u00d7time summaries, checkpoint trajectories, baseline-relative displacement maps, transition-time plots, and structural-change heatmaps.",
+        "completed_at": "2026-10-05T03:49:48.315456+00:00"
+      },
+      {
+        "id": "dev_task_018",
+        "title": "Implement cross-model/run comparison visualizations",
+        "priority": "high",
+        "status": "complete",
+        "objective": "Add aligned architecture/model/run comparison views and difference dashboards.",
+        "completed_at": "2026-10-05T03:49:48.315458+00:00"
+      },
+      {
+        "id": "dev_task_019",
+        "title": "Implement retention/development dashboards",
+        "priority": "high",
+        "status": "complete",
+        "objective": "Create dashboards combining target acquisition, retention, nuisance suppression, behavioral metrics, and structural displacement.",
+        "completed_at": "2026-10-05T03:49:48.315460+00:00"
+      },
+      {
+        "id": "dev_task_020",
+        "title": "Add deterministic unit and regression tests",
+        "priority": "critical",
+        "status": "complete",
+        "objective": "Test compatibility logic, series semantics, diffs, longitudinal trajectories, persistence, site alignment, and visualization outputs.",
+        "completed_at": "2026-10-05T03:49:48.315461+00:00"
+      },
+      {
+        "id": "dev_task_021",
+        "title": "Create architecture-comparison example",
+        "priority": "critical",
+        "status": "complete",
+        "objective": "Provide a runnable controlled example comparing at least two architectures under a matched probe design.",
+        "completed_at": "2026-10-05T03:49:48.315462+00:00"
+      },
+      {
+        "id": "dev_task_022",
+        "title": "Create fine-tuning/checkpoint example",
+        "priority": "critical",
+        "status": "complete",
+        "objective": "Provide a runnable example with a pretrained/baseline model and multiple post-training checkpoints demonstrating Q(layer, control, time), retention, and structural diffing.",
+        "completed_at": "2026-10-05T03:49:48.315464+00:00"
+      },
+      {
+        "id": "dev_task_023",
+        "title": "Create Colab-ready development instrumentation demo",
+        "priority": "high",
+        "status": "complete",
+        "objective": "Generate a self-contained demonstration that exports figures, numerical results, metadata, compatibility reports, and reproducibility information.",
+        "completed_at": "2026-10-05T03:49:48.315465+00:00"
+      },
+      {
+        "id": "dev_task_024",
+        "title": "Revise API/data/execution specifications",
+        "priority": "critical",
+        "status": "complete",
+        "objective": "Update reference specs only after implementation behavior is fixed, preserving previously adjudicated content where unchanged.",
+        "completed_at": "2026-10-05T03:49:48.315466+00:00"
+      },
+      {
+        "id": "dev_task_025",
+        "title": "Write development instrumentation conceptual guide",
+        "priority": "critical",
+        "status": "complete",
+        "objective": "Explain the representation-observability model, matched comparisons, longitudinal semantics, baseline interpretation, and methodological limits.",
+        "completed_at": "2026-10-05T03:49:48.315468+00:00"
+      },
+      {
+        "id": "dev_task_026",
+        "title": "Write architecture-development guide",
+        "priority": "high",
+        "status": "complete",
+        "objective": "Teach architecture hypothesis design, site selection, controlled probes, matched comparisons, and interpretation.",
+        "completed_at": "2026-10-05T03:49:48.315469+00:00"
+      },
+      {
+        "id": "dev_task_027",
+        "title": "Write fine-tuning and post-training guide",
+        "priority": "critical",
+        "status": "complete",
+        "objective": "Teach baseline design, target/retain/nuisance/boundary probes, forgetting, PEFT diagnostics, and checkpoint analysis.",
+        "completed_at": "2026-10-05T03:49:48.315470+00:00"
+      },
+      {
+        "id": "dev_task_028",
+        "title": "Write longitudinal-results interpretation guide",
+        "priority": "critical",
+        "status": "complete",
+        "objective": "Teach how to read Q(layer, control, time), structural displacement, robustness, and alternative explanations.",
+        "completed_at": "2026-10-05T03:49:48.315472+00:00"
+      },
+      {
+        "id": "dev_task_029",
+        "title": "Integrate development positioning into README/index",
+        "priority": "high",
+        "status": "complete",
+        "objective": "Expand positioning from post-hoc interpretation to representation observability without overstating currently supported capabilities.",
+        "completed_at": "2026-10-05T03:49:48.315473+00:00"
+      },
+      {
+        "id": "dev_task_030",
+        "title": "Apply incremental multi-agent adjudication",
+        "priority": "critical",
+        "status": "complete",
+        "objective": "Run instructional planning and region-level author/editor adjudication on all new or materially changed human-facing content.",
+        "completed_at": "2026-10-05T03:49:48.315476+00:00"
+      },
+      {
+        "id": "dev_task_031",
+        "title": "Validate complete development-instrumentation surface",
+        "priority": "critical",
+        "status": "complete",
+        "objective": "Run tests, examples, persistence round trips, docs/API reconciliation, links, generated artifacts, and state/provenance checks.",
+        "completed_at": "2026-10-05T03:49:48.315477+00:00"
+      }
+    ]
+  },
+  "development_instrumentation_validation": {
+    "tests_passed": 16,
+    "architecture_example": "examples/architecture_comparison.py",
+    "fine_tuning_example": "examples/fine_tuning_checkpoints.py",
+    "complete_demo": "examples/complete_development_demo.py",
+    "demo_zip_sha256": "417c7dfb892ecd6e20a361f698557155e5c38ac6fc4b0c155f885d108bbeb6df",
+    "demo_checksum_entries": 27,
+    "documentation_links_validated": true,
+    "editorial_protocol": "incremental four-author / three-editor adjudication"
   }
 }

@@ -18,6 +18,8 @@ class Experiment:
     extraction: ExtractionConfig=field(default_factory=ExtractionConfig)
     device: object=None
     collate_fn: object=None
+    preprocessing: object=None
+    measurement_metadata: dict=field(default_factory=dict)
 
     def run(self):
         metric=resolve_metric(self.metric); filtration=resolve_filtration(self.filtration); analysis_objs=[resolve_analysis(a) for a in self.analyses]
@@ -32,7 +34,9 @@ class Experiment:
                 artifacts=LayerArtifacts(rep,rel,gf),
             )
         prov=collect_provenance(self.model,metric=metric.name,filtration=filtration.name,analyses=[a.name for a in analysis_objs],sites=self.extraction.sites,reducer=str(self.extraction.reducer))
+        from .development.specs import ExperimentSpec
+        spec=ExperimentSpec.from_experiment(self)
         return ExperimentResult(
-            layers,prov,{"probe_population":self.probes.name,"probe_count":len(self.probes.samples)},
+            layers,prov,{"probe_population":self.probes.name,"probe_count":len(self.probes.samples),"experiment_spec":spec.to_dict()},
             artifacts=ExperimentArtifacts(self.probes),
         )

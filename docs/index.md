@@ -16,6 +16,8 @@ If you want a **complete image-model walkthrough**, use the [VGG16 probe experim
 
 If you want to understand the **complete visualization surface**, including PCSCS-compatible component trajectories/dendrograms and generalized Eigenflow spectral, factor, robustness, and layer×control views, read the [Visualization guide](guides/visualization_guide.md).
 
+If you are using Eigenflow for **architecture development, checkpoint comparison, fine-tuning, or post-training**, start with [Development instrumentation and representation observability](concepts/development_instrumentation.md). Then use [Architecture development](guides/architecture_development.md) or [Fine-tuning and post-training](guides/fine_tuning_post_training.md), followed by [Interpreting longitudinal results](guides/longitudinal_results.md).
+
 If you already have results and need to decide what they mean, use [Interpreting results](guides/interpreting_results.md).
 
 If you are an **existing PCSCS user**, begin with [`examples/pcscs_compatibility.py`](../examples/pcscs_compatibility.py). PCSCS is represented in Eigenflow as a cosine-similarity, threshold-filtration, component-sifting preset.
@@ -66,6 +68,15 @@ Read [Spectral analysis](concepts/spectral_analysis.md), then [Interpreting resu
 ### I need to compare early and late network layers
 
 Read the layer-by-control sections in [The experimental model](concepts/experimental_model.md) and [Interpreting results](guides/interpreting_results.md). The primary object is the changing relational organization of the same probe population across internal representation sites.
+
+
+### I need to compare architectures or checkpoints
+
+Read [Development instrumentation and representation observability](concepts/development_instrumentation.md). Use [Architecture development](guides/architecture_development.md) for matched candidate models and [Interpreting longitudinal results](guides/longitudinal_results.md) for structural diffs and \(Q(\ell,p,t)\).
+
+### I need to analyze fine-tuning or representational forgetting
+
+Use [Fine-tuning and post-training](guides/fine_tuning_post_training.md). It covers versioned target/retain probe suites, compatible checkpoint series, retention dashboards, PEFT diagnostics, and explicit checkpoint-selection rules.
 
 ### I need exact syntax
 

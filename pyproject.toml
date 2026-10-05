@@ -5,12 +5,12 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "eigenflow"
 version = "1.0.0a1"
-description = "Post hoc neural-network interpretability through multiscale relational analysis of probe populations."
+description = "Representation observability and post hoc neural-network interpretability through multiscale relational analysis of controlled probe populations."
 readme = "README.md"
 requires-python = ">=3.10"
 license = {file = "LICENSE"}
 authors = [{name = "Andrew Hedman"}]
-keywords = ["neural-network-interpretability", "representation-analysis", "spectral-graph-theory", "percolation", "pytorch"]
+keywords = ["neural-network-interpretability", "representation-analysis", "representation-observability", "model-development", "spectral-graph-theory", "percolation", "pytorch"]
 classifiers = [
   "Development Status :: 3 - Alpha",
   "Intended Audience :: Science/Research",

@@ -392,6 +392,57 @@ This supports questions such as:
 
 Words such as “emerges” or “transition” should refer to defined observable behavior. They do not, by themselves, establish a thermodynamic phase transition or a unique semantic mechanism.
 
+## Development instrumentation and longitudinal analysis
+
+Eigenflow can also treat repeated compatible experiments as a development series. The atomic object remains one controlled `Experiment`, but higher-order development objects let you compare architectures, checkpoints, fine-tuning stages, and training runs without silently changing the measurement contract.
+
+The core extension is
+
+\[
+Q(\ell,p)
+\quad\longrightarrow\quad
+Q(\ell,p,t),
+\]
+
+where \(t\) indexes checkpoint, training progress, model version, or another controlled development condition.
+
+```python
+from eigenflow.development import (
+    ExperimentSeries,
+    BehavioralRecord,
+)
+
+series = ExperimentSeries("checkpoints")
+
+series.add_experiment(
+    "pretrained",
+    baseline_experiment,
+    time=0,
+    behavior=BehavioralRecord({"accuracy": baseline_accuracy}),
+)
+series.add_experiment(
+    "fine_tuned",
+    fine_tuned_experiment,
+    time=1000,
+    behavior=BehavioralRecord({"accuracy": fine_tuned_accuracy}),
+)
+
+longitudinal = series.longitudinal("pretrained")
+delta = longitudinal.baseline_delta(
+    site="representation",
+    analysis="components",
+    observable="component_count",
+)
+```
+
+`ExperimentSeries` validates compatibility as results are added. By default, probe population, sites, reducer, metric, filtration, analyses, and preprocessing must agree. This prevents a reducer or probe-set change from being misread as a training effect.
+
+For post-training work, `ProbeSuite` can assign separate `target`, `retain`, `nuisance`, and `boundary` populations. `StructuralDiff`, `LongitudinalResult`, `SiteAlignment`, `BehavioralRecord`, and development dashboards then support architecture comparison, retention/forgetting analysis, checkpoint trajectories, PEFT diagnostics, and explicit multi-objective checkpoint decisions.
+
+Eigenflow still does **not** define a universal representation-quality score. Behavioral performance, computational efficiency, and representation structure remain separate evidence channels whose relevance depends on the engineering hypothesis.
+
+See [Development instrumentation](docs/concepts/development_instrumentation.md), [Architecture development](docs/guides/architecture_development.md), [Fine-tuning and post-training](docs/guides/fine_tuning_post_training.md), and [Interpreting longitudinal results](docs/guides/longitudinal_results.md).
+
 ## Visualization
 
 Eigenflow treats visualization as part of the experimental interface: each public view is tied to an analyst question, a source result object, and an explicit interpretation boundary. The suite includes PCSCS-compatible component trajectories, merge events, dendrograms, and cross-layer comparisons, plus generalized relational, percolation, spectral, eigenspace, factor-alignment, robustness, and layer × control views.

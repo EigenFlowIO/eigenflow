@@ -203,7 +203,7 @@ ExperimentResult(
 )
 ```
 
-`layers` is keyed by captured site.
+`layers` is keyed by captured site. `metadata["experiment_spec"]` stores the serializable measurement contract generated for the experiment.
 
 `summary()` returns a compact mapping of site → metric, filtration, and analysis names.
 
@@ -259,17 +259,29 @@ The serializer deliberately omits fields named `eigenvectors`.
 
 This means the saved JSON is a human-inspectable result representation, not a lossless round-trip serialization of every in-memory object.
 
-## No current reconstruction API
+## Portable reconstruction and series persistence
 
-The current alpha release does not implement:
+`ExperimentResult` still has no `.load()` method. The module helper:
 
 ```python
-ExperimentResult.load(...)
+from eigenflow.serialization import load_result_object
+portable = load_result_object("results/run_01")
 ```
 
-and does not write NPZ sidecar files.
+reconstructs a portable `ExperimentResult` containing layer/analysis records. Spectral trajectories are rebuilt from saved eigenvalues, but runtime artifacts and eigenvectors are not restored.
 
-An external reader should therefore treat `result.json` as a versioned report-like serialization rather than assume that loading it recreates the exact original Python object graph.
+For development studies, `save_series`/`load_series` add a series-level schema:
+
+```text
+series_dir/
+├── series.json
+├── arrays.npz
+└── results/
+    ├── 0000_baseline/result.json
+    └── 0001_step_100/result.json
+```
+
+`series.json` stores entry metadata, `ExperimentSpec`, `ComparisonSpec`, behavioral records, and result paths. `arrays.npz` contains compact numeric observable arrays for external inspection. The per-entry JSON remains the canonical portable report for each experiment.
 
 ## Example serialized shape
 
@@ -308,6 +320,53 @@ A simplified saved result resembles:
 ```
 
 Actual output contains the complete configured records and provenance, so files can be substantially larger.
+
+## Development-instrumentation data model
+
+### `ExperimentSpec`
+
+A model-independent measurement contract containing the probe fingerprint, probe metadata/design summary, sites, reducer, metric, filtration, analyses, preprocessing descriptor, and measurement metadata. Its SHA-256 `fingerprint` is derived from its canonical JSON representation.
+
+### `ProbeSuite`
+
+A mapping from role name to `ProbePopulation`, with a suite name, version, metadata, and a fingerprint over role/population manifests. Typical roles include target, retain, nuisance, and boundary.
+
+### `SeriesEntry`
+
+One indexed development condition:
+
+```text
+key
+result
+spec
+time / checkpoint / model / architecture / condition / run
+behavior
+metadata
+```
+
+### `ExperimentSeries`
+
+An ordered collection of `SeriesEntry` objects under one `ComparisonSpec`. New entries are compatibility-checked against the baseline entry.
+
+### `CompatibilityReport`
+
+Contains `compatible`, error/warning issues, recorded controlled differences, and the comparison contract used to evaluate them.
+
+### `SiteAlignment`
+
+An explicit left-site → right-site mapping plus strategy/notes. It prevents cross-architecture comparison code from silently equating sites by index.
+
+### `StructuralDiff`
+
+Stores numeric observable differences for aligned sites/analyses plus compatibility metadata and a list of skipped non-numeric or shape-mismatched observables.
+
+### `LongitudinalResult`
+
+A view over compatible series entries with a baseline key and time/checkpoint coordinates. `trajectory(...)` produces an array whose first axis is development time; `baseline_delta(...)` subtracts the selected baseline while preserving the underlying observable dimensions.
+
+### `BehavioralRecord` and `DevelopmentReport`
+
+Behavioral/efficiency measurements remain separate dictionaries associated with an entry. A development report can present them beside structural summaries without creating an implicit scalar quality score.
 
 ## Schema and compatibility policy
 
