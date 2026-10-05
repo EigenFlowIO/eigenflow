@@ -1,0 +1,1 @@
+from ..analyses.standard import FactorAlignmentAnalysis,ClassStructureAnalysis
