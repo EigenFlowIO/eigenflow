@@ -417,7 +417,7 @@
     {
       "id": "out_007",
       "type": "zip_archive",
-      "status": "pending",
+      "status": "complete",
       "name": "Eigenflow initial repository ZIP including .git history",
       "depends_on": [
         "out_002",
@@ -478,6 +478,16 @@
           "out_005",
           "out_006"
         ]
+      },
+      {
+        "id": "prov_change_release_002",
+        "source_type": "release_packaging",
+        "source_description": "Final repository state prepared for ZIP packaging with embedded Git history.",
+        "created_at": "2026-10-05T00:31:27.276968+00:00",
+        "affected_ids": [
+          "out_007",
+          "unit_120_package_repo"
+        ]
       }
     ]
   },
@@ -486,7 +496,7 @@
     "last_committed_unit": "unit_120_package_repo",
     "active_unit": null,
     "resume_from": null,
-    "state_revision": 4
+    "state_revision": 5
   },
   "completion": {
     "project_complete": true,
@@ -494,7 +504,7 @@
     "implementation_complete": true,
     "testing_complete": true,
     "documentation_complete": true,
-    "primary_deliverable_complete": false
+    "primary_deliverable_complete": true
   },
   "validation": {
     "v1_release": {
@@ -504,9 +514,10 @@
         "examples/basic_mlp.py",
         "examples/pcscs_compatibility.py"
       ],
-      "git_fsck": "pending_final_check",
+      "git_fsck": "passed",
       "editable_install_environment_note": "Network-isolated validation environment prevented pip build-isolation dependency lookup; direct src execution and tests passed.",
-      "validated_at": "2026-10-05T00:31:01.345323+00:00"
+      "validated_at": "2026-10-05T00:31:01.345323+00:00",
+      "archive_validation": "pending_generation"
     }
   }
 }

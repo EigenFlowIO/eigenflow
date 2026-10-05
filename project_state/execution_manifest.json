@@ -2,7 +2,7 @@
   "manifest_format": "eigenflow-execution-manifest",
   "version": "0.1.0",
   "project_id": "proj_eigenflow",
-  "state_revision": 4,
+  "state_revision": 5,
   "last_committed_unit": "unit_120_package_repo",
   "current_unit": null,
   "resume_unit": null,
