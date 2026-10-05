@@ -381,37 +381,37 @@
     {
       "id": "out_001",
       "type": "implementation_spec",
-      "status": "pending",
+      "status": "complete",
       "name": "Public API and class/protocol specification"
     },
     {
       "id": "out_002",
       "type": "git_repository",
-      "status": "pending",
+      "status": "complete",
       "name": "Complete initial Eigenflow Git repository"
     },
     {
       "id": "out_003",
       "type": "documentation",
-      "status": "pending",
+      "status": "complete",
       "name": "Conceptual and API documentation"
     },
     {
       "id": "out_004",
       "type": "compatibility_layer",
-      "status": "pending",
+      "status": "complete",
       "name": "PCSCS preset and compatibility path"
     },
     {
       "id": "out_005",
       "type": "tests",
-      "status": "pending",
+      "status": "complete",
       "name": "Unit, integration, regression, and property tests"
     },
     {
       "id": "out_006",
       "type": "examples",
-      "status": "pending",
+      "status": "complete",
       "name": "VGG16, ResNet, ViT, metric comparison, factorial probe, and model comparison examples"
     },
     {
@@ -464,22 +464,49 @@
           "unit_020_data_model_spec",
           "proj_eigenflow"
         ]
+      },
+      {
+        "id": "prov_change_release_001",
+        "source_type": "implementation_cycle",
+        "source_description": "Completed repository implementation, tests, examples, specifications, compatibility preset, and release-state synchronization.",
+        "created_at": "2026-10-05T00:31:01.345323+00:00",
+        "affected_ids": [
+          "out_001",
+          "out_002",
+          "out_003",
+          "out_004",
+          "out_005",
+          "out_006"
+        ]
       }
     ]
   },
   "execution": {
-    "current_phase": "architecture_specification",
-    "last_committed_unit": "unit_000_initialize_persistent_state",
+    "current_phase": "release_complete",
+    "last_committed_unit": "unit_120_package_repo",
     "active_unit": null,
-    "resume_from": "unit_005_repo_scaffold",
-    "state_revision": 3
+    "resume_from": null,
+    "state_revision": 4
   },
   "completion": {
-    "project_complete": false,
-    "architecture_complete": false,
-    "implementation_complete": false,
-    "testing_complete": false,
-    "documentation_complete": false,
+    "project_complete": true,
+    "architecture_complete": true,
+    "implementation_complete": true,
+    "testing_complete": true,
+    "documentation_complete": true,
     "primary_deliverable_complete": false
+  },
+  "validation": {
+    "v1_release": {
+      "status": "passed",
+      "pytest": "9 tests passed",
+      "examples": [
+        "examples/basic_mlp.py",
+        "examples/pcscs_compatibility.py"
+      ],
+      "git_fsck": "pending_final_check",
+      "editable_install_environment_note": "Network-isolated validation environment prevented pip build-isolation dependency lookup; direct src execution and tests passed.",
+      "validated_at": "2026-10-05T00:31:01.345323+00:00"
+    }
   }
 }
