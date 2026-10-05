@@ -2,10 +2,10 @@
   "manifest_format": "eigenflow-execution-manifest",
   "version": "0.1.0",
   "project_id": "proj_eigenflow",
-  "state_revision": 5,
-  "last_committed_unit": "unit_120_package_repo",
+  "state_revision": 6,
+  "last_committed_unit": "unit_130_documentation_audit",
   "current_unit": null,
-  "resume_unit": null,
+  "resume_unit": "unit_140_documentation_completion",
   "units": [
     {
       "id": "unit_000_initialize_persistent_state",
@@ -149,6 +149,33 @@
         "eigenflow-initial-repo.zip containing .git"
       ],
       "completed_at": "2026-10-05T00:31:01.345323+00:00"
+    },
+    {
+      "id": "unit_130_documentation_audit",
+      "title": "Audit human-facing documentation and record open tasks",
+      "status": "complete",
+      "depends_on": [
+        "unit_120_package_repo"
+      ],
+      "outputs": [
+        "docs/DOCUMENTATION_AUDIT.md",
+        "project_state documentation_audit tasks"
+      ]
+    },
+    {
+      "id": "unit_140_documentation_completion",
+      "title": "Complete human-facing documentation and reconcile docs with implementation",
+      "status": "pending",
+      "depends_on": [
+        "unit_130_documentation_audit"
+      ],
+      "outputs": [
+        "revised README/governance docs",
+        "expanded concept docs and guides",
+        "reconciled API/data/execution specs",
+        "instructional examples",
+        "documentation index and result-interpretation guide"
+      ]
     }
   ],
   "resume_rules": {
