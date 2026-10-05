@@ -1,0 +1,27 @@
+{
+  "seed": 17,
+  "probe_accuracy": 1.0,
+  "probe_count": 60,
+  "final_site": "4",
+  "filtration": {
+    "name": "edge_density",
+    "start": 0.0,
+    "stop": 0.45,
+    "steps": 32
+  },
+  "primary_metric": "cosine",
+  "robustness_metric": "euclidean",
+  "analyses": [
+    "components",
+    "pcscs",
+    "percolation",
+    "spectra",
+    "eigenspaces",
+    "factor_alignment",
+    "class_structure",
+    "bridges",
+    "kcore",
+    "communities",
+    "transitions"
+  ]
+}

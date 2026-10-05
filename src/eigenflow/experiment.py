@@ -5,7 +5,7 @@ from .extraction import PyTorchExtractor,ExtractionConfig
 from .metrics import resolve_metric,metric_diagnostics
 from .filtrations import resolve_filtration
 from .analyses import resolve_analysis,AnalysisContext
-from .result import ExperimentResult,LayerResult
+from .result import ExperimentResult,LayerResult,LayerArtifacts,ExperimentArtifacts
 from .provenance import collect_provenance
 
 @dataclass
@@ -26,6 +26,13 @@ class Experiment:
         for site,rep in reps.items():
             rel=metric.pairwise(rep); gf=filtration.build(rel); ctx=AnalysisContext(site,rep,rel,gf,self.probes)
             results={a.name:a.run(ctx) for a in analysis_objs}
-            layers[site]=LayerResult(site,metric.name,gf.name,results,{"diagnostics":metric_diagnostics(rel),"representation_shape":list(rep.values.shape),"reducer":rep.reducer})
+            layers[site]=LayerResult(
+                site,metric.name,gf.name,results,
+                {"diagnostics":metric_diagnostics(rel),"representation_shape":list(rep.values.shape),"reducer":rep.reducer},
+                artifacts=LayerArtifacts(rep,rel,gf),
+            )
         prov=collect_provenance(self.model,metric=metric.name,filtration=filtration.name,analyses=[a.name for a in analysis_objs],sites=self.extraction.sites,reducer=str(self.extraction.reducer))
-        return ExperimentResult(layers,prov,{"probe_population":self.probes.name,"probe_count":len(self.probes.samples)})
+        return ExperimentResult(
+            layers,prov,{"probe_population":self.probes.name,"probe_count":len(self.probes.samples)},
+            artifacts=ExperimentArtifacts(self.probes),
+        )

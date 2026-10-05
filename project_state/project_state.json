@@ -348,6 +348,30 @@
       "status": "committed",
       "decision": "The implemented v1 alpha metric and graph-operator sets documented in API_SPEC.md are the reference built-in sets for this release.",
       "rationale": "Resolved from implemented package behavior during documentation reconciliation."
+    },
+    {
+      "id": "dec_019",
+      "status": "committed",
+      "decision": "Visualization is an epistemic interface organized by analyst questions and evidential tier, not a collection of statistic-specific plot helpers.",
+      "rationale": "Visualization ontology implementation phase."
+    },
+    {
+      "id": "dec_020",
+      "status": "committed",
+      "decision": "LayerResult retains reduced representation, relational matrix, and graph filtration as non-persistent runtime artifacts; ExperimentResult retains the probe population for faithful visualization.",
+      "rationale": "Visualization ontology implementation phase."
+    },
+    {
+      "id": "dec_021",
+      "status": "committed",
+      "decision": "PCSCS visualization parity is a required baseline, generalized by Eigenflow component, percolation, spectral, eigenspace, factor, layer\u00d7control, robustness, and interpretation views.",
+      "rationale": "Visualization ontology implementation phase."
+    },
+    {
+      "id": "dec_022",
+      "status": "committed",
+      "decision": "Canonical visualization documentation must pair real generated output with code, intended use, permitted inference, alternatives, and common misinterpretation.",
+      "rationale": "Visualization ontology implementation phase."
     }
   ],
   "assumptions": [
@@ -683,15 +707,143 @@
           "CITATION.cff",
           "LICENSE"
         ]
+      },
+      {
+        "id": "prov_change_visualization_backlog",
+        "source_type": "visualization_gap_review",
+        "source_description": "Created implementation backlog to incorporate PCSCS visualization parity and generalized Eigenflow visual diagnostics after the initial Colab demo omitted dendrogram and connected-component trajectory views.",
+        "created_at": "2026-10-05T02:16:42.509642+00:00",
+        "affected_ids": [
+          "viz_task_001",
+          "viz_task_002",
+          "viz_task_003",
+          "viz_task_004",
+          "viz_task_005",
+          "viz_task_006",
+          "viz_task_007",
+          "viz_task_008",
+          "viz_task_009",
+          "viz_task_010",
+          "viz_task_011",
+          "viz_task_012",
+          "viz_task_013",
+          "viz_task_014",
+          "viz_task_015",
+          "viz_task_016",
+          "viz_task_017"
+        ]
+      },
+      {
+        "id": "prov_change_visualization_phase_formalized",
+        "source_type": "project_phase_definition",
+        "source_description": "Formalized visualization ontology and epistemic interface design as the next project phase. Existing visualization implementation backlog is now downstream of ontology completion.",
+        "created_at": "2026-10-05T02:22:50.537590+00:00",
+        "affected_ids": [
+          "phase_visualization_ontology",
+          "view_001",
+          "view_002",
+          "view_003",
+          "view_004",
+          "view_005",
+          "view_006",
+          "view_007",
+          "view_008",
+          "view_009",
+          "view_010",
+          "view_011",
+          "view_012",
+          "view_013",
+          "view_014",
+          "view_015",
+          "view_016",
+          "view_017",
+          "view_018",
+          "view_019",
+          "view_020"
+        ]
+      },
+      {
+        "id": "prov_change_visualization_surface_complete",
+        "source_type": "visualization_phase_execution",
+        "source_description": "Completed visualization ontology, PCSCS parity, generalized visualization API, runtime artifacts, regression tests, complete demo bundle, real-output documentation integration, and validation.",
+        "created_at": "2026-10-05T02:37:59.250762+00:00",
+        "affected_ids": [
+          "view_001",
+          "view_002",
+          "view_003",
+          "view_004",
+          "view_005",
+          "view_006",
+          "view_007",
+          "view_008",
+          "view_009",
+          "view_010",
+          "view_011",
+          "view_012",
+          "view_013",
+          "view_014",
+          "view_015",
+          "view_016",
+          "view_017",
+          "view_018",
+          "view_019",
+          "view_020",
+          "viz_task_001",
+          "viz_task_002",
+          "viz_task_003",
+          "viz_task_004",
+          "viz_task_005",
+          "viz_task_006",
+          "viz_task_007",
+          "viz_task_008",
+          "viz_task_009",
+          "viz_task_010",
+          "viz_task_011",
+          "viz_task_012",
+          "viz_task_013",
+          "viz_task_014",
+          "viz_task_015",
+          "viz_task_016",
+          "viz_task_017"
+        ]
+      },
+      {
+        "id": "prov_change_visualization_demo_finalized",
+        "source_type": "artifact_regeneration",
+        "source_description": "Regenerated canonical 22-figure visualization demo with exact balanced factorial probe, embedded generator script, visualization catalog, validated checksums, and synchronized repository reference outputs.",
+        "created_at": "2026-10-05T02:41:01.132910+00:00",
+        "affected_ids": [
+          "unit_150_visualization_parity_and_demo",
+          "unit_152_visualization_validation"
+        ]
+      },
+      {
+        "id": "prov_incremental_adjudication_protocol",
+        "source_type": "editorial_protocol_refinement",
+        "source_description": "Revised documentation protocol to distinguish previously adjudicated unchanged content, editorial-only changes, materially changed content requiring re-adjudication, and new unadjudicated content. Whole-document redrafting is now exceptional.",
+        "created_at": "2026-10-05T02:45:56.323602+00:00",
+        "affected_ids": [
+          "instr_incremental_adjudication_001"
+        ]
+      },
+      {
+        "id": "prov_incremental_human_surface_reconciliation",
+        "source_type": "incremental_editorial_adjudication",
+        "source_description": "Completed the post-visualization human-facing reconciliation using durable region-level adjudication; preserved unchanged adjudicated prose, re-adjudicated only new/materially changed regions, synchronized demonstration/reference artifacts, and prepared release packaging.",
+        "created_at": "2026-10-05T02:58:02.367112+00:00",
+        "affected_ids": [
+          "unit_152_incremental_visualization_doc_adjudication"
+        ]
       }
     ]
   },
   "execution": {
-    "current_phase": "human_facing_surface_completion",
+    "current_phase": "visualization_surface_complete_and_human_facing_reconciled",
     "last_committed_unit": "unit_141_instructional_architecture",
     "active_unit": null,
-    "resume_from": null,
-    "state_revision": 13
+    "resume_from": "release_visualization_phase_git_package",
+    "state_revision": 19,
+    "git_note": "Release package will be committed as a child of the known user remote baseline 9ca109c327f0af3fcd99c79f08451748d2b8c839; the parent object is configured as a promisor-object dependency on origin because outbound Git fetch is unavailable in the sandbox."
   },
   "completion": {
     "project_complete": true,
@@ -701,7 +853,10 @@
     "documentation_complete": true,
     "primary_deliverable_complete": true,
     "human_facing_nonintervention_complete": true,
-    "release_metadata_complete": true
+    "release_metadata_complete": true,
+    "visualization_ontology_complete": true,
+    "visualization_surface_complete": true,
+    "incremental_human_facing_adjudication_complete": true
   },
   "validation": {
     "v1_release": {
@@ -715,6 +870,21 @@
       "editable_install_environment_note": "Network-isolated validation environment prevented pip build-isolation dependency lookup; direct src execution and tests passed.",
       "validated_at": "2026-10-05T00:31:01.345323+00:00",
       "archive_validation": "pending_generation"
+    },
+    "human_facing_revision_2026_10_04": {
+      "status": "complete",
+      "tests": "12 passed",
+      "examples": [
+        "examples/basic_mlp.py",
+        "examples/pcscs_compatibility.py",
+        "examples/complete_visualization_demo.py"
+      ],
+      "demo_figures": 22,
+      "probe_accuracy": 1.0,
+      "local_markdown_links": "resolved",
+      "python_compile": "passed",
+      "pyproject_parse": "passed",
+      "adjudication_ledger": "project_state/editorial/ADJUDICATION_LEDGER.md"
     }
   },
   "documentation_audit": {
@@ -3949,6 +4119,30 @@
         }
       ],
       "remaining_authority_fields": []
+    },
+    "incremental_adjudication_protocol": {
+      "id": "instr_incremental_adjudication_001",
+      "status": "committed",
+      "principle": "Preserve previously adjudicated content unless a later mutation changes its substantive meaning or instructional function.",
+      "statuses": [
+        "adjudicated_unchanged",
+        "adjudicated_editorial_change",
+        "requires_re_adjudication",
+        "new_unadjudicated"
+      ],
+      "full_readjudication_triggers": [
+        "terminal reader state change",
+        "trajectory/prerequisite change",
+        "public API behavior change",
+        "scientific/statistical claim change",
+        "observable interpretation change",
+        "inference-boundary change",
+        "security/legal/compliance guidance change",
+        "worked-example meaning/output change",
+        "recommended user action change"
+      ],
+      "artifact": "project_state/EDITORIAL_DRAFTING_PROTOCOL.md",
+      "created_at": "2026-10-05T02:45:56.323352+00:00"
     }
   },
   "release": {
@@ -3963,5 +4157,674 @@
     "security_reporting": "GitHub Private Vulnerability Reporting / Security Advisories",
     "conduct_authority": "Andrew Hedman",
     "communications_policy": "GitHub-native; no email intake; no automated reporting/enforcement workflows"
+  },
+  "visualization_backlog": {
+    "status": "complete",
+    "created_at": "2026-10-05T02:16:42.509446+00:00",
+    "source": "PCSCS visualization parity review plus generalized Eigenflow visualization requirements",
+    "tasks": [
+      {
+        "id": "viz_task_001",
+        "title": "Inventory PCSCS visualization semantics",
+        "priority": "critical",
+        "status": "complete",
+        "objective": "Document the exact semantic purpose, inputs, outputs, and annotations of every PCSCS visualization so Eigenflow can preserve or supersede them intentionally.",
+        "outputs": [
+          "PCSCS visualization parity matrix",
+          "mapping from PCSCS plots to Eigenflow data objects and generalized equivalents"
+        ],
+        "acceptance_criteria": [
+          "Includes plot_layer_analysis, plot_merge_events, plot_dendrogram, plot_combined_layers, plot_eigenvalue_spectrum, plot_spectral_flow, and plot_spectral_properties.",
+          "Records which PCSCS statistics each plot exposes: component count, smoothed count, critical threshold, convergence threshold, merge events, layer comparison, spectra, spectral flow, and spectral properties.",
+          "Identifies any PCSCS view that has no current Eigenflow equivalent."
+        ],
+        "completed_at": "2026-10-05T02:37:59.250762+00:00"
+      },
+      {
+        "id": "viz_task_002",
+        "title": "Implement connected-component trajectory plot",
+        "priority": "critical",
+        "status": "complete",
+        "objective": "Add an Eigenflow visualization for component count over control scale with PCSCS-compatible annotations.",
+        "acceptance_criteria": [
+          "Plots raw connected-component count over filtration parameter.",
+          "Supports optional smoothed trajectory when PCSCS-style derivative analysis is available.",
+          "Marks critical parameter and convergence parameter when present.",
+          "Works for both native threshold and edge-density filtrations.",
+          "Accepts LayerResult / AnalysisResult without re-running the experiment."
+        ],
+        "completed_at": "2026-10-05T02:37:59.250762+00:00"
+      },
+      {
+        "id": "viz_task_003",
+        "title": "Implement merge-event visualization",
+        "priority": "critical",
+        "status": "complete",
+        "objective": "Visualize discrete component-merger events across the filtration and expose which groups/probes participate.",
+        "acceptance_criteria": [
+          "Shows merge parameter/control value.",
+          "Represents source components and resulting merged component.",
+          "Supports probe IDs and optional factor/class labels.",
+          "Can be generated from existing component/PCSCS analysis output or a dedicated merge-event record."
+        ],
+        "completed_at": "2026-10-05T02:37:59.250762+00:00"
+      },
+      {
+        "id": "viz_task_004",
+        "title": "Implement dendrogram / hierarchical merge view",
+        "priority": "critical",
+        "status": "complete",
+        "objective": "Provide a dendrogram-like hierarchy showing how probes or connected groups merge as relational thresholds are relaxed.",
+        "acceptance_criteria": [
+          "Branch height corresponds to a documented filtration/native-threshold quantity.",
+          "Leaf labels can show probe IDs and optionally metadata factors.",
+          "Tie handling is deterministic and documented.",
+          "The visualization makes no unsupported claim that the graph filtration is equivalent to standard agglomerative clustering.",
+          "Works with PCSCS-compatible cosine-threshold experiments."
+        ],
+        "completed_at": "2026-10-05T02:37:59.250762+00:00"
+      },
+      {
+        "id": "viz_task_005",
+        "title": "Implement combined-layer component dynamics view",
+        "priority": "high",
+        "status": "complete",
+        "objective": "Generalize PCSCS combined-layer plots so component dynamics can be compared across representation sites.",
+        "acceptance_criteria": [
+          "Displays component-count trajectories for multiple sites on comparable axes.",
+          "Can mark per-layer critical and convergence parameters.",
+          "Supports matched edge density for cross-layer/cross-metric comparisons.",
+          "Provides clear labeling when native thresholds are not directly comparable."
+        ],
+        "completed_at": "2026-10-05T02:37:59.250762+00:00"
+      },
+      {
+        "id": "viz_task_006",
+        "title": "Implement static eigenvalue spectrum view",
+        "priority": "high",
+        "status": "complete",
+        "objective": "Add a dedicated static-spectrum visualization for one graph snapshot, distinct from spectral flow.",
+        "acceptance_criteria": [
+          "Plots the selected operator spectrum at one control value.",
+          "Displays operator name and control/native parameter.",
+          "Supports Laplacian zero-mode/component interpretation where applicable.",
+          "Optionally highlights algebraic connectivity and requested spectral gaps."
+        ],
+        "completed_at": "2026-10-05T02:37:59.250762+00:00"
+      },
+      {
+        "id": "viz_task_007",
+        "title": "Expand spectral-flow visualization",
+        "priority": "high",
+        "status": "complete",
+        "objective": "Ensure Eigenflow spectral-flow plots cover the full PCSCS spectral-flow use case and generalized operator analysis.",
+        "acceptance_criteria": [
+          "Plots multiple eigenvalue branches across control scale.",
+          "Supports mode-count limits and operator labeling.",
+          "Handles eigenvalue ordering carefully and points readers to eigenspace analysis near crossings/degeneracy.",
+          "Works with multiple graph operators where spectra are available."
+        ],
+        "completed_at": "2026-10-05T02:37:59.250762+00:00"
+      },
+      {
+        "id": "viz_task_008",
+        "title": "Implement spectral-properties dashboard",
+        "priority": "high",
+        "status": "complete",
+        "objective": "Create a consolidated spectral-properties view analogous to PCSCS spectral-properties plotting but generalized to Eigenflow observables.",
+        "acceptance_criteria": [
+          "Includes algebraic connectivity when defined.",
+          "Includes one or more spectral-gap summaries.",
+          "Includes spectral entropy/effective rank and localization/IPR where available.",
+          "Can overlay or annotate PCSCS critical/convergence/transition parameters.",
+          "Uses separate axes/panels only where units or scales differ."
+        ],
+        "completed_at": "2026-10-05T02:37:59.250762+00:00"
+      },
+      {
+        "id": "viz_task_009",
+        "title": "Add graph-snapshot structural view",
+        "priority": "medium",
+        "status": "complete",
+        "objective": "Retain the generalized Eigenflow graph snapshot view and make it a documented complement to PCSCS parity plots.",
+        "acceptance_criteria": [
+          "Colors or groups nodes by selected probe metadata when requested.",
+          "Highlights bridges/cores/communities when requested.",
+          "Displays control parameter and site.",
+          "Clearly treats layout as visualization rather than a learned embedding."
+        ],
+        "completed_at": "2026-10-05T02:37:59.250762+00:00"
+      },
+      {
+        "id": "viz_task_010",
+        "title": "Add factor-alignment and class-structure visualizations",
+        "priority": "medium",
+        "status": "complete",
+        "objective": "Visualize semantic alignment diagnostics across control scale for controlled probe factors.",
+        "acceptance_criteria": [
+          "Plots NMI and/or ARI by factor over control parameter.",
+          "Plots within-factor versus external density where class_structure is used.",
+          "Supports multiple sites or one-site detail views.",
+          "Documentation states that alignment is evidence conditioned on the probe design, not proof of unique encoding."
+        ],
+        "completed_at": "2026-10-05T02:37:59.250762+00:00"
+      },
+      {
+        "id": "viz_task_011",
+        "title": "Add eigenspace stability visualizations",
+        "priority": "medium",
+        "status": "complete",
+        "objective": "Visualize principal angles and overlap matrices so spectral correspondence is not inferred from eigenvalue ordering alone.",
+        "acceptance_criteria": [
+          "Principal-angle trajectory plot exists.",
+          "Eigenspace-overlap heatmap exists.",
+          "Examples include a crossing/near-degeneracy interpretation."
+        ],
+        "completed_at": "2026-10-05T02:37:59.250762+00:00"
+      },
+      {
+        "id": "viz_task_012",
+        "title": "Define canonical visualization API",
+        "priority": "critical",
+        "status": "complete",
+        "objective": "Unify PCSCS-compatible and generalized Eigenflow visualizations behind documented public functions.",
+        "acceptance_criteria": [
+          "Names, signatures, accepted result objects, defaults, return types, and failure behavior are specified.",
+          "Every visualization consumes existing result objects where possible instead of re-running analyses.",
+          "PCSCS compatibility aliases or migration examples are documented.",
+          "API_SPEC.md and visualization package exports agree exactly."
+        ],
+        "completed_at": "2026-10-05T02:37:59.250762+00:00"
+      },
+      {
+        "id": "viz_task_013",
+        "title": "Regenerate complete Colab demonstration",
+        "priority": "critical",
+        "status": "complete",
+        "objective": "Replace the incomplete spectral-demo bundle with a complete visualization demonstration using the actual Eigenflow public visualization API.",
+        "acceptance_criteria": [
+          "Runs from a clean Google Colab session against a pinned Eigenflow commit.",
+          "Generates every canonical visualization type, including component-count trajectory, merge events, dendrogram, combined-layer view, static spectrum, spectral flow, and spectral-properties view.",
+          "Generates generalized Eigenflow views for factor alignment, graph snapshots, eigenspace stability, and layer\u00d7control summaries.",
+          "Produces numerical outputs and metadata required to reproduce every figure."
+        ],
+        "completed_at": "2026-10-05T02:37:59.250762+00:00"
+      },
+      {
+        "id": "viz_task_014",
+        "title": "Package visualization artifact bundle",
+        "priority": "high",
+        "status": "complete",
+        "objective": "Create a reproducible ZIP containing the script, figures, data tables, result JSON, configuration, environment metadata, and checksums.",
+        "acceptance_criteria": [
+          "Figure manifest maps every image to generating function, input result object, site, control parameter, and interpretation purpose.",
+          "README in the ZIP explains each image type and what question it answers.",
+          "SHA-256 manifest covers all generated artifacts.",
+          "Bundle is generated by the Colab script itself."
+        ],
+        "completed_at": "2026-10-05T02:37:59.250762+00:00"
+      },
+      {
+        "id": "viz_task_015",
+        "title": "Integrate generated visuals into repository documentation",
+        "priority": "high",
+        "status": "complete",
+        "objective": "Add selected real generated images and their code/output examples to the Eigenflow human-facing surface.",
+        "acceptance_criteria": [
+          "README contains a compact visual orientation without becoming image-heavy.",
+          "A dedicated visualization/example guide contains all canonical figure types.",
+          "Each figure is accompanied by code, description of axes/encoding, intended use, interpretation example, alternatives, and unsupported claims.",
+          "PCSCS compatibility docs explicitly map old plot functions to new Eigenflow equivalents."
+        ],
+        "completed_at": "2026-10-05T02:37:59.250762+00:00"
+      },
+      {
+        "id": "viz_task_016",
+        "title": "Add visualization regression tests",
+        "priority": "high",
+        "status": "complete",
+        "objective": "Prevent future loss of visualization surface and ensure plotting functions continue to accept real result objects.",
+        "acceptance_criteria": [
+          "Smoke tests generate every public visualization without exception.",
+          "Tests verify required annotations/axes/data-series presence.",
+          "At least one PCSCS-compatible fixture exercises dendrogram/component/merge views.",
+          "Tests avoid brittle pixel-perfect comparison unless a stable image-regression harness is intentionally adopted."
+        ],
+        "completed_at": "2026-10-05T02:37:59.250762+00:00"
+      },
+      {
+        "id": "viz_task_017",
+        "title": "Validate visualization interpretation surface",
+        "priority": "high",
+        "status": "complete",
+        "objective": "Run the antagonistic author/editor process on visualization documentation so figure interpretation is technically correct and epistemically bounded.",
+        "acceptance_criteria": [
+          "Every figure type has indication, construction, reading instructions, interpretation, alternatives, and claim boundary.",
+          "Software editor confirms exact implementation fidelity.",
+          "Research/statistics review confirms that plots are not treated as semantic proof.",
+          "PCSCS parity claims are checked against the PCSCS visualization inventory."
+        ],
+        "completed_at": "2026-10-05T02:37:59.250762+00:00"
+      }
+    ],
+    "completed_at": "2026-10-05T02:37:59.250762+00:00"
+  },
+  "visualization_ontology": {
+    "id": "phase_visualization_ontology",
+    "name": "Visualization ontology and epistemic interface design",
+    "status": "complete",
+    "objective": "Define a comprehensive visualization system from Eigenflow's experimental and interpretive objectives before implementing individual plot functions.",
+    "design_principle": "Visualizations are organized by the inferential questions they support, not by whatever statistics happen to be available.",
+    "tiers": [
+      {
+        "name": "primary evidential",
+        "purpose": "Expose measured relational/structural evidence directly and support substantive experimental inference."
+      },
+      {
+        "name": "diagnostic",
+        "purpose": "Explain anomalies, pivotal probes, local graph roles, or measurement behavior without becoming the primary inferential object."
+      },
+      {
+        "name": "summary/report",
+        "purpose": "Synthesize multiple validated evidential views for interpretation, comparison, and communication."
+      }
+    ],
+    "required_schema_fields": [
+      "question",
+      "source_objects",
+      "required_analysis",
+      "encoding",
+      "permitted_inference",
+      "common_misinterpretation",
+      "dependencies",
+      "priority",
+      "tier"
+    ],
+    "views": [
+      {
+        "id": "view_001",
+        "name": "Probe design / factor structure view",
+        "tier": "primary evidential",
+        "question": "Does the probe population actually distinguish the experimental hypotheses?",
+        "source_objects": [
+          "ProbePopulation.metadata",
+          "ProbePopulation.design"
+        ],
+        "required_analysis": "none",
+        "encoding": "factor-count bars, factorial contingency heatmap, missing-cell indicators, optional sample gallery",
+        "permitted_inference": "Assess balance, coverage, factorial completeness, and obvious confounding in the probe design.",
+        "common_misinterpretation": "Treating balanced counts as proof that all nuisance variables are controlled.",
+        "dependencies": [
+          "probe metadata"
+        ],
+        "priority": "critical"
+      },
+      {
+        "id": "view_002",
+        "name": "Factor-ordered relational matrix",
+        "tier": "primary evidential",
+        "question": "What pairwise relational geometry exists before graph thresholding, and how does it align with known factors?",
+        "source_objects": [
+          "RelationalMatrix.values",
+          "RelationalMatrix.probe_ids",
+          "ProbePopulation.metadata"
+        ],
+        "required_analysis": "metric only",
+        "encoding": "heatmap ordered or annotated by experimental factors",
+        "permitted_inference": "Identify broad block structure, gradients, outliers, and factor-consistent relational organization under the chosen metric.",
+        "common_misinterpretation": "Treating visible blocks as metric-independent latent classes.",
+        "dependencies": [
+          "representation reducer",
+          "metric"
+        ],
+        "priority": "critical"
+      },
+      {
+        "id": "view_003",
+        "name": "Connected-component trajectory",
+        "tier": "primary evidential",
+        "question": "How does fragmentation collapse as the control parameter changes?",
+        "source_objects": [
+          "ComponentsAnalysis",
+          "PCSCSAnalysis"
+        ],
+        "required_analysis": "components or pcscs",
+        "encoding": "component count vs control parameter; optional smoothed curve; critical and convergence annotations",
+        "permitted_inference": "Locate regimes of rapid merger, persistence, and global convergence.",
+        "common_misinterpretation": "Equating the maximal derivative with a physical critical point or semantic transition without supporting evidence.",
+        "dependencies": [
+          "filtration"
+        ],
+        "priority": "critical"
+      },
+      {
+        "id": "view_004",
+        "name": "Component membership raster",
+        "tier": "primary evidential",
+        "question": "Which probes remain grouped together across control scale?",
+        "source_objects": [
+          "ComponentsAnalysis.records",
+          "ProbePopulation.metadata"
+        ],
+        "required_analysis": "components",
+        "encoding": "probe \u00d7 control matrix colored by component identity, optionally ordered by factor",
+        "permitted_inference": "Assess persistence, group stability, and which probes change membership relationships across scale.",
+        "common_misinterpretation": "Interpreting component color identity as stable semantic labels when components merge and labels may be arbitrary.",
+        "dependencies": [
+          "components"
+        ],
+        "priority": "critical"
+      },
+      {
+        "id": "view_005",
+        "name": "Merge-event plot",
+        "tier": "primary evidential",
+        "question": "Which groups merge, at what control values, and through which relations?",
+        "source_objects": [
+          "component lineage / merge records",
+          "BridgeAnalysis",
+          "GraphFiltration"
+        ],
+        "required_analysis": "components plus merge-event derivation",
+        "encoding": "event timeline/tree with source and resulting components",
+        "permitted_inference": "Identify discrete merger events and candidate bridge relations driving larger-scale consolidation.",
+        "common_misinterpretation": "Assuming one merge event corresponds to one semantic feature transition.",
+        "dependencies": [
+          "component lineage"
+        ],
+        "priority": "critical"
+      },
+      {
+        "id": "view_006",
+        "name": "Dendrogram / merge hierarchy",
+        "tier": "primary evidential",
+        "question": "What hierarchical order of relational consolidation is induced by the filtration?",
+        "source_objects": [
+          "threshold/merge events",
+          "probe IDs",
+          "metadata"
+        ],
+        "required_analysis": "merge hierarchy derivation",
+        "encoding": "hierarchical tree with branch height tied to filtration/native threshold quantity",
+        "permitted_inference": "Visualize persistent relational groupings and their merge order.",
+        "common_misinterpretation": "Treating the graph filtration as identical to standard agglomerative clustering or treating branch heights as metric-independent semantic distances.",
+        "dependencies": [
+          "monotone merge hierarchy"
+        ],
+        "priority": "critical"
+      },
+      {
+        "id": "view_007",
+        "name": "Percolation / structural-transition dashboard",
+        "tier": "summary/report",
+        "question": "How does graph structure move from local fragmentation to mesoscale and macroscopic connectivity?",
+        "source_objects": [
+          "ComponentsAnalysis",
+          "PercolationAnalysis",
+          "TransitionsAnalysis"
+        ],
+        "required_analysis": "components, percolation, transitions",
+        "encoding": "aligned component count, giant component, second component, susceptibility, transition markers",
+        "permitted_inference": "Characterize graph-growth regimes and compare multiple transition indicators.",
+        "common_misinterpretation": "Calling finite-sample transition markers universal phase transitions.",
+        "dependencies": [
+          "filtration"
+        ],
+        "priority": "critical"
+      },
+      {
+        "id": "view_008",
+        "name": "Graph snapshot with semantic annotation",
+        "tier": "diagnostic",
+        "question": "What does one selected graph state look like, and which probes/edges are structurally important?",
+        "source_objects": [
+          "GraphSnapshot",
+          "ProbePopulation.metadata",
+          "BridgesAnalysis",
+          "KCoreAnalysis",
+          "CommunitiesAnalysis"
+        ],
+        "required_analysis": "optional bridges/kcore/communities",
+        "encoding": "node-link layout colored by factor/community/core with highlighted bridges",
+        "permitted_inference": "Inspect local structural roles and identify probes worth qualitative examination.",
+        "common_misinterpretation": "Reading force-directed node position as a learned embedding or metric geometry.",
+        "dependencies": [
+          "graph snapshot"
+        ],
+        "priority": "high"
+      },
+      {
+        "id": "view_009",
+        "name": "Static eigenvalue spectrum",
+        "tier": "primary evidential",
+        "question": "What operator-scale structure exists at a selected graph state?",
+        "source_objects": [
+          "SpectralSnapshot"
+        ],
+        "required_analysis": "spectra",
+        "encoding": "eigenvalue index/value plot with operator and control annotations",
+        "permitted_inference": "Inspect zero modes, algebraic connectivity, spectral gaps, spectral concentration, and operator-specific structure.",
+        "common_misinterpretation": "Assigning semantic meaning to isolated eigenvalues without probe/factor context.",
+        "dependencies": [
+          "graph operator"
+        ],
+        "priority": "high"
+      },
+      {
+        "id": "view_010",
+        "name": "Spectral flow",
+        "tier": "primary evidential",
+        "question": "How do operator eigenvalues change across the filtration?",
+        "source_objects": [
+          "SpectralTrajectory"
+        ],
+        "required_analysis": "spectra",
+        "encoding": "multiple eigenvalue branches vs control parameter",
+        "permitted_inference": "Identify persistent spectral regimes, crossings, gap openings/closures, and scale-dependent operator structure.",
+        "common_misinterpretation": "Assuming sorted eigenvalue index identifies the same eigenmode across crossings or degeneracy.",
+        "dependencies": [
+          "spectra"
+        ],
+        "priority": "critical"
+      },
+      {
+        "id": "view_011",
+        "name": "Spectral-properties dashboard",
+        "tier": "summary/report",
+        "question": "How do key spectral observables jointly characterize structural organization across control scale?",
+        "source_objects": [
+          "SpectralTrajectory",
+          "TransitionsAnalysis"
+        ],
+        "required_analysis": "spectra",
+        "encoding": "aligned algebraic connectivity, selected gaps, entropy/effective rank, energy, localization/IPR, transition annotations",
+        "permitted_inference": "Compare complementary spectral summaries and align them with structural transition regimes.",
+        "common_misinterpretation": "Treating all spectral statistics as interchangeable measures of one latent property.",
+        "dependencies": [
+          "spectra"
+        ],
+        "priority": "critical"
+      },
+      {
+        "id": "view_012",
+        "name": "Eigenspace stability view",
+        "tier": "primary evidential",
+        "question": "Are low-dimensional structural modes stable across adjacent control values?",
+        "source_objects": [
+          "EigenspaceAnalysis.records"
+        ],
+        "required_analysis": "eigenspaces",
+        "encoding": "principal-angle trajectories and overlap heatmaps",
+        "permitted_inference": "Assess subspace continuity through eigenvalue crossings or near-degeneracy.",
+        "common_misinterpretation": "Treating an individual basis vector as stable when only the subspace is identified.",
+        "dependencies": [
+          "eigenspaces"
+        ],
+        "priority": "high"
+      },
+      {
+        "id": "view_013",
+        "name": "Factor-alignment trajectory",
+        "tier": "primary evidential",
+        "question": "How strongly does emergent graph structure align with controlled semantic factors across scale?",
+        "source_objects": [
+          "FactorAlignmentAnalysis.records"
+        ],
+        "required_analysis": "factor_alignment",
+        "encoding": "NMI/ARI vs control parameter for one or more factors",
+        "permitted_inference": "Compare which recorded factors best explain emergent component partitions under the current design.",
+        "common_misinterpretation": "Treating high alignment as proof of unique semantic encoding or causality.",
+        "dependencies": [
+          "probe metadata",
+          "components"
+        ],
+        "priority": "critical"
+      },
+      {
+        "id": "view_014",
+        "name": "Factor internal-vs-external connectivity",
+        "tier": "primary evidential",
+        "question": "Are probes within a factor level more densely connected than they are to other levels?",
+        "source_objects": [
+          "ClassStructureAnalysis.records"
+        ],
+        "required_analysis": "class_structure",
+        "encoding": "internal and external edge-density trajectories by factor level",
+        "permitted_inference": "Assess relational coherence and mixing of controlled groups.",
+        "common_misinterpretation": "Interpreting group separation as universally desirable or as sufficient evidence of a causal feature.",
+        "dependencies": [
+          "probe metadata",
+          "filtration"
+        ],
+        "priority": "high"
+      },
+      {
+        "id": "view_015",
+        "name": "Layer \u00d7 control heatmap",
+        "tier": "primary evidential",
+        "question": "Where in network depth and relational scale does a structural observable change?",
+        "source_objects": [
+          "ExperimentResult.layers",
+          "scalar AnalysisResult observable"
+        ],
+        "required_analysis": "any scalar trajectory",
+        "encoding": "site/layer \u00d7 control heatmap",
+        "permitted_inference": "Locate depth-dependent emergence, strengthening, weakening, or movement of structural regimes.",
+        "common_misinterpretation": "Treating non-equivalent sites across architectures as metrically interchangeable.",
+        "dependencies": [
+          "multiple sites"
+        ],
+        "priority": "critical"
+      },
+      {
+        "id": "view_016",
+        "name": "Combined-layer dynamics",
+        "tier": "primary evidential",
+        "question": "How do the same structural trajectories compare across representation sites?",
+        "source_objects": [
+          "ExperimentResult.layers"
+        ],
+        "required_analysis": "components/percolation/spectra/factor alignment",
+        "encoding": "multi-layer overlays or aligned small multiples",
+        "permitted_inference": "Compare persistence, transition location, and structural strength through depth.",
+        "common_misinterpretation": "Comparing native metric thresholds across layers or metrics when scales are not commensurable.",
+        "dependencies": [
+          "multiple sites"
+        ],
+        "priority": "critical"
+      },
+      {
+        "id": "view_017",
+        "name": "Bridge/core/outlier diagnostic",
+        "tier": "diagnostic",
+        "question": "Which individual probes disproportionately influence structural connectivity or spectral organization?",
+        "source_objects": [
+          "BridgesAnalysis",
+          "KCoreAnalysis",
+          "LocalizationAnalysis",
+          "SpectralSnapshot.eigenvectors"
+        ],
+        "required_analysis": "bridges/kcore/localization/spectra",
+        "encoding": "probe ranking, probe trajectory, highlighted graph nodes, optional image/contact sheet",
+        "permitted_inference": "Identify structurally pivotal or atypical probes for qualitative inspection.",
+        "common_misinterpretation": "Assuming an influential probe is mislabeled or semantically ambiguous without inspecting it.",
+        "dependencies": [
+          "probe IDs"
+        ],
+        "priority": "high"
+      },
+      {
+        "id": "view_018",
+        "name": "Measurement robustness comparison",
+        "tier": "primary evidential",
+        "question": "Does the substantive interpretation survive reasonable changes in metric, reducer, filtration, or probe sample?",
+        "source_objects": [
+          "multiple ExperimentResult objects"
+        ],
+        "required_analysis": "comparison layer",
+        "encoding": "matched-control overlays, robustness matrices, difference heatmaps, resampling intervals",
+        "permitted_inference": "Assess dependence of conclusions on analysis choices and finite-sample variation.",
+        "common_misinterpretation": "Treating numerical non-identity as failure when the substantive structural conclusion is stable.",
+        "dependencies": [
+          "comparable repeated experiments"
+        ],
+        "priority": "critical"
+      },
+      {
+        "id": "view_019",
+        "name": "Cross-model / cross-condition comparison",
+        "tier": "summary/report",
+        "question": "How does representational organization differ between models, checkpoints, or interventions?",
+        "source_objects": [
+          "multiple ExperimentResult objects"
+        ],
+        "required_analysis": "comparison layer",
+        "encoding": "difference heatmaps, aligned trajectories, model \u00d7 layer summaries",
+        "permitted_inference": "Compare structural consequences of training state, architecture, or intervention under matched probe designs.",
+        "common_misinterpretation": "Attributing differences to architecture/training when probe preprocessing or site alignment also changed.",
+        "dependencies": [
+          "matched experiment specifications"
+        ],
+        "priority": "medium"
+      },
+      {
+        "id": "view_020",
+        "name": "Integrated experimental-interpretation dashboard",
+        "tier": "summary/report",
+        "question": "What combined visual evidence bears directly on the experiment's feature-interpretation hypothesis?",
+        "source_objects": [
+          "ExperimentResult",
+          "ProbePopulation.metadata",
+          "selected analyses"
+        ],
+        "required_analysis": "multiple",
+        "encoding": "curated panel combining factor alignment, structural transition, layer\u00d7control, selected graph, and robustness evidence",
+        "permitted_inference": "Synthesize complementary evidence into a bounded experimental conclusion.",
+        "common_misinterpretation": "Treating the dashboard as an automated explanation rather than a structured evidence display.",
+        "dependencies": [
+          "primary evidential views"
+        ],
+        "priority": "critical"
+      }
+    ],
+    "implementation_artifacts": [
+      "src/eigenflow/visualization/",
+      "docs/guides/visualization_guide.md",
+      "docs/PCSCS_VISUALIZATION_PARITY.md",
+      "examples/complete_visualization_demo.py",
+      "examples/eigenflow_colab_visualization_demo.py",
+      "examples/visualization_demo_reference/",
+      "docs/assets/visualization_demo/",
+      "tests/test_visualization.py"
+    ],
+    "completed_at": "2026-10-05T02:37:59.250762+00:00",
+    "demo_archive": {
+      "path": "/mnt/data/eigenflow_visualization_demo_outputs.zip",
+      "figure_count": 22,
+      "contains_generator": true,
+      "contains_visualization_catalog": true,
+      "probe_accuracy": 1.0,
+      "generated_at": "2026-10-05T02:41:01.132910+00:00"
+    }
   }
 }

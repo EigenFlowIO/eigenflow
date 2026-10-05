@@ -1,0 +1,178 @@
+[
+  {
+    "file": "figures/01_probe_design.png",
+    "visualization": "01_probe_design",
+    "tier": "primary evidential",
+    "question": "Is the probe population factorially balanced?",
+    "source": "ExperimentResult.artifacts.probes",
+    "site": ""
+  },
+  {
+    "file": "figures/02_relational_matrix.png",
+    "visualization": "02_relational_matrix",
+    "tier": "primary evidential",
+    "question": "What pairwise geometry exists before thresholding?",
+    "source": "final LayerResult.artifacts.relational_matrix",
+    "site": "4"
+  },
+  {
+    "file": "figures/03_component_trajectory.png",
+    "visualization": "03_component_trajectory",
+    "tier": "primary evidential",
+    "question": "How does fragmentation collapse across scale?",
+    "source": "final LayerResult pcscs",
+    "site": "4"
+  },
+  {
+    "file": "figures/04_component_membership_raster.png",
+    "visualization": "04_component_membership_raster",
+    "tier": "primary evidential",
+    "question": "Which probes remain grouped across scale?",
+    "source": "final LayerResult filtration",
+    "site": "4"
+  },
+  {
+    "file": "figures/05_merge_events.png",
+    "visualization": "05_merge_events",
+    "tier": "primary evidential",
+    "question": "Which component mergers occur and when?",
+    "source": "final LayerResult filtration",
+    "site": "4"
+  },
+  {
+    "file": "figures/06_dendrogram.png",
+    "visualization": "06_dendrogram",
+    "tier": "primary evidential",
+    "question": "What hierarchical merge order is induced by the relational geometry?",
+    "source": "final LayerResult relational matrix",
+    "site": "4"
+  },
+  {
+    "file": "figures/07_percolation_dashboard.png",
+    "visualization": "07_percolation_dashboard",
+    "tier": "summary/report",
+    "question": "How does local structure become macroscopic connectivity?",
+    "source": "final LayerResult components+percolation",
+    "site": "4"
+  },
+  {
+    "file": "figures/08_graph_snapshot.png",
+    "visualization": "08_graph_snapshot",
+    "tier": "diagnostic",
+    "question": "What probes and relations are structurally pivotal near the transition region?",
+    "source": "final LayerResult graph snapshot",
+    "site": "4"
+  },
+  {
+    "file": "figures/09_static_spectrum.png",
+    "visualization": "09_static_spectrum",
+    "tier": "primary evidential",
+    "question": "What operator-scale structure exists at the selected graph state?",
+    "source": "final LayerResult spectral snapshot",
+    "site": "4"
+  },
+  {
+    "file": "figures/10_spectral_flow.png",
+    "visualization": "10_spectral_flow",
+    "tier": "primary evidential",
+    "question": "How does the operator spectrum evolve across graph scale?",
+    "source": "final LayerResult SpectralTrajectory",
+    "site": "4"
+  },
+  {
+    "file": "figures/11_spectral_properties.png",
+    "visualization": "11_spectral_properties",
+    "tier": "summary/report",
+    "question": "How do complementary spectral summaries evolve jointly?",
+    "source": "final LayerResult SpectralTrajectory",
+    "site": "4"
+  },
+  {
+    "file": "figures/12_localization.png",
+    "visualization": "12_localization",
+    "tier": "diagnostic",
+    "question": "Is a structural mode distributed or localized to a few probes?",
+    "source": "final LayerResult spectral IPR",
+    "site": "4"
+  },
+  {
+    "file": "figures/13_eigenspace_stability.png",
+    "visualization": "13_eigenspace_stability",
+    "tier": "primary evidential",
+    "question": "Are low-dimensional structural modes stable through the filtration?",
+    "source": "final LayerResult eigenspaces",
+    "site": "4"
+  },
+  {
+    "file": "figures/14_eigenspace_overlap.png",
+    "visualization": "14_eigenspace_overlap",
+    "tier": "primary evidential",
+    "question": "How strongly do adjacent low-dimensional eigenspaces correspond?",
+    "source": "final LayerResult eigenspaces",
+    "site": "4"
+  },
+  {
+    "file": "figures/15_factor_alignment.png",
+    "visualization": "15_factor_alignment",
+    "tier": "primary evidential",
+    "question": "Which controlled factor best aligns with emergent graph structure?",
+    "source": "final LayerResult factor_alignment",
+    "site": "4"
+  },
+  {
+    "file": "figures/16_factor_connectivity.png",
+    "visualization": "16_factor_connectivity",
+    "tier": "primary evidential",
+    "question": "Are class groups internally coherent relative to external mixing?",
+    "source": "final LayerResult class_structure",
+    "site": "4"
+  },
+  {
+    "file": "figures/17_layer_control_heatmap.png",
+    "visualization": "17_layer_control_heatmap",
+    "tier": "primary evidential",
+    "question": "Where across depth and scale does fragmentation change?",
+    "source": "ExperimentResult layers/components",
+    "site": "4"
+  },
+  {
+    "file": "figures/18_combined_layer_dynamics.png",
+    "visualization": "18_combined_layer_dynamics",
+    "tier": "primary evidential",
+    "question": "How do component dynamics compare across representation sites?",
+    "source": "ExperimentResult layers/components",
+    "site": "4"
+  },
+  {
+    "file": "figures/19_bridge_probe_frequency.png",
+    "visualization": "19_bridge_probe_frequency",
+    "tier": "diagnostic",
+    "question": "Which probes repeatedly occupy structurally pivotal bridge positions?",
+    "source": "final LayerResult bridges",
+    "site": "4"
+  },
+  {
+    "file": "figures/20_robustness_comparison.png",
+    "visualization": "20_robustness_comparison",
+    "tier": "primary evidential",
+    "question": "Does the class-alignment conclusion survive a reasonable metric change?",
+    "source": "cosine+euclidean ExperimentResult",
+    "site": ""
+  },
+  {
+    "file": "figures/21_cross_result_summary.png",
+    "visualization": "21_cross_result_summary",
+    "tier": "summary/report",
+    "question": "How do structural transition summaries differ by measurement geometry?",
+    "source": "cosine+euclidean ExperimentResult",
+    "site": ""
+  },
+  {
+    "file": "figures/22_interpretation_dashboard.png",
+    "visualization": "22_interpretation_dashboard",
+    "tier": "summary/report",
+    "question": "What combined evidence bears on the class-organization hypothesis?",
+    "source": "final LayerResult multiple analyses",
+    "site": "4"
+  }
+]

@@ -21,7 +21,8 @@ The project is currently at **1.0.0a1**, an alpha release. Public interfaces and
 - Spectral trajectories, algebraic connectivity, spectral gaps, entropy, effective rank, energy, and IPR.
 - Eigenspace overlap and principal-angle tracking across control scale.
 - Bridge, k-core, community, factor-alignment, class-structure, localization, and transition analyses.
-- Basic layer/control and spectral visualization utilities.
+- Comprehensive visualization ontology and public visualization suite covering probe design, relational geometry, PCSCS-compatible component trajectories and dendrograms, percolation dashboards, graph snapshots, static spectra, spectral flow, spectral-property and eigenspace views, factor alignment, layer × control maps, robustness comparisons, and integrated interpretation dashboards.
+- In-memory runtime result artifacts retaining probes, reduced representations, relational matrices, and graph filtrations for faithful visualization while keeping JSON persistence unchanged.
 - PCSCS and full-analysis presets.
 - JSON result export.
 - Persistent project-state and documentation-development workflow.

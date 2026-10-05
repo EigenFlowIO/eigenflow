@@ -1,0 +1,486 @@
+{
+  "revision": 18,
+  "generated_at": "2026-10-05T02:57:13.100892+00:00",
+  "entries": [
+    {
+      "file": "CHANGELOG.md",
+      "region": "Visualization/runtime-artifact release bullets",
+      "status": "adjudicated_after_incremental_review",
+      "prior_status": "requires_re_adjudication",
+      "semantic_impact": "material/new instructional or implementation claim",
+      "reason": "Record user-visible visualization capabilities and runtime-artifact behavior without overstating persistence or scientific claims.",
+      "sha256": "16dae7e7036d4d8a4641c17a82ee3d5ab3baded71dd71931861bb76e7bc18024",
+      "editorial_dir": "project_state/editorial/CHANGELOG_md"
+    },
+    {
+      "file": "CITATION.cff",
+      "region": "entire current artifact",
+      "status": "adjudicated_unchanged",
+      "semantic_impact": "none",
+      "reason": "No visualization-phase semantic mutation requiring re-adjudication.",
+      "sha256": "69727664e527d6b4c2c849a66921bdf62492763a3fd8a6d0f05c7c083a90c178"
+    },
+    {
+      "file": "CODE_OF_CONDUCT.md",
+      "region": "entire current artifact",
+      "status": "adjudicated_unchanged",
+      "semantic_impact": "none",
+      "reason": "No visualization-phase semantic mutation requiring re-adjudication.",
+      "sha256": "d385a040d5ff8f3214d744cfbf53a57278b65f4d09ed96772ba24bd3253c39ed"
+    },
+    {
+      "file": "CONTRIBUTING.md",
+      "region": "entire current artifact",
+      "status": "adjudicated_unchanged",
+      "semantic_impact": "none",
+      "reason": "No visualization-phase semantic mutation requiring re-adjudication.",
+      "sha256": "f93a40175bf54a5550a144f62cd593f54a31380e7f7071febc67c1b55b9758cd"
+    },
+    {
+      "file": "LICENSE",
+      "region": "entire current artifact",
+      "status": "adjudicated_unchanged",
+      "semantic_impact": "none",
+      "reason": "No visualization-phase semantic mutation requiring re-adjudication.",
+      "sha256": "7cb8a68432e2ac4f7e44f44e993d1e5ce226e55853071cba9d494e52201ade2f"
+    },
+    {
+      "file": "README.md",
+      "region": "Visualization section",
+      "status": "adjudicated_after_incremental_review",
+      "prior_status": "requires_re_adjudication",
+      "semantic_impact": "material/new instructional or implementation claim",
+      "reason": "Integrate the implemented visualization surface into the primary entry point without changing the previously adjudicated experimental framing.",
+      "sha256": "0c27d36c2ae397e6a64be98448eedb61bb785390cb9421fa8f15e992d93ec9d8",
+      "editorial_dir": "project_state/editorial/README_md"
+    },
+    {
+      "file": "SECURITY.md",
+      "region": "entire current artifact",
+      "status": "adjudicated_unchanged",
+      "semantic_impact": "none",
+      "reason": "No visualization-phase semantic mutation requiring re-adjudication.",
+      "sha256": "46cabf48eaeab7db950f6bb6727eb36be0184c0445615caf7b2e3dd04d7eb95f"
+    },
+    {
+      "file": "docs/CONTENT_DEPENDENCY_MAP.md",
+      "region": "entire current artifact",
+      "status": "adjudicated_unchanged",
+      "semantic_impact": "none",
+      "reason": "No visualization-phase semantic mutation requiring re-adjudication.",
+      "sha256": "d412aafd95dc04400b7772f1b73c01f3fb04205567564ef0bbb21ff9b6689913"
+    },
+    {
+      "file": "docs/DOCUMENTATION_AUDIT.md",
+      "region": "Audit status/disposition header",
+      "status": "adjudicated_after_incremental_review",
+      "prior_status": "new_unadjudicated",
+      "semantic_impact": "material/new instructional or implementation claim",
+      "reason": "Preserve the historical audit findings while making clear that the original tasks are resolved.",
+      "sha256": "31238be2c872a7b04d29c7ca3b01305ee029bc100d311002045ad7196dd29882",
+      "editorial_dir": "project_state/editorial/docs__DOCUMENTATION_AUDIT_md"
+    },
+    {
+      "file": "docs/DOCUMENTATION_VALIDATION.md",
+      "region": "Visualization-phase validation",
+      "status": "adjudicated_after_incremental_review",
+      "prior_status": "new_unadjudicated",
+      "semantic_impact": "material/new instructional or implementation claim",
+      "reason": "Extend the prior validation record to cover the new visualization surface and incremental adjudication protocol.",
+      "sha256": "b207f85511e48a51dfa19276bed0884bd169f67dd84cbe4db90611e02f402f9f",
+      "editorial_dir": "project_state/editorial/docs__DOCUMENTATION_VALIDATION_md"
+    },
+    {
+      "file": "docs/HUMAN_FACING_REVISION_TASKS.md",
+      "region": "Entire new task list",
+      "status": "adjudicated_after_incremental_review",
+      "prior_status": "new_unadjudicated",
+      "semantic_impact": "material/new instructional or implementation claim",
+      "reason": "Provide a bounded, auditable execution list for this incremental documentation/release pass.",
+      "sha256": "8472e18ef1640693dd83932b8cea99bf8f1428691f8f1b9cd69c9c8f83c72072",
+      "editorial_dir": "project_state/editorial/docs__HUMAN_FACING_REVISION_TASKS_md"
+    },
+    {
+      "file": "docs/INSTRUCTIONAL_ARCHITECTURE.md",
+      "region": "entire current artifact",
+      "status": "adjudicated_unchanged",
+      "semantic_impact": "none",
+      "reason": "No visualization-phase semantic mutation requiring re-adjudication.",
+      "sha256": "0d55a7ea36285cd4b74f40e5ee4bf3af8dc374abe314bd4fe26259419d0e200d"
+    },
+    {
+      "file": "docs/PCSCS_VISUALIZATION_PARITY.md",
+      "region": "entire current artifact",
+      "status": "adjudicated_unchanged",
+      "semantic_impact": "none",
+      "reason": "No visualization-phase semantic mutation requiring re-adjudication.",
+      "sha256": "69ec802eb353694754066791305e7befde3a19e57c9ddf3696484a1458ff89c1"
+    },
+    {
+      "file": "docs/SECTION_TRAJECTORY_MAP.md",
+      "region": "entire current artifact",
+      "status": "adjudicated_unchanged",
+      "semantic_impact": "none",
+      "reason": "No visualization-phase semantic mutation requiring re-adjudication.",
+      "sha256": "f5f0b1d54fae2bb64a12778a6f1d44c1679937f1a2b28e26cef1aeec799bba00"
+    },
+    {
+      "file": "docs/VISUALIZATION_ONTOLOGY.md",
+      "region": "Implemented public mapping",
+      "status": "adjudicated_after_incremental_review",
+      "prior_status": "requires_re_adjudication",
+      "semantic_impact": "material/new instructional or implementation claim",
+      "reason": "Map the already adjudicated question-driven ontology onto the public API without altering the ontology\u2019s epistemic tiers.",
+      "sha256": "42a1ee7a388f5bd755d2712ee063944e37f06f7d86f6ec3836b0af9abf828fa3",
+      "editorial_dir": "project_state/editorial/docs__VISUALIZATION_ONTOLOGY_md"
+    },
+    {
+      "file": "docs/VISUALIZATION_TASKS.md",
+      "region": "Historical-status note",
+      "status": "adjudicated_after_incremental_review",
+      "prior_status": "new_unadjudicated",
+      "semantic_impact": "material/new instructional or implementation claim",
+      "reason": "Preserve the completed implementation backlog while pointing to the new post-implementation reconciliation work.",
+      "sha256": "ce6b92e20df96ce8968160583f6d1bab1c6458c1c9dfc48397dad23f0775b799",
+      "editorial_dir": "project_state/editorial/docs__VISUALIZATION_TASKS_md"
+    },
+    {
+      "file": "docs/VISUALIZATION_VALIDATION.md",
+      "region": "Adjudication/distribution status",
+      "status": "adjudicated_after_incremental_review",
+      "prior_status": "new_unadjudicated",
+      "semantic_impact": "material/new instructional or implementation claim",
+      "reason": "State what was actually validated and how the human-facing review was performed.",
+      "sha256": "2f6c7a1e088708ebe8f104731233c76ca1dfcfccebb0d7d09bf8b4b3e181076a",
+      "editorial_dir": "project_state/editorial/docs__VISUALIZATION_VALIDATION_md"
+    },
+    {
+      "file": "docs/assets/visualization_demo/01_probe_design.png",
+      "region": "binary generated figure",
+      "status": "generated_evidence_validated",
+      "semantic_impact": "n/a",
+      "reason": "Generated by the canonical complete visualization demo and referenced by adjudicated prose.",
+      "sha256": "b8f6950c3e1c0a48912eab3b0cbbeb919e47fcefda956d6ede7b4d2d36935614"
+    },
+    {
+      "file": "docs/assets/visualization_demo/02_relational_matrix.png",
+      "region": "binary generated figure",
+      "status": "generated_evidence_validated",
+      "semantic_impact": "n/a",
+      "reason": "Generated by the canonical complete visualization demo and referenced by adjudicated prose.",
+      "sha256": "49f8f24e425815ffd0f81e2882e119eb2a164669e37aeffc680759869112d9a8"
+    },
+    {
+      "file": "docs/assets/visualization_demo/03_component_trajectory.png",
+      "region": "binary generated figure",
+      "status": "generated_evidence_validated",
+      "semantic_impact": "n/a",
+      "reason": "Generated by the canonical complete visualization demo and referenced by adjudicated prose.",
+      "sha256": "64b0cd5816db662716fe6bb9ab70ffa77992704cd4eb3b9e9aeaef8eab024bc0"
+    },
+    {
+      "file": "docs/assets/visualization_demo/04_component_membership_raster.png",
+      "region": "binary generated figure",
+      "status": "generated_evidence_validated",
+      "semantic_impact": "n/a",
+      "reason": "Generated by the canonical complete visualization demo and referenced by adjudicated prose.",
+      "sha256": "554f3021a88d428bff89396a4fb21946a7d0704a7b48c7befd3613db5f411eca"
+    },
+    {
+      "file": "docs/assets/visualization_demo/05_merge_events.png",
+      "region": "binary generated figure",
+      "status": "generated_evidence_validated",
+      "semantic_impact": "n/a",
+      "reason": "Generated by the canonical complete visualization demo and referenced by adjudicated prose.",
+      "sha256": "d31e7bff3dfd65d374ab12ac36aeedde3a83c6189319d3345eb072ebc83269bd"
+    },
+    {
+      "file": "docs/assets/visualization_demo/06_dendrogram.png",
+      "region": "binary generated figure",
+      "status": "generated_evidence_validated",
+      "semantic_impact": "n/a",
+      "reason": "Generated by the canonical complete visualization demo and referenced by adjudicated prose.",
+      "sha256": "3bee422e4d0947e5efd82e9369337dc4f8aafcfb665cb7ca64ae60908c7d0813"
+    },
+    {
+      "file": "docs/assets/visualization_demo/07_percolation_dashboard.png",
+      "region": "binary generated figure",
+      "status": "generated_evidence_validated",
+      "semantic_impact": "n/a",
+      "reason": "Generated by the canonical complete visualization demo and referenced by adjudicated prose.",
+      "sha256": "6a3671b229b22946aff51406245753493a3aec2a95ea16b2c0b696667267a3f4"
+    },
+    {
+      "file": "docs/assets/visualization_demo/08_graph_snapshot.png",
+      "region": "binary generated figure",
+      "status": "generated_evidence_validated",
+      "semantic_impact": "n/a",
+      "reason": "Generated by the canonical complete visualization demo and referenced by adjudicated prose.",
+      "sha256": "183517df7de0c6a4abae7522e14fa7e641aed33f481d9eeb4ddd0d5606273a27"
+    },
+    {
+      "file": "docs/assets/visualization_demo/09_static_spectrum.png",
+      "region": "binary generated figure",
+      "status": "generated_evidence_validated",
+      "semantic_impact": "n/a",
+      "reason": "Generated by the canonical complete visualization demo and referenced by adjudicated prose.",
+      "sha256": "a245c39b3dee1be8348abdd99a532c7081af6a841b2a9adaa64abc2d9a1823be"
+    },
+    {
+      "file": "docs/assets/visualization_demo/10_spectral_flow.png",
+      "region": "binary generated figure",
+      "status": "generated_evidence_validated",
+      "semantic_impact": "n/a",
+      "reason": "Generated by the canonical complete visualization demo and referenced by adjudicated prose.",
+      "sha256": "eeb81f451c260b41192740edd378f46b0657d9c444ab19331d94b315384664fb"
+    },
+    {
+      "file": "docs/assets/visualization_demo/11_spectral_properties.png",
+      "region": "binary generated figure",
+      "status": "generated_evidence_validated",
+      "semantic_impact": "n/a",
+      "reason": "Generated by the canonical complete visualization demo and referenced by adjudicated prose.",
+      "sha256": "3552e115341261340cb6640c97908e5fb25d800f94d4daad2683780d9ca7f232"
+    },
+    {
+      "file": "docs/assets/visualization_demo/12_localization.png",
+      "region": "binary generated figure",
+      "status": "generated_evidence_validated",
+      "semantic_impact": "n/a",
+      "reason": "Generated by the canonical complete visualization demo and referenced by adjudicated prose.",
+      "sha256": "438d087c6f4ddbfbbb1f0d69e2abc0aa609bd6ce47c44322287a8720d39117b1"
+    },
+    {
+      "file": "docs/assets/visualization_demo/13_eigenspace_stability.png",
+      "region": "binary generated figure",
+      "status": "generated_evidence_validated",
+      "semantic_impact": "n/a",
+      "reason": "Generated by the canonical complete visualization demo and referenced by adjudicated prose.",
+      "sha256": "801b4e022b83a36723f0d4fb92872e8a3424c7f0e372d043cf5f54f5e22d997b"
+    },
+    {
+      "file": "docs/assets/visualization_demo/14_eigenspace_overlap.png",
+      "region": "binary generated figure",
+      "status": "generated_evidence_validated",
+      "semantic_impact": "n/a",
+      "reason": "Generated by the canonical complete visualization demo and referenced by adjudicated prose.",
+      "sha256": "e6824a673c245bb77cdfb44d0ea856efc937a0cb4b5f29995f5011b419b59084"
+    },
+    {
+      "file": "docs/assets/visualization_demo/15_factor_alignment.png",
+      "region": "binary generated figure",
+      "status": "generated_evidence_validated",
+      "semantic_impact": "n/a",
+      "reason": "Generated by the canonical complete visualization demo and referenced by adjudicated prose.",
+      "sha256": "b23b20a500ec1df5a5a0791dc306d805ff0f765103fb7cb2506af407f47a8f7e"
+    },
+    {
+      "file": "docs/assets/visualization_demo/16_factor_connectivity.png",
+      "region": "binary generated figure",
+      "status": "generated_evidence_validated",
+      "semantic_impact": "n/a",
+      "reason": "Generated by the canonical complete visualization demo and referenced by adjudicated prose.",
+      "sha256": "b48a2123467149c6bf2f7d7b292d1116ab702353ff18436ac38eec7d16dbb9dd"
+    },
+    {
+      "file": "docs/assets/visualization_demo/17_layer_control_heatmap.png",
+      "region": "binary generated figure",
+      "status": "generated_evidence_validated",
+      "semantic_impact": "n/a",
+      "reason": "Generated by the canonical complete visualization demo and referenced by adjudicated prose.",
+      "sha256": "3c919f4a8b3bcad86664586101a24a4765698f15f4da95f7b112bb404fc46acb"
+    },
+    {
+      "file": "docs/assets/visualization_demo/18_combined_layer_dynamics.png",
+      "region": "binary generated figure",
+      "status": "generated_evidence_validated",
+      "semantic_impact": "n/a",
+      "reason": "Generated by the canonical complete visualization demo and referenced by adjudicated prose.",
+      "sha256": "c2df137da7efad1d56ea1df9f651705b98fab682ff018aab3153c33710de5d87"
+    },
+    {
+      "file": "docs/assets/visualization_demo/19_bridge_probe_frequency.png",
+      "region": "binary generated figure",
+      "status": "generated_evidence_validated",
+      "semantic_impact": "n/a",
+      "reason": "Generated by the canonical complete visualization demo and referenced by adjudicated prose.",
+      "sha256": "fc90fb9631c5f55db78930240d20b285a9c46ab19f5b21cf1464c4719fbe83ad"
+    },
+    {
+      "file": "docs/assets/visualization_demo/20_robustness_comparison.png",
+      "region": "binary generated figure",
+      "status": "generated_evidence_validated",
+      "semantic_impact": "n/a",
+      "reason": "Generated by the canonical complete visualization demo and referenced by adjudicated prose.",
+      "sha256": "fc87f17fbc258f8449e2ff031800187dc3484df2be040d8162ada1ded3293ae0"
+    },
+    {
+      "file": "docs/assets/visualization_demo/21_cross_result_summary.png",
+      "region": "binary generated figure",
+      "status": "generated_evidence_validated",
+      "semantic_impact": "n/a",
+      "reason": "Generated by the canonical complete visualization demo and referenced by adjudicated prose.",
+      "sha256": "deb98a499b762e4d819a4bec10ebf730540897aa24dc3c16bdf9fcb5d09ca040"
+    },
+    {
+      "file": "docs/assets/visualization_demo/22_interpretation_dashboard.png",
+      "region": "binary generated figure",
+      "status": "generated_evidence_validated",
+      "semantic_impact": "n/a",
+      "reason": "Generated by the canonical complete visualization demo and referenced by adjudicated prose.",
+      "sha256": "57998bab108c49d5dc47f747e16e34ff4248fddfe41a220438e803d8d2e2efe8"
+    },
+    {
+      "file": "docs/concepts/experimental_model.md",
+      "region": "entire current artifact",
+      "status": "adjudicated_unchanged",
+      "semantic_impact": "none",
+      "reason": "No visualization-phase semantic mutation requiring re-adjudication.",
+      "sha256": "3eef27ac131faa40cde701699e53d790bdf57f94354ce89805451769cc1f5b18"
+    },
+    {
+      "file": "docs/concepts/percolation.md",
+      "region": "entire current artifact",
+      "status": "adjudicated_unchanged",
+      "semantic_impact": "none",
+      "reason": "No visualization-phase semantic mutation requiring re-adjudication.",
+      "sha256": "b9f24a3e8a53a753e0bfa942ec6ce7f369c11bc7c6d56438516c5f9980466808"
+    },
+    {
+      "file": "docs/concepts/spectral_analysis.md",
+      "region": "entire current artifact",
+      "status": "adjudicated_unchanged",
+      "semantic_impact": "none",
+      "reason": "No visualization-phase semantic mutation requiring re-adjudication.",
+      "sha256": "a5453ab2b0020f1aa2a4cb81dfd2c9f89d3899e5002827d6ca9d3548276f97a1"
+    },
+    {
+      "file": "docs/guides/interpreting_results.md",
+      "region": "entire current artifact",
+      "status": "adjudicated_unchanged",
+      "semantic_impact": "none",
+      "reason": "No visualization-phase semantic mutation requiring re-adjudication.",
+      "sha256": "33d53345d635f1fe799e9f4f06a87bf18b808757819434aa005f4bb6a5cfdc36"
+    },
+    {
+      "file": "docs/guides/vgg16_probe_experiment.md",
+      "region": "entire current artifact",
+      "status": "adjudicated_unchanged",
+      "semantic_impact": "none",
+      "reason": "No visualization-phase semantic mutation requiring re-adjudication.",
+      "sha256": "9e08ee9f8de36b39744dfe06eedd3d1531831056f79303f0f6bed1f39c33d493"
+    },
+    {
+      "file": "docs/guides/visualization_guide.md",
+      "region": "entire current artifact",
+      "status": "adjudicated_unchanged",
+      "semantic_impact": "none",
+      "reason": "No visualization-phase semantic mutation requiring re-adjudication.",
+      "sha256": "1d56cb24375d5b9568bd72327731fe0324ce395ab2859b815ce3517289b3b5cb"
+    },
+    {
+      "file": "docs/index.md",
+      "region": "Visualization navigation additions",
+      "status": "adjudicated_after_incremental_review",
+      "prior_status": "requires_re_adjudication",
+      "semantic_impact": "material/new instructional or implementation claim",
+      "reason": "Place visualization choice/interpretation at the correct point in the existing instructional path.",
+      "sha256": "fb900cd8d876d5b2c655b2137622afdda284f35c49b2e7364fb05c442739391a",
+      "editorial_dir": "project_state/editorial/docs__index_md"
+    },
+    {
+      "file": "docs/spec/API_SPEC.md",
+      "region": "Visualization API section",
+      "status": "adjudicated_after_incremental_review",
+      "prior_status": "requires_re_adjudication",
+      "semantic_impact": "material/new instructional or implementation claim",
+      "reason": "Specify the exact public visualization interface and its runtime dependencies.",
+      "sha256": "bd09cdd569fa88b257a52f8c9bd7a125212321957fcc4180d516a662620d847e",
+      "editorial_dir": "project_state/editorial/docs__spec__API_SPEC_md"
+    },
+    {
+      "file": "docs/spec/DATA_MODEL_SPEC.md",
+      "region": "LayerResult/ExperimentResult runtime artifacts",
+      "status": "adjudicated_after_incremental_review",
+      "prior_status": "requires_re_adjudication",
+      "semantic_impact": "material/new instructional or implementation claim",
+      "reason": "Describe the in-memory result graph and persistence boundary exactly.",
+      "sha256": "170651cd391ba705573f1ef2699c917a0a9e845ed4a98fcc58e230f84d5f18b7",
+      "editorial_dir": "project_state/editorial/docs__spec__DATA_MODEL_SPEC_md"
+    },
+    {
+      "file": "docs/spec/EXECUTION_SPEC.md",
+      "region": "Runtime artifact retention and visualization execution",
+      "status": "adjudicated_after_incremental_review",
+      "prior_status": "requires_re_adjudication",
+      "semantic_impact": "material/new instructional or implementation claim",
+      "reason": "Explain that visualization is downstream of execution and uses retained measured objects.",
+      "sha256": "b9bcd3c96c449a6a227b02ec8ee5c58d128a07fe4fa215dade599ca8dfc04a7e",
+      "editorial_dir": "project_state/editorial/docs__spec__EXECUTION_SPEC_md"
+    },
+    {
+      "file": "examples/basic_mlp.py",
+      "region": "entire current artifact",
+      "status": "adjudicated_unchanged",
+      "semantic_impact": "none",
+      "reason": "No visualization-phase semantic mutation requiring re-adjudication.",
+      "sha256": "a3cdbb01b7f509f2d23634fc9f1431f2795d1a3501a9170152c0501962312519"
+    },
+    {
+      "file": "examples/complete_visualization_demo.py",
+      "region": "Module contract and reproducibility-facing comments",
+      "status": "adjudicated_after_incremental_review",
+      "prior_status": "new_unadjudicated",
+      "semantic_impact": "material/new instructional or implementation claim",
+      "reason": "Make the executable demo\u2019s human-facing contract accurately describe the trained model, exact factorial probes, outputs, and ZIP.",
+      "sha256": "7de226dfe452b2e6062f8b4c523fad38d749923c6e98a22a52d94a1cd2d1a9ec",
+      "editorial_dir": "project_state/editorial/examples__complete_visualization_demo_py"
+    },
+    {
+      "file": "examples/eigenflow_colab_visualization_demo.py",
+      "region": "Launcher docstring",
+      "status": "adjudicated_after_incremental_review",
+      "prior_status": "new_unadjudicated",
+      "semantic_impact": "material/new instructional or implementation claim",
+      "reason": "Distinguish convenient main-branch execution from a pinned scientific run.",
+      "sha256": "d61bbebda16d351ee0b43a863643d77fd837564764fe59411c74a2249f4ac27b",
+      "editorial_dir": "project_state/editorial/examples__eigenflow_colab_visualization_demo_py"
+    },
+    {
+      "file": "examples/pcscs_compatibility.py",
+      "region": "entire current artifact",
+      "status": "adjudicated_unchanged",
+      "semantic_impact": "none",
+      "reason": "No visualization-phase semantic mutation requiring re-adjudication.",
+      "sha256": "e4b0061a10138736ad6c19375cdb3d3286cce3500e87cb94a3819de465a36e18"
+    },
+    {
+      "file": "examples/visualization_demo_reference/README.md",
+      "region": "Entire generated README",
+      "status": "adjudicated_after_incremental_review",
+      "prior_status": "new_unadjudicated",
+      "semantic_impact": "material/new instructional or implementation claim",
+      "reason": "Explain the generated artifact bundle and interpretation boundary.",
+      "sha256": "346931c49b80c639561ae526a9e1ea6b641b698d031472cb8dc0eb01330829b1",
+      "editorial_dir": "project_state/editorial/examples__visualization_demo_reference__README_md"
+    },
+    {
+      "file": "examples/visualization_demo_reference/README_REPO.md",
+      "region": "Entire repository reference README",
+      "status": "adjudicated_after_incremental_review",
+      "prior_status": "new_unadjudicated",
+      "semantic_impact": "material/new instructional or implementation claim",
+      "reason": "Explain why reference metadata is checked in and how image regression should be interpreted.",
+      "sha256": "a0572a0216e9a62026bbb11f6d1a771a1c084f8cec676aafd8dcfca53a217029",
+      "editorial_dir": "project_state/editorial/examples__visualization_demo_reference__README_REPO_md"
+    },
+    {
+      "file": "pyproject.toml",
+      "region": "entire current artifact",
+      "status": "adjudicated_unchanged",
+      "semantic_impact": "none",
+      "reason": "No visualization-phase semantic mutation requiring re-adjudication.",
+      "sha256": "460b5f1addc104b3f1ad5f92f31ccd1fd40e70a8576366e9a88f1eb4700af707"
+    }
+  ]
+}

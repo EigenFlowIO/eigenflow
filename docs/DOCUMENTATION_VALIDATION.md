@@ -2,7 +2,7 @@
 
 ## Status
 
-All documentation work that can be completed without maintainer identity/legal/reporting-channel authority has been completed.
+The original human-facing remediation and the visualization-phase human-facing reconciliation have been completed. No maintainer-authority documentation blockers remain.
 
 The surface was developed against the inverse instructional architecture, section-level trajectory map, and antagonistic author/editor protocol.
 
@@ -60,3 +60,17 @@ The maintainer supplied and the repository now records:
 - no automated reporting or enforcement workflow.
 
 No maintainer-authority documentation blockers remain.
+
+## Visualization-phase validation
+
+The post-implementation pass applies incremental adjudication rather than whole-document redrafting. Previously adjudicated regions are preserved unless their semantics or instructional function changed. New/materially changed visualization regions received role-separated software, academic, research-methods, and statistics reviews followed by board adjudication.
+
+The validated surface now additionally includes:
+
+- a question-driven visualization ontology and PCSCS parity map;
+- a public visualization API covering structural, spectral, semantic, comparison, and dashboard views;
+- explicit runtime-artifact/persistence boundaries in the API, data-model, and execution specifications;
+- a complete trained-network demonstration with an exactly balanced factorial probe population;
+- 22 generated canonical example figures and machine-readable figure provenance;
+- visualization regression tests and checked-in reference metadata;
+- a region-level adjudication ledger identifying preserved versus newly adjudicated content.

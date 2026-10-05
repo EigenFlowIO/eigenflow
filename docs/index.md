@@ -14,6 +14,8 @@ If you are **using eigenvalues, eigenvectors, or graph operators**, read [Spectr
 
 If you want a **complete image-model walkthrough**, use the [VGG16 probe experiment](guides/vgg16_probe_experiment.md).
 
+If you want to understand the **complete visualization surface**, including PCSCS-compatible component trajectories/dendrograms and generalized Eigenflow spectral, factor, robustness, and layer×control views, read the [Visualization guide](guides/visualization_guide.md).
+
 If you already have results and need to decide what they mean, use [Interpreting results](guides/interpreting_results.md).
 
 If you are an **existing PCSCS user**, begin with [`examples/pcscs_compatibility.py`](../examples/pcscs_compatibility.py). PCSCS is represented in Eigenflow as a cosine-similarity, threshold-filtration, component-sifting preset.
@@ -68,6 +70,10 @@ Read the layer-by-control sections in [The experimental model](concepts/experime
 ### I need exact syntax
 
 Use the [API specification](spec/API_SPEC.md). The conceptual documents explain why a choice is made; the API spec explains the exact current interface.
+
+### I need to choose or interpret a visualization
+
+Use the [Visualization guide](guides/visualization_guide.md). It organizes views by the experimental question they answer and distinguishes primary evidential views from diagnostics and summary/report dashboards. For PCSCS migration, see the [PCSCS visualization parity map](PCSCS_VISUALIZATION_PARITY.md).
 
 ### I need to understand saved output
 

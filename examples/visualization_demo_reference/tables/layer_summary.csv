@@ -1,0 +1,6 @@
+convergence_parameter,critical_parameter,filtration,metric,site,susceptibility_peak_parameter
+0.31935483870967746,0.0,edge_density,cosine,0,0.13064516129032258
+0.3338709677419355,0.0,edge_density,cosine,1,0.18870967741935485
+0.3338709677419355,0.0,edge_density,cosine,2,0.27580645161290324
+0.3338709677419355,0.0,edge_density,cosine,3,0.2903225806451613
+0.3338709677419355,0.0,edge_density,cosine,4,0.2903225806451613

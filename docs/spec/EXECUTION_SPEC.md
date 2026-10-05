@@ -33,6 +33,10 @@ The neural network is executed once per extraction pass over the probe populatio
 
 The metric and filtration are then recomputed independently for each captured representation site.
 
+The resulting `LayerResult` retains the reduced representation, relational matrix, and graph filtration as non-persistent runtime artifacts. The `ExperimentResult` retains the probe population. This adds no extra analytical recomputation; it preserves already-created objects for faithful visualization and diagnostics. `ExperimentResult.save()` omits these runtime artifacts.
+
+Visualization is downstream of `Experiment.run()`. Calling a plotting function on an in-memory result does not execute the neural network, recompute the metric, or rebuild the filtration. A plotting call can still perform view-specific derivations from retained objects (for example, a merge hierarchy or graph layout), but those derivations are presentation/inspection work rather than a new model-analysis run.
+
 ## Dependency graph
 
 The conceptual dependency graph is:

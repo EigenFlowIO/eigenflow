@@ -613,6 +613,12 @@ There is **no current `ExperimentResult.load()` API** and no NPZ sidecar written
 
 ## Visualization
 
+All public plotting functions return a Matplotlib `Figure`; `merge_events(...)` is the non-plotting helper that returns derived merge-event records. Plotting functions consume existing results and do not rerun the model or analysis pipeline. Functions that need the relational matrix, graph filtration, or original probes require an in-memory result from the current process because those runtime artifacts are intentionally omitted from `result.json`.
+
+When a function accepts `probes=None`, it may use the probe population retained on an in-memory `ExperimentResult`; a standalone `LayerResult` does not itself contain the experiment-level probe population. The visualization guide documents which views are primary evidential views, diagnostics, or summary/report views.
+
+Core compatibility helpers:
+
 ```python
 from eigenflow.visualization import (
     observable_curve,
@@ -621,34 +627,53 @@ from eigenflow.visualization import (
 )
 ```
 
-```python
-observable_curve(
-    layer_result,
-    analysis="percolation",
-    observable="giant_component_fraction",
-    x="parameter",
-    ax=None,
-)
-```
+Canonical structural views:
 
 ```python
-layer_control_heatmap(
-    experiment_result,
-    analysis="components",
-    observable="component_count",
-    ax=None,
-)
+probe_design_view(result_or_probes, factors=None, ax=None)
+relational_matrix_heatmap(layer_result, probes=None, factor=None, ax=None)
+component_trajectory(layer_result, analysis=None, smooth=True, ax=None)
+component_membership_raster(layer_result, probes=None, factor=None, ax=None)
+merge_events(layer_result)
+merge_event_plot(layer_result, ax=None)
+dendrogram_view(layer_result, probes=None, factor=None, ax=None)
+graph_snapshot(layer_result, index=None, parameter=None, probes=None, factor=None,
+               highlight_bridges=False, kcore=None, ax=None, seed=0)
+combined_layer_dynamics(result, analysis="components", observable="component_count",
+                        x="parameter", ax=None)
 ```
+
+Spectral/eigenspace views:
 
 ```python
-eigenflow_plot(
-    layer_result,
-    ax=None,
-    max_modes=12,
-)
+static_spectrum(layer_result, index=None, parameter=None, ax=None, highlight_gap=True)
+spectral_flow(layer_result, ax=None, max_modes=12)
+spectral_properties_dashboard(layer_result, fig=None)
+localization_trajectory(layer_result, mode=0, ax=None)
+eigenspace_stability(layer_result, ax=None)
+eigenspace_overlap_heatmap(layer_result, index=-1, ax=None)
 ```
 
-All return a Matplotlib `Figure`.
+Semantic/diagnostic views:
+
+```python
+factor_alignment_trajectory(layer_result, factors=None, metric="nmi", ax=None)
+factor_connectivity(layer_result, classes=None, ax=None)
+bridge_probe_frequency(layer_result, probes=None, top_n=15, ax=None)
+```
+
+Comparison/report views:
+
+```python
+robustness_comparison(results, labels=None, site=None, analysis="factor_alignment",
+                      factor="class", metric="nmi", ax=None)
+cross_result_summary(results, labels=None, analysis="percolation",
+                     observable="susceptibility_peak_parameter", ax=None)
+percolation_dashboard(layer_result, fig=None)
+interpretation_dashboard(layer_result, factor="class", fig=None)
+```
+
+`eigenflow_plot(...)` is a compatibility alias for the generalized spectral-flow view. The visualization guide documents the analyst question, evidential tier, interpretation boundary, and worked output for every canonical view.
 
 ## Presets
 

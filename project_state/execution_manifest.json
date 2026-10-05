@@ -2,10 +2,10 @@
   "manifest_format": "eigenflow-execution-manifest",
   "version": "0.1.0",
   "project_id": "proj_eigenflow",
-  "state_revision": 13,
+  "state_revision": 19,
   "last_committed_unit": "unit_141_instructional_architecture",
   "current_unit": null,
-  "resume_unit": null,
+  "resume_unit": "release_visualization_phase_git_package",
   "units": [
     {
       "id": "unit_000_initialize_persistent_state",
@@ -330,6 +330,63 @@
         "release metadata in project state"
       ],
       "completed_at": "2026-10-05T01:49:03.962209+00:00"
+    },
+    {
+      "id": "unit_150_visualization_parity_and_demo",
+      "title": "Implement PCSCS-complete and generalized Eigenflow visualization surface",
+      "status": "complete",
+      "depends_on": [
+        "unit_151_visualization_ontology_formalization"
+      ],
+      "outputs": [
+        "PCSCS parity visualization functions",
+        "generalized Eigenflow visualization functions",
+        "complete Colab demo",
+        "generated visualization ZIP",
+        "documentation integration",
+        "visualization tests"
+      ],
+      "completed_at": "2026-10-05T02:37:59.250762+00:00"
+    },
+    {
+      "id": "unit_151_visualization_ontology_formalization",
+      "title": "Formalize Eigenflow visualization ontology and epistemic interface",
+      "status": "complete",
+      "depends_on": [],
+      "outputs": [
+        "canonical visualization ontology",
+        "visualization tier taxonomy",
+        "view-by-question/source/inference/misinterpretation matrix",
+        "revised implementation backlog derived from ontology"
+      ],
+      "completed_at": "2026-10-05T02:37:59.250762+00:00"
+    },
+    {
+      "id": "unit_152_visualization_validation",
+      "title": "Validate complete visualization surface and demonstration artifacts",
+      "status": "complete",
+      "depends_on": [
+        "unit_150_visualization_parity_and_demo"
+      ],
+      "completed_at": "2026-10-05T02:37:59.250762+00:00",
+      "outputs": [
+        "docs/VISUALIZATION_VALIDATION.md",
+        "12 passing tests",
+        "22-figure generated demo bundle"
+      ]
+    },
+    {
+      "id": "unit_152_incremental_visualization_doc_adjudication",
+      "title": "Incrementally adjudicate new and semantically mutated visualization-phase documentation",
+      "status": "complete",
+      "depends_on": [],
+      "outputs": [
+        "per-file adjudication ledger",
+        "adjudication only for new/materially changed regions",
+        "preserved previously adjudicated prose",
+        "updated final hashes"
+      ],
+      "completed_at": "2026-10-05T02:58:02.367133+00:00"
     }
   ],
   "resume_rules": {

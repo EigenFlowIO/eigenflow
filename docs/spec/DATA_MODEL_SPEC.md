@@ -183,7 +183,8 @@ LayerResult(
     metric: str,
     filtration: str,
     analyses: dict[str, AnalysisResult],
-    relational_metadata: dict,
+    relational_metadata: dict = {},
+    artifacts: LayerArtifacts | None = None,
 )
 ```
 
@@ -197,7 +198,8 @@ One `LayerResult` represents one captured population representation after all co
 ExperimentResult(
     layers: dict[str, LayerResult],
     provenance: dict,
-    metadata: dict,
+    metadata: dict = {},
+    artifacts: ExperimentArtifacts | None = None,
 )
 ```
 
@@ -210,6 +212,25 @@ ExperimentResult(
 The experiment currently records runtime/model/configuration provenance produced by `collect_provenance`.
 
 Treat provenance as part of the experimental method. A scientifically comparable result requires more than an array of observables; it requires knowing which model, probe population, representation reducer, metric, filtration, sites, and analyses produced those observables.
+
+
+## Runtime visualization artifacts
+
+The current in-memory result model retains non-persistent runtime objects so visualization can operate on the exact measured objects rather than reconstructing them from summaries.
+
+`LayerResult.artifacts` is a `LayerArtifacts` object containing:
+
+```text
+representation       reduced Representation for the site
+relational_matrix    exact RelationalMatrix used by the filtration
+filtration           exact GraphFiltration and GraphSnapshot objects
+```
+
+`ExperimentResult.artifacts` is an `ExperimentArtifacts` object containing the original `ProbePopulation`.
+
+These objects support factor-ordered relational matrices, graph snapshots, component lineage views, dendrograms, and probe-aware diagnostics. They are runtime references to objects already produced during execution; retaining them does not imply a second extraction or analysis pass.
+
+They are deliberately omitted by `ExperimentResult.save()`. Therefore a loaded or externally reconstructed `result.json` does not contain enough information to regenerate every runtime visualization. The saved JSON remains a report-like persistence surface; the heavy runtime analysis artifacts remain in memory unless a future explicit artifact-persistence format is introduced.
 
 ## Current persistence format
 

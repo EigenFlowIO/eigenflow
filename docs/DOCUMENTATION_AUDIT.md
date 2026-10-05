@@ -1,6 +1,8 @@
 # Documentation Audit
 
-Status: audit complete; remediation tasks open.
+Status: **historical audit complete; original remediation tasks resolved.**
+
+The entries below preserve the original audit findings and acceptance criteria as provenance. They are no longer an open-work list. The original human-facing remediation was completed before the visualization phase; subsequent visualization additions are governed by `VISUALIZATION_ONTOLOGY.md`, `VISUALIZATION_TASKS.md`, and `HUMAN_FACING_REVISION_TASKS.md`.
 
 This audit reviews the repository's human-facing documentation for installation/use-case guidance, syntax, implementation examples, conceptual discussion, instructional commentary, experimental interpretation, and consistency with the implemented package. The structured source of truth for these tasks is `project_state/project_state.json` under `documentation_audit`.
 

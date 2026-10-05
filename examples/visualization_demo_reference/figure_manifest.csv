@@ -1,0 +1,23 @@
+file,question,site,source,tier,visualization
+figures/01_probe_design.png,Is the probe population factorially balanced?,,ExperimentResult.artifacts.probes,primary evidential,01_probe_design
+figures/02_relational_matrix.png,What pairwise geometry exists before thresholding?,4,final LayerResult.artifacts.relational_matrix,primary evidential,02_relational_matrix
+figures/03_component_trajectory.png,How does fragmentation collapse across scale?,4,final LayerResult pcscs,primary evidential,03_component_trajectory
+figures/04_component_membership_raster.png,Which probes remain grouped across scale?,4,final LayerResult filtration,primary evidential,04_component_membership_raster
+figures/05_merge_events.png,Which component mergers occur and when?,4,final LayerResult filtration,primary evidential,05_merge_events
+figures/06_dendrogram.png,What hierarchical merge order is induced by the relational geometry?,4,final LayerResult relational matrix,primary evidential,06_dendrogram
+figures/07_percolation_dashboard.png,How does local structure become macroscopic connectivity?,4,final LayerResult components+percolation,summary/report,07_percolation_dashboard
+figures/08_graph_snapshot.png,What probes and relations are structurally pivotal near the transition region?,4,final LayerResult graph snapshot,diagnostic,08_graph_snapshot
+figures/09_static_spectrum.png,What operator-scale structure exists at the selected graph state?,4,final LayerResult spectral snapshot,primary evidential,09_static_spectrum
+figures/10_spectral_flow.png,How does the operator spectrum evolve across graph scale?,4,final LayerResult SpectralTrajectory,primary evidential,10_spectral_flow
+figures/11_spectral_properties.png,How do complementary spectral summaries evolve jointly?,4,final LayerResult SpectralTrajectory,summary/report,11_spectral_properties
+figures/12_localization.png,Is a structural mode distributed or localized to a few probes?,4,final LayerResult spectral IPR,diagnostic,12_localization
+figures/13_eigenspace_stability.png,Are low-dimensional structural modes stable through the filtration?,4,final LayerResult eigenspaces,primary evidential,13_eigenspace_stability
+figures/14_eigenspace_overlap.png,How strongly do adjacent low-dimensional eigenspaces correspond?,4,final LayerResult eigenspaces,primary evidential,14_eigenspace_overlap
+figures/15_factor_alignment.png,Which controlled factor best aligns with emergent graph structure?,4,final LayerResult factor_alignment,primary evidential,15_factor_alignment
+figures/16_factor_connectivity.png,Are class groups internally coherent relative to external mixing?,4,final LayerResult class_structure,primary evidential,16_factor_connectivity
+figures/17_layer_control_heatmap.png,Where across depth and scale does fragmentation change?,4,ExperimentResult layers/components,primary evidential,17_layer_control_heatmap
+figures/18_combined_layer_dynamics.png,How do component dynamics compare across representation sites?,4,ExperimentResult layers/components,primary evidential,18_combined_layer_dynamics
+figures/19_bridge_probe_frequency.png,Which probes repeatedly occupy structurally pivotal bridge positions?,4,final LayerResult bridges,diagnostic,19_bridge_probe_frequency
+figures/20_robustness_comparison.png,Does the class-alignment conclusion survive a reasonable metric change?,,cosine+euclidean ExperimentResult,primary evidential,20_robustness_comparison
+figures/21_cross_result_summary.png,How do structural transition summaries differ by measurement geometry?,,cosine+euclidean ExperimentResult,summary/report,21_cross_result_summary
+figures/22_interpretation_dashboard.png,What combined evidence bears on the class-organization hypothesis?,4,final LayerResult multiple analyses,summary/report,22_interpretation_dashboard

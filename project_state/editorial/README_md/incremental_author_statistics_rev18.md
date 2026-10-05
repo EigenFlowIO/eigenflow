@@ -1,0 +1,10 @@
+# Incremental statistics/research-design review
+
+**File:** `README.md`  
+**Region:** Visualization section
+
+The changed claims should remain conditional on the probe sample, reducer, metric, filtration/control coordinate, operator, and finite-sample design. Public API calls, runtime-artifact persistence boundary, and links to real generated examples must match implementation.
+
+Proposed treatment: use matched coordinates for comparisons where required, distinguish descriptive transitions from criticality claims, and identify robustness or alternative explanations rather than presenting visual separation as self-validating.
+
+Acceptance: the region does not imply stronger identification than the experimental design supports.

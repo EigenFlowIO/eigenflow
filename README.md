@@ -394,31 +394,49 @@ Words such as “emerges” or “transition” should refer to defined observab
 
 ## Visualization
 
-Eigenflow includes basic plotting utilities:
+Eigenflow treats visualization as part of the experimental interface: each public view is tied to an analyst question, a source result object, and an explicit interpretation boundary. The suite includes PCSCS-compatible component trajectories, merge events, dendrograms, and cross-layer comparisons, plus generalized relational, percolation, spectral, eigenspace, factor-alignment, robustness, and layer × control views.
+
+A few core calls are:
 
 ```python
 from eigenflow.visualization import (
-    observable_curve,
+    component_trajectory,
+    dendrogram_view,
+    spectral_flow,
     layer_control_heatmap,
-    eigenflow_plot,
 )
 
-fig = observable_curve(
-    layer,
-    analysis="percolation",
-    observable="giant_component_fraction",
-)
-
+fig = component_trajectory(layer, analysis="pcscs")
+fig = dendrogram_view(layer, probes=result.artifacts.probes, factor="class")
+fig = spectral_flow(layer, max_modes=10)
 fig = layer_control_heatmap(
     result,
     analysis="components",
     observable="component_count",
 )
-
-fig = eigenflow_plot(layer)
 ```
 
-The spectral plot is literally an eigenvalue flow across the control parameter at one representation site. Layer-control heatmaps show how an observable changes across both network depth and filtration scale.
+Some views require the exact relational matrix, graph filtration, or probe population retained in an in-memory result. Those runtime artifacts are deliberately omitted from `result.json`; saving a report and later reconstructing every visualization are therefore different persistence requirements in the current alpha release.
+
+Representative outputs from the complete demonstration:
+
+Connected-component dynamics:
+
+![Connected-component trajectory](docs/assets/visualization_demo/03_component_trajectory.png)
+
+Hierarchical merge structure:
+
+![Dendrogram](docs/assets/visualization_demo/06_dendrogram.png)
+
+Spectral flow:
+
+![Spectral flow](docs/assets/visualization_demo/10_spectral_flow.png)
+
+Layer × control structure:
+
+![Layer-control heatmap](docs/assets/visualization_demo/17_layer_control_heatmap.png)
+
+The [Visualization guide](docs/guides/visualization_guide.md) covers all 22 canonical demonstration figures, including what each view answers, how it is encoded, what can be inferred, and common overinterpretations. `examples/complete_visualization_demo.py` trains the sample network, runs the balanced factorial probe experiment, generates the complete figure/data bundle, and writes the reproducibility ZIP.
 
 ## PCSCS
 
