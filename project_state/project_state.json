@@ -324,6 +324,30 @@
       "status": "committed",
       "decision": "The human-facing surface will be developed by backward instructional design over an epistemological-semantic graph, from justified experimental competence to the first-encounter reader state.",
       "rationale": "Documentation completeness is defined by the reader states and evidential judgments it enables, not by topical coverage alone."
+    },
+    {
+      "id": "dec_015",
+      "status": "committed",
+      "decision": "The default activation reducer for v1 alpha is flatten; reducer choice is part of the measurement definition.",
+      "rationale": "Resolved from implemented package behavior during documentation reconciliation."
+    },
+    {
+      "id": "dec_016",
+      "status": "committed",
+      "decision": "Analysis keywords instantiate default analysis configurations; explicit Analysis objects are the configuration path for non-default parameters.",
+      "rationale": "Resolved from implemented package behavior during documentation reconciliation."
+    },
+    {
+      "id": "dec_017",
+      "status": "committed",
+      "decision": "v1 alpha persistence is JSON-only, intentionally non-lossless for spectral eigenvectors, with no public reconstruction API.",
+      "rationale": "Resolved from implemented package behavior during documentation reconciliation."
+    },
+    {
+      "id": "dec_018",
+      "status": "committed",
+      "decision": "The implemented v1 alpha metric and graph-operator sets documented in API_SPEC.md are the reference built-in sets for this release.",
+      "rationale": "Resolved from implemented package behavior during documentation reconciliation."
     }
   ],
   "assumptions": [
@@ -346,45 +370,59 @@
   "unresolved_questions": [
     {
       "id": "q_001",
-      "status": "open",
+      "status": "resolved",
       "priority": "high",
-      "question": "What exact public Python API and protocol/interface signatures should be frozen for v1?"
+      "question": "What exact public Python API and protocol/interface signatures should be frozen for v1?",
+      "resolution": "Resolved from implemented v1 alpha API. Experiment(model, probes, metric='cosine', filtration='edge_density', analyses=['components','percolation','spectra'], extraction=ExtractionConfig(), device=None, collate_fn=None); exact subordinate interfaces are now documented in docs/spec/API_SPEC.md.",
+      "resolved_at": "2026-10-05T01:43:03.810565+00:00"
     },
     {
       "id": "q_002",
-      "status": "open",
+      "status": "resolved",
       "priority": "high",
-      "question": "What is the default module-capture policy for arbitrary PyTorch models: literally all hookable modules, filtered eligible modules, or named structural boundaries?"
+      "question": "What is the default module-capture policy for arbitrary PyTorch models: literally all hookable modules, filtered eligible modules, or named structural boundaries?",
+      "resolution": "Default arbitrary-PyTorch capture policy is all named leaf nn.Module objects when ExtractionConfig(sites='all', leaf_modules_only=True). Explicit site names override the default.",
+      "resolved_at": "2026-10-05T01:43:03.810579+00:00"
     },
     {
       "id": "q_003",
-      "status": "open",
+      "status": "resolved",
       "priority": "high",
-      "question": "What is the default representation reduction behavior when module outputs are not already 2D sample-by-feature matrices?"
+      "question": "What is the default representation reduction behavior when module outputs are not already 2D sample-by-feature matrices?",
+      "resolution": "Default representation reduction is flatten. Alternative implemented reducers include global_average, global_max, MeanTokens, SelectToken object, and callables.",
+      "resolved_at": "2026-10-05T01:43:03.810583+00:00"
     },
     {
       "id": "q_004",
-      "status": "open",
+      "status": "resolved",
       "priority": "medium",
-      "question": "Which built-in metrics and kernels are mandatory for v1 versus extension candidates?"
+      "question": "Which built-in metrics and kernels are mandatory for v1 versus extension candidates?",
+      "resolution": "The v1 alpha built-in metric set is cosine, Euclidean, squared Euclidean, Manhattan, correlation, dot product, Mahalanobis, RBF, polynomial, callable metrics, plus MetricPipeline transforms.",
+      "resolved_at": "2026-10-05T01:43:03.810586+00:00"
     },
     {
       "id": "q_005",
-      "status": "open",
+      "status": "resolved",
       "priority": "medium",
-      "question": "Which graph operators are mandatory for v1, particularly whether modularity and non-backtracking belong in the initial release?"
+      "question": "Which graph operators are mandatory for v1, particularly whether modularity and non-backtracking belong in the initial release?",
+      "resolution": "The v1 alpha operator set is adjacency, combinatorial Laplacian, normalized Laplacian, random walk, modularity, and non-backtracking.",
+      "resolved_at": "2026-10-05T01:43:03.810588+00:00"
     },
     {
       "id": "q_006",
-      "status": "open",
+      "status": "resolved",
       "priority": "medium",
-      "question": "What result serialization format and compatibility policy should be used for long-lived experiment artifacts?"
+      "question": "What result serialization format and compatibility policy should be used for long-lived experiment artifacts?",
+      "resolution": "Current persistence is JSON-only through ExperimentResult.save(); eigenvectors are omitted, there is no public load/reconstruction API, and alpha compatibility requires retaining package version/configuration.",
+      "resolved_at": "2026-10-05T01:43:03.810591+00:00"
     },
     {
       "id": "q_007",
-      "status": "open",
+      "status": "resolved",
       "priority": "medium",
-      "question": "How should analysis keyword aliases map to explicit typed analysis configurations?"
+      "question": "How should analysis keyword aliases map to explicit typed analysis configurations?",
+      "resolution": "Analysis strings resolve to default Analysis objects. Non-default configuration is expressed by passing explicit typed Analysis instances. This mapping is documented in API_SPEC.md.",
+      "resolved_at": "2026-10-05T01:43:03.810598+00:00"
     }
   ],
   "planned_outputs": [
@@ -546,6 +584,105 @@
           "unit_145_reference_reconciliation",
           "unit_146_reader_state_validation"
         ]
+      },
+      {
+        "id": "prov_change_008",
+        "source_type": "instructional_design",
+        "source_description": "Established terminal reader objectives and section-level backward-solved objectives for each human-facing repository document; no prose rewrite or Git commit performed.",
+        "created_at": "2026-10-05T01:08:20.908031+00:00",
+        "affected_ids": [
+          "docobj_001",
+          "docobj_002",
+          "docobj_003",
+          "docobj_004",
+          "docobj_005",
+          "docobj_006",
+          "docobj_007",
+          "docobj_008",
+          "docobj_009",
+          "docobj_010",
+          "docobj_011",
+          "docobj_012",
+          "docobj_013",
+          "docobj_014",
+          "docobj_015",
+          "docobj_016",
+          "docobj_017",
+          "docobj_018",
+          "docobj_019",
+          "docobj_020",
+          "instr_doc_map_001"
+        ]
+      },
+      {
+        "id": "prov_change_009",
+        "source_type": "instructional_design",
+        "source_description": "Decomposed each human-facing document into conceptually coherent sections and distributed global instructional trajectory moves across sections according to prerequisite function.",
+        "created_at": "2026-10-05T01:13:28.451280+00:00",
+        "affected_ids": [
+          "instr_section_map_001"
+        ]
+      },
+      {
+        "id": "prov_change_010",
+        "source_type": "user_directive_and_editorial_workflow",
+        "source_description": "Adopted multi-author antagonistic drafting with a three-role editorial board and applied it to README.md; drafts and board report retained as provenance; final README synthesized from adjudication.",
+        "created_at": "2026-10-05T01:25:37.148790+00:00",
+        "affected_ids": [
+          "instr_draft_protocol_001",
+          "README.md"
+        ]
+      },
+      {
+        "id": "prov_change_011",
+        "source_type": "documentation_completion",
+        "source_description": "Completed all non-maintainer human-facing documentation through antagonistic drafting/adjudication, reconciled reference specs to implementation, executed automated validation, and isolated remaining authority-dependent release metadata.",
+        "created_at": "2026-10-05T01:43:03.813134+00:00",
+        "affected_ids": [
+          "doc_task_001",
+          "doc_task_002",
+          "doc_task_003",
+          "doc_task_004",
+          "doc_task_005",
+          "doc_task_006",
+          "doc_task_007",
+          "doc_task_008",
+          "doc_task_009",
+          "doc_task_010",
+          "doc_task_011",
+          "doc_task_012",
+          "doc_task_013",
+          "doc_task_014",
+          "doc_task_015",
+          "doc_task_016",
+          "doc_task_017",
+          "doc_task_018",
+          "doc_task_019",
+          "doc_task_020"
+        ]
+      },
+      {
+        "id": "prov_change_012",
+        "source_type": "maintainer_authority",
+        "source_description": "Finalized release identity and governance fields: Andrew Hedman authorship and copyright, MIT license, GitHub 1.0.0a1 release with no DOI, GitHub-native security/conduct reporting, and no automated reporting/enforcement.",
+        "created_at": "2026-10-05T01:49:03.961361+00:00",
+        "affected_ids": [
+          "doc_task_004",
+          "doc_task_005",
+          "doc_task_006",
+          "doc_task_007"
+        ]
+      },
+      {
+        "id": "prov_change_013",
+        "source_type": "release_governance_validation",
+        "source_description": "Final release-governance validation completed; citation/license editorial provenance added and stale audit-era release-date wording reconciled.",
+        "created_at": "2026-10-05T01:50:22.395762+00:00",
+        "affected_ids": [
+          "doc_task_005",
+          "CITATION.cff",
+          "LICENSE"
+        ]
       }
     ]
   },
@@ -553,16 +690,18 @@
     "current_phase": "human_facing_surface_completion",
     "last_committed_unit": "unit_141_instructional_architecture",
     "active_unit": null,
-    "resume_from": "unit_142_content_dependency_map",
-    "state_revision": 7
+    "resume_from": null,
+    "state_revision": 13
   },
   "completion": {
-    "project_complete": false,
+    "project_complete": true,
     "architecture_complete": true,
     "implementation_complete": true,
     "testing_complete": true,
-    "documentation_complete": false,
-    "primary_deliverable_complete": true
+    "documentation_complete": true,
+    "primary_deliverable_complete": true,
+    "human_facing_nonintervention_complete": true,
+    "release_metadata_complete": true
   },
   "validation": {
     "v1_release": {
@@ -597,7 +736,7 @@
         "id": "doc_task_001",
         "file": "README.md",
         "priority": "high",
-        "status": "open",
+        "status": "complete",
         "assessment": "Strong architectural overview and minimal quick start, but incomplete as the primary entry point for a new experimenter.",
         "notes": [
           "Add installation instructions for PyPI/editable/source installs, supported Python/PyTorch versions, and alpha-release status.",
@@ -614,13 +753,14 @@
           "traj_006",
           "representation task rt_003 preview",
           "clear indication/non-indication decision support"
-        ]
+        ],
+        "completed_at": "2026-10-05T01:43:03.810943+00:00"
       },
       {
         "id": "doc_task_002",
         "file": "CONTRIBUTING.md",
         "priority": "medium",
-        "status": "open",
+        "status": "complete",
         "assessment": "Currently a single policy paragraph; insufficient for contributors.",
         "notes": [
           "Add development setup, editable install, test commands, repository layout, code/documentation conventions, and expected Python compatibility.",
@@ -629,13 +769,14 @@
           "Explain the persistent-state workflow and when changes must update project_state, execution manifest, specs, tests, and derivative documentation."
         ],
         "acceptance": "A new contributor can set up the project and make a compliant extension without reverse-engineering repository conventions.",
-        "instructional_requirements": []
+        "instructional_requirements": [],
+        "completed_at": "2026-10-05T01:43:03.810952+00:00"
       },
       {
         "id": "doc_task_003",
         "file": "CHANGELOG.md",
         "priority": "medium",
-        "status": "open",
+        "status": "complete",
         "assessment": "Only a one-line initial release summary.",
         "notes": [
           "Expand the initial release entry into user-visible capabilities grouped by probes/extraction, metrics, filtrations, analyses, visualization, serialization, and PCSCS compatibility.",
@@ -643,13 +784,14 @@
           "Establish changelog conventions for breaking API changes, behavioral changes, deprecations, bug fixes, and scientific-method changes."
         ],
         "acceptance": "Users can determine what changed, what is supported, and what limitations apply in each release.",
-        "instructional_requirements": []
+        "instructional_requirements": [],
+        "completed_at": "2026-10-05T01:43:03.810955+00:00"
       },
       {
         "id": "doc_task_004",
         "file": "SECURITY.md",
         "priority": "medium",
-        "status": "open",
+        "status": "complete",
         "assessment": "Contains one safety warning and no operational reporting policy.",
         "notes": [
           "Add a concrete private vulnerability-reporting channel or GitHub security-advisory procedure.",
@@ -657,13 +799,14 @@
           "Expand model/data safety guidance: untrusted torch/pickle artifacts, arbitrary callables/custom metrics, dependency risks, resource-exhaustion considerations, and handling of sensitive probe data."
         ],
         "acceptance": "The file provides an actionable vulnerability-reporting path and describes the main security boundaries relevant to Eigenflow.",
-        "instructional_requirements": []
+        "instructional_requirements": [],
+        "completed_at": "2026-10-05T01:49:03.961330+00:00"
       },
       {
         "id": "doc_task_005",
         "file": "CITATION.cff",
         "priority": "medium",
-        "status": "open",
+        "status": "complete",
         "assessment": "Valid-looking minimal citation metadata, but release and authorship metadata require review.",
         "notes": [
           "Verify author/maintainer identity and preferred citation form.",
@@ -672,39 +815,42 @@
           "Ensure repository URL/casing and software title match the canonical GitHub project."
         ],
         "acceptance": "Citation metadata matches the actual release, authorship, canonical repository, and archival identifier if available.",
-        "instructional_requirements": []
+        "instructional_requirements": [],
+        "completed_at": "2026-10-05T01:49:03.961348+00:00"
       },
       {
         "id": "doc_task_006",
         "file": "CODE_OF_CONDUCT.md",
         "priority": "low",
-        "status": "open",
+        "status": "complete",
         "assessment": "Expresses desired norms but is not a complete code-of-conduct policy.",
         "notes": [
           "Adopt or adapt a recognized code of conduct (for example Contributor Covenant) with scope, unacceptable behavior, enforcement responsibilities, and reporting process.",
           "Preserve the project-specific expectation that methodological disagreements are resolved through evidence and reproducible tests."
         ],
         "acceptance": "Contributors have clear behavioral expectations, reporting procedures, and enforcement scope.",
-        "instructional_requirements": []
+        "instructional_requirements": [],
+        "completed_at": "2026-10-05T01:49:03.961352+00:00"
       },
       {
         "id": "doc_task_007",
         "file": "LICENSE",
         "priority": "low",
-        "status": "open",
+        "status": "complete",
         "assessment": "Standard MIT license is structurally complete.",
         "notes": [
           "Verify copyright year and legal copyright holder/name match the intended project ownership before release.",
           "Confirm README, pyproject metadata, and CITATION.cff consistently identify the same license and owner."
         ],
         "acceptance": "License metadata is legally and bibliographically consistent across the repository.",
-        "instructional_requirements": []
+        "instructional_requirements": [],
+        "completed_at": "2026-10-05T01:49:03.961354+00:00"
       },
       {
         "id": "doc_task_008",
         "file": "docs/concepts/experimental_model.md",
         "priority": "high",
-        "status": "open",
+        "status": "complete",
         "assessment": "Only states the core idea; does not teach experimental design or inference.",
         "notes": [
           "Formalize the hypothesis \u2192 probe design \u2192 representation population \u2192 relational geometry \u2192 observable \u2192 inference workflow.",
@@ -720,13 +866,14 @@
           "rt_001",
           "rt_005",
           "rt_006"
-        ]
+        ],
+        "completed_at": "2026-10-05T01:43:03.810958+00:00"
       },
       {
         "id": "doc_task_009",
         "file": "docs/concepts/percolation.md",
         "priority": "high",
-        "status": "open",
+        "status": "complete",
         "assessment": "Correct caveat but essentially only an abstract.",
         "notes": [
           "Define graph-growth orientation and control coordinates, especially native threshold versus edge density.",
@@ -740,13 +887,14 @@
           "traj_005",
           "rt_004",
           "observable-to-inference boundary"
-        ]
+        ],
+        "completed_at": "2026-10-05T01:43:03.810960+00:00"
       },
       {
         "id": "doc_task_010",
         "file": "docs/concepts/spectral_analysis.md",
         "priority": "high",
-        "status": "open",
+        "status": "complete",
         "assessment": "States operator breadth and eigenspace caution but omits almost all practical spectral interpretation.",
         "notes": [
           "Define adjacency, combinatorial Laplacian, normalized Laplacian, random-walk, modularity, and non-backtracking operators and when each is informative.",
@@ -760,13 +908,14 @@
           "traj_005",
           "rt_004",
           "eigenspace interpretation and localization caveats"
-        ]
+        ],
+        "completed_at": "2026-10-05T01:43:03.810962+00:00"
       },
       {
         "id": "doc_task_011",
         "file": "docs/guides/vgg16_probe_experiment.md",
         "priority": "high",
-        "status": "open",
+        "status": "complete",
         "assessment": "A short orientation paragraph rather than an executable guide.",
         "notes": [
           "Provide prerequisites/install commands and torchvision VGG16 loading/preprocessing code.",
@@ -787,13 +936,14 @@
           "rt_002",
           "rt_003",
           "rt_004"
-        ]
+        ],
+        "completed_at": "2026-10-05T01:43:03.810963+00:00"
       },
       {
         "id": "doc_task_012",
         "file": "docs/spec/API_SPEC.md",
         "priority": "critical",
-        "status": "open",
+        "status": "complete",
         "assessment": "Useful outline, but too terse for an API contract and currently diverges from implementation.",
         "notes": [
           "Reconcile the documented Experiment signature with implementation: the spec currently advertises operators=None and cache=True, which the Experiment dataclass does not expose.",
@@ -807,13 +957,14 @@
           "reference role after conceptual prerequisites",
           "actual implementation consistency",
           "executable examples"
-        ]
+        ],
+        "completed_at": "2026-10-05T01:43:03.810965+00:00"
       },
       {
         "id": "doc_task_013",
         "file": "docs/spec/DATA_MODEL_SPEC.md",
         "priority": "critical",
-        "status": "open",
+        "status": "complete",
         "assessment": "Correct high-level path but includes serialization claims not implemented by ExperimentResult.",
         "notes": [
           "Reconcile serialization claims: the spec says save writes JSON + NPZ and load reconstructs results, while current ExperimentResult.save writes only result.json and no load method exists.",
@@ -826,13 +977,14 @@
           "reference role after conceptual prerequisites",
           "actual implementation consistency",
           "executable examples"
-        ]
+        ],
+        "completed_at": "2026-10-05T01:43:03.810966+00:00"
       },
       {
         "id": "doc_task_014",
         "file": "docs/spec/EXECUTION_SPEC.md",
         "priority": "critical",
-        "status": "open",
+        "status": "complete",
         "assessment": "Describes an intended DAG/cache architecture that is not implemented in the current Experiment.run path.",
         "notes": [
           "Reconcile or implement the claimed dependency DAG and in-memory content-addressed cache; current Experiment.run recomputes directly and exposes no cache control.",
@@ -845,13 +997,14 @@
           "reference role after conceptual prerequisites",
           "actual implementation consistency",
           "executable examples"
-        ]
+        ],
+        "completed_at": "2026-10-05T01:43:03.810968+00:00"
       },
       {
         "id": "doc_task_015",
         "file": "examples/basic_mlp.py",
         "priority": "high",
-        "status": "open",
+        "status": "complete",
         "assessment": "Runnable smoke example but not instructional; compressed formatting hides the conceptual workflow.",
         "notes": [
           "Reformat idiomatically and add comments that map each code section to probe design, extraction, metric, filtration, analyses, and interpretation.",
@@ -865,13 +1018,14 @@
           "syntax-to-experiment mapping",
           "worked output interpretation",
           "bounded claims"
-        ]
+        ],
+        "completed_at": "2026-10-05T01:43:03.810970+00:00"
       },
       {
         "id": "doc_task_016",
         "file": "examples/pcscs_compatibility.py",
         "priority": "high",
-        "status": "open",
+        "status": "complete",
         "assessment": "Demonstrates preset invocation only; insufficient as PCSCS compatibility/migration documentation.",
         "notes": [
           "Explain which PCSCS defaults are reproduced and which Eigenflow behaviors differ from the existing PCSCS repository.",
@@ -885,13 +1039,14 @@
           "syntax-to-experiment mapping",
           "worked output interpretation",
           "bounded claims"
-        ]
+        ],
+        "completed_at": "2026-10-05T01:43:03.810972+00:00"
       },
       {
         "id": "doc_task_017",
         "file": "project_state/STATE_PROTOCOL.md",
         "priority": "low",
-        "status": "open",
+        "status": "complete",
         "assessment": "Substantive and operationally complete for internal project-state management; not product-user documentation.",
         "notes": [
           "Add a short scope preface clarifying that this protocol governs Eigenflow development state, not runtime experiment-state semantics.",
@@ -899,13 +1054,14 @@
           "Cross-reference the documentation-audit/open-task mechanism introduced by this work cycle."
         ],
         "acceptance": "Maintainers can distinguish canonical development state, local Git state, and remote GitHub state without ambiguity.",
-        "instructional_requirements": []
+        "instructional_requirements": [],
+        "completed_at": "2026-10-05T01:43:03.810974+00:00"
       },
       {
         "id": "doc_task_018",
         "file": "pyproject.toml",
         "priority": "medium",
-        "status": "open",
+        "status": "complete",
         "assessment": "Sufficient to build/install in a normal connected environment, but sparse as public package metadata.",
         "notes": [
           "Add project URLs for repository, documentation, issues, and changelog.",
@@ -914,13 +1070,14 @@
           "Ensure supported Python/PyTorch versions documented here remain synchronized with README and CI/test policy."
         ],
         "acceptance": "Package-index metadata directs users to all major project resources and accurately states compatibility.",
-        "instructional_requirements": []
+        "instructional_requirements": [],
+        "completed_at": "2026-10-05T01:43:03.810975+00:00"
       },
       {
         "id": "doc_task_019",
         "file": "docs/index.md (new)",
         "priority": "high",
-        "status": "open",
+        "status": "complete",
         "assessment": "No documentation landing page currently exists.",
         "notes": [
           "Create a documentation index organized by getting started, experimental design, concepts, API/specification, worked guides, examples, and interpretation.",
@@ -929,13 +1086,14 @@
         "acceptance": "All human-facing documentation is discoverable from a single navigable landing page.",
         "instructional_requirements": [
           "route readers through traj_001 to traj_008 according to role and prior knowledge"
-        ]
+        ],
+        "completed_at": "2026-10-05T01:43:03.810977+00:00"
       },
       {
         "id": "doc_task_020",
         "file": "docs/guides/interpreting_results.md (new)",
         "priority": "high",
-        "status": "open",
+        "status": "complete",
         "assessment": "The repository lacks a dedicated guide translating numerical/graph outputs into appropriately bounded experimental interpretations.",
         "notes": [
           "Build a worked result-reading guide covering components, percolation, spectra/eigenspaces, class/factor alignment, bridges, k-core, communities, and transitions.",
@@ -949,10 +1107,12 @@
           "rt_004",
           "rt_005",
           "rt_006"
-        ]
+        ],
+        "completed_at": "2026-10-05T01:43:03.810978+00:00"
       }
     ],
-    "instructional_governance": "instr_design_001"
+    "instructional_governance": "instr_design_001",
+    "remaining_user_authority_tasks": []
   },
   "schema_migrations": [
     {
@@ -1409,6 +1569,2399 @@
       "Worked demonstrations should begin with an explicit hypothesis and end with a bounded evidence statement.",
       "Cross-metric/reducer/filtration comparison should be taught as epistemic robustness, not merely feature breadth.",
       "PCSCS documentation should serve both compatibility and conceptual continuity with the broader Eigenflow framework."
-    ]
+    ],
+    "document_objectives": [
+      {
+        "id": "docobj_001",
+        "path": "README.md",
+        "audience": "first-encounter analyst or NN systems architect",
+        "terminal": "Reader can determine whether Eigenflow is relevant, understand its experimental object and evidential scope, install it, run a minimal experiment, locate the right deeper documentation, and avoid the most important category errors.",
+        "prereq": "General competence with Python/PyTorch and neural-network layers; no Eigenflow-specific knowledge.",
+        "sections": [
+          [
+            "Problem and indication",
+            "Recognize the class of interpretability questions Eigenflow can address and distinguish them from neuron attribution, saliency, causal intervention, or automatic semantic labeling."
+          ],
+          [
+            "Core experimental object",
+            "Represent the method as probe population \u2192 layerwise representations \u2192 relational geometry \u2192 filtration \u2192 structural observables \u2192 bounded inference."
+          ],
+          [
+            "When to use / not use",
+            "Decide whether a proposed question has a controllable probe contrast and whether relational population structure is relevant evidence."
+          ],
+          [
+            "Minimal worked experiment",
+            "Execute a small complete experiment whose code mirrors the conceptual pipeline."
+          ],
+          [
+            "Reading the result",
+            "Retrieve at least one component/percolation/spectral/factor output and state what is directly observed."
+          ],
+          [
+            "First interpretation",
+            "Translate the observation into one candidate latent-feature inference, one alternative explanation, and one unsupported claim."
+          ],
+          [
+            "Configuration map",
+            "Know why probe design, reducer, metric, filtration, analysis, and layer selection are experimental choices rather than arbitrary syntax."
+          ],
+          [
+            "Navigation",
+            "Know which document to read next for experiment design, spectral analysis, percolation, VGG16, results interpretation, API, or PCSCS."
+          ]
+        ],
+        "representation_task": "Given a candidate interpretability question, explain whether Eigenflow is indicated, run the quick start, and produce a four-part observation/inference/alternative/not-supported statement."
+      },
+      {
+        "id": "docobj_002",
+        "path": "docs/index.md",
+        "audience": "all documentation users",
+        "terminal": "Reader can choose an instructional path appropriate to role and current knowledge without encountering concepts before their prerequisites.",
+        "prereq": "Recognition that Eigenflow is an interpretability toolkit.",
+        "sections": [
+          [
+            "Orientation paths",
+            "Route first-time analysts, PCSCS users, contributors, and researchers to different entry sequences."
+          ],
+          [
+            "Concept dependency map",
+            "Expose the recommended order: experimental model \u2192 measurement geometry \u2192 structural observables \u2192 execution \u2192 interpretation."
+          ],
+          [
+            "Task-based navigation",
+            "Route by goal: design probes, choose metric, choose filtration, inspect spectra, interpret results, compare models, extend package."
+          ],
+          [
+            "Reference navigation",
+            "Separate conceptual instruction from API/specification/reference material."
+          ]
+        ],
+        "representation_task": "Select and justify a reading path for a stated user goal."
+      },
+      {
+        "id": "docobj_003",
+        "path": "docs/concepts/experimental_model.md",
+        "audience": "analyst designing an experiment",
+        "terminal": "Reader can formulate a controlled post hoc interpretability experiment whose probe design makes competing hypotheses about latent feature organization empirically distinguishable.",
+        "prereq": "Population-level relational organization is understood as the unit of analysis.",
+        "sections": [
+          [
+            "Interpretability as inverse inference",
+            "Distinguish latent feature hypotheses from directly measured structural observables."
+          ],
+          [
+            "Hypothesis formulation",
+            "Express at least two competing hypotheses that predict different relational outcomes."
+          ],
+          [
+            "Probe factors and metadata",
+            "Identify manipulated, controlled, nuisance, and observational factors."
+          ],
+          [
+            "Factorial and matched designs",
+            "Construct contrasts that isolate a semantic variable."
+          ],
+          [
+            "Population adequacy",
+            "Reason about balance, coverage, replication, sample size, and representativeness."
+          ],
+          [
+            "Predicted structural outcomes",
+            "State before analysis what patterns would count as evidence under each hypothesis."
+          ],
+          [
+            "Confounds and alternative explanations",
+            "List probe, model, metric, reducer, and sampling explanations that could mimic the predicted pattern."
+          ],
+          [
+            "Robustness plan",
+            "Specify cross-metric, cross-reducer, resampling, or alternate-probe checks."
+          ],
+          [
+            "Worked experiments",
+            "Carry two hypotheses from design through predicted outputs and bounded conclusions."
+          ]
+        ],
+        "representation_task": "Design a probe population for a feature question and write competing predictions and robustness checks before running Eigenflow."
+      },
+      {
+        "id": "docobj_004",
+        "path": "docs/concepts/percolation.md",
+        "audience": "analyst choosing or interpreting graph-growth observables",
+        "terminal": "Reader can select and interpret percolation-style observables as descriptions of how representation-induced connectivity reorganizes across a control sweep without making unjustified phase-transition claims.",
+        "prereq": "Metric-induced relational matrix and filtration/control parameter are understood.",
+        "sections": [
+          [
+            "Graph-growth orientation",
+            "Understand which direction of the control parameter adds edges and why orientation matters."
+          ],
+          [
+            "Native threshold vs edge density",
+            "Choose an interpretable control coordinate and understand cross-metric comparability."
+          ],
+          [
+            "Giant component",
+            "Explain what P\u221e measures and what early/late growth can indicate."
+          ],
+          [
+            "Second-largest component",
+            "Interpret competing macroscopic group structure near mergers."
+          ],
+          [
+            "Susceptibility",
+            "Interpret mesoscale cluster organization and peaks without equating them automatically with criticality."
+          ],
+          [
+            "Cluster-size distribution",
+            "Recognize fragmented, hierarchical, and dominant-group regimes."
+          ],
+          [
+            "Jumps and merge events",
+            "Relate abrupt graph changes to specific bridge relations or probes."
+          ],
+          [
+            "Factor-conditioned percolation",
+            "Use class/factor-specific coherence and mixing behavior as experimental evidence."
+          ],
+          [
+            "Finite-size analysis",
+            "Distinguish sample-specific crossover from stable population behavior."
+          ],
+          [
+            "Interpretation limits",
+            "Separate descriptive transition language from thermodynamic criticality/universality."
+          ],
+          [
+            "Worked neural example",
+            "Read several curves jointly and form a bounded representational interpretation."
+          ]
+        ],
+        "representation_task": "Given percolation curves from two layers, explain the structural differences, identify plausible feature implications, and specify what cannot be claimed."
+      },
+      {
+        "id": "docobj_005",
+        "path": "docs/concepts/spectral_analysis.md",
+        "audience": "analyst choosing or interpreting graph spectra",
+        "terminal": "Reader can choose an operator and spectral observable for a specific structural question, track spectral organization across control scale/layer depth, and interpret the result with eigenspace and numerical caveats.",
+        "prereq": "Graph filtration and population-level relational structure are understood.",
+        "sections": [
+          [
+            "Why spectra",
+            "Connect spectral quantities to global organization not easily captured by components alone."
+          ],
+          [
+            "Operator choice",
+            "Distinguish adjacency, Laplacian, normalized Laplacian, random-walk, modularity, and non-backtracking questions."
+          ],
+          [
+            "Eigenvalues as observables",
+            "Interpret radius, algebraic connectivity, gaps, entropy, energy, effective rank."
+          ],
+          [
+            "Eigenvectors/eigenspaces",
+            "Interpret modes, partitions, and factor alignment."
+          ],
+          [
+            "Localization",
+            "Use IPR/localization to distinguish distributed structure from a few influential probes."
+          ],
+          [
+            "Trajectories over control scale",
+            "Understand eigenvalue flow rather than isolated spectra."
+          ],
+          [
+            "Trajectories across depth",
+            "Interpret when spectral organization emerges or changes through the network."
+          ],
+          [
+            "Crossings and degeneracy",
+            "Use overlap/principal-angle reasoning instead of naive eigenvector index identity."
+          ],
+          [
+            "Numerical scope",
+            "Understand full vs partial spectra, sparse solvers, scale, and instability."
+          ],
+          [
+            "Experimental interpretation",
+            "Tie spectral patterns to controlled probe hypotheses and alternative explanations."
+          ],
+          [
+            "Worked example",
+            "Triangulate spectral evidence with components/percolation/factor alignment."
+          ]
+        ],
+        "representation_task": "Choose an operator/observable for a stated hypothesis and interpret a hypothetical trajectory with one alternative explanation and one robustness check."
+      },
+      {
+        "id": "docobj_006",
+        "path": "docs/guides/vgg16_probe_experiment.md",
+        "audience": "first-time practitioner with image probes",
+        "terminal": "Reader can perform a reproducible VGG16 experiment from raw images through site selection, representation reduction, filtration analyses, result navigation, visualization, and bounded interpretation.",
+        "prereq": "Basic Eigenflow conceptual model and PyTorch familiarity.",
+        "sections": [
+          [
+            "Experimental question",
+            "Begin with a concrete feature hypothesis rather than code."
+          ],
+          [
+            "Environment and model",
+            "Install dependencies, load pretrained VGG16, set eval/device, document preprocessing."
+          ],
+          [
+            "Probe population",
+            "Build stable IDs and metadata with a controlled contrast."
+          ],
+          [
+            "Inspect representation sites",
+            "Use available_sites and choose meaningful block endpoints."
+          ],
+          [
+            "Reducer comparison",
+            "Compare flatten vs global average and state what each preserves/discards."
+          ],
+          [
+            "Metric and filtration choice",
+            "Justify cosine/native threshold or edge density for the demonstration."
+          ],
+          [
+            "Run analyses",
+            "Execute components, percolation, spectra, factor alignment, transitions."
+          ],
+          [
+            "Navigate results",
+            "Use exact syntax to access layerwise outputs."
+          ],
+          [
+            "Visualize",
+            "Plot at least one layer\u00d7control observable and one spectral/percolation trajectory."
+          ],
+          [
+            "Interpret",
+            "Produce observation \u2192 inference \u2192 alternatives \u2192 unsupported claim."
+          ],
+          [
+            "Robustness",
+            "Repeat with an alternate reducer/metric or resample probes."
+          ],
+          [
+            "Persist/reproduce",
+            "Save outputs/configuration and document batching/device/performance."
+          ]
+        ],
+        "representation_task": "Reproduce the guide and write a defensible conclusion about where a controlled image factor becomes relationally organized in VGG16."
+      },
+      {
+        "id": "docobj_007",
+        "path": "docs/guides/interpreting_results.md",
+        "audience": "analyst after running an experiment",
+        "terminal": "Reader can convert Eigenflow outputs into calibrated, human-interpretable evidence statements and triangulate across observables and robustness checks.",
+        "prereq": "Experiment design, filtration, and major observable families are understood.",
+        "sections": [
+          [
+            "Interpretation protocol",
+            "Apply observation \u2192 candidate inference \u2192 alternatives \u2192 unsupported claim."
+          ],
+          [
+            "Components and merge structure",
+            "Read coherence, fragmentation, merge order, bridge samples."
+          ],
+          [
+            "Percolation outputs",
+            "Read giant/second component, susceptibility, size distributions, transition regions."
+          ],
+          [
+            "Spectral outputs",
+            "Read gaps, algebraic connectivity, localization, eigenspace alignment and flow."
+          ],
+          [
+            "Factor/class outputs",
+            "Read within/between structure, NMI/ARI, coherence/mixing, spectral alignment."
+          ],
+          [
+            "Cores/communities/bridges",
+            "Interpret robust centers, partitions, and pivotal probes."
+          ],
+          [
+            "Transition outputs",
+            "Treat transition detectors as summaries of observable changes, not semantic events by themselves."
+          ],
+          [
+            "Convergent evidence",
+            "Combine observables that answer different structural questions."
+          ],
+          [
+            "Divergent evidence",
+            "Diagnose when observables disagree rather than averaging them away."
+          ],
+          [
+            "Robustness and alternatives",
+            "Use metric/reducer/filtration/resampling/probe changes to test dependence."
+          ],
+          [
+            "Writing the conclusion",
+            "Produce a bounded feature-interpretation statement tied explicitly to design."
+          ],
+          [
+            "Failure cases",
+            "Recognize weak, confounded, unstable, or non-identifying experiments."
+          ]
+        ],
+        "representation_task": "Given a multi-observable result bundle, produce a short interpretation with explicit evidential support, alternatives, and uncertainty."
+      },
+      {
+        "id": "docobj_008",
+        "path": "examples/basic_mlp.py",
+        "audience": "first-time code reader",
+        "terminal": "Reader can map executable code line-by-line onto the conceptual experiment and inspect meaningful outputs instead of treating the library as a black box.",
+        "prereq": "README orientation.",
+        "sections": [
+          [
+            "Deterministic setup",
+            "Create a reproducible model/probe population."
+          ],
+          [
+            "Probe metadata",
+            "Show why metadata exists and how it supports factor analysis."
+          ],
+          [
+            "Site inspection",
+            "Demonstrate the extraction boundary."
+          ],
+          [
+            "Experiment construction",
+            "Map each constructor argument to an experimental choice."
+          ],
+          [
+            "Result access",
+            "Print specific observables from multiple layers/control values."
+          ],
+          [
+            "Interpretive comments",
+            "Explain what the example's outputs could and could not support."
+          ],
+          [
+            "Optional visualization",
+            "Produce a simple plot or structured output for inspection."
+          ]
+        ],
+        "representation_task": "Modify one experimental choice, predict the consequence, rerun, and identify the changed output."
+      },
+      {
+        "id": "docobj_009",
+        "path": "examples/pcscs_compatibility.py",
+        "audience": "existing PCSCS user",
+        "terminal": "Reader can reproduce PCSCS behavior in Eigenflow, understand the mapping from PCSCS concepts to general Eigenflow abstractions, and know how to extend beyond cosine/component-centric analysis.",
+        "prereq": "Familiarity with PCSCS.",
+        "sections": [
+          [
+            "Compatibility claim",
+            "State exactly what the preset reproduces and where behavior differs."
+          ],
+          [
+            "Deterministic example",
+            "Run a repeatable PCSCS preset."
+          ],
+          [
+            "Expanded equivalent configuration",
+            "Show the underlying metric, filtration, extraction, and analyses explicitly."
+          ],
+          [
+            "PCSCS outputs",
+            "Retrieve convergence/critical/component trajectories per layer."
+          ],
+          [
+            "Spectral extension",
+            "Show how Eigenflow exposes richer spectral tools."
+          ],
+          [
+            "Migration path",
+            "Translate an existing PCSCS workflow into general Eigenflow configuration."
+          ],
+          [
+            "Interpretation continuity",
+            "Explain which prior PCSCS interpretations remain valid and which require broader qualification."
+          ]
+        ],
+        "representation_task": "Convert a PCSCS preset run into an explicit Experiment configuration and add one non-PCSCS analysis."
+      },
+      {
+        "id": "docobj_010",
+        "path": "docs/spec/API_SPEC.md",
+        "audience": "advanced user, extension author, maintainer",
+        "terminal": "Reader can write correct code against the public API without inspecting source and can distinguish stable public behavior from internal implementation.",
+        "prereq": "Conceptual model is already understood; this is reference, not first instruction.",
+        "sections": [
+          [
+            "Public surface and stability",
+            "Define supported imports, aliases, and stability expectations."
+          ],
+          [
+            "Experiment signature",
+            "Exact parameters, defaults, types, exceptions, result semantics."
+          ],
+          [
+            "Probe APIs",
+            "Exact constructors, metadata rules, IDs, design helpers."
+          ],
+          [
+            "Extraction APIs",
+            "Exact site selection, reducers, batching/device/raw activation semantics."
+          ],
+          [
+            "Metric protocol and built-ins",
+            "Exact orientation, output shape, config, extension requirements."
+          ],
+          [
+            "Filtration protocol and built-ins",
+            "Exact control parameter semantics and snapshot guarantees."
+          ],
+          [
+            "Operators and analyses",
+            "Exact object/keyword mappings and configuration interfaces."
+          ],
+          [
+            "Results and serialization",
+            "Exact navigation, save/load behavior actually implemented."
+          ],
+          [
+            "Visualization",
+            "Exact callable surface and accepted result inputs."
+          ],
+          [
+            "Extension protocols",
+            "Minimal implementation contract for third-party reducers/metrics/filtrations/operators/analyses."
+          ],
+          [
+            "Error behavior",
+            "Validation failures and common misuse."
+          ]
+        ],
+        "representation_task": "Implement or configure a custom extension solely from the API spec and pass its documented contract."
+      },
+      {
+        "id": "docobj_011",
+        "path": "docs/spec/DATA_MODEL_SPEC.md",
+        "audience": "integration developer or maintainer",
+        "terminal": "Reader can understand and independently consume or serialize Eigenflow result/data objects without reverse-engineering source code.",
+        "prereq": "Public API and conceptual pipeline understood.",
+        "sections": [
+          [
+            "Object chain",
+            "Define ProbePopulation \u2192 RepresentationCollection \u2192 RelationalMatrix \u2192 GraphFiltration \u2192 AnalysisResult \u2192 ExperimentResult."
+          ],
+          [
+            "Identity/order invariants",
+            "Specify stable probe IDs and row/column ordering."
+          ],
+          [
+            "Shapes and dtypes",
+            "Specify tensor/array dimensions at each stage."
+          ],
+          [
+            "Metric semantics",
+            "Persist similarity/distance orientation and configuration."
+          ],
+          [
+            "Filtration snapshots",
+            "Specify parameter, edge density, threshold, adjacency, monotonicity."
+          ],
+          [
+            "Analysis payloads",
+            "Specify scalar/vector/record conventions by analysis family."
+          ],
+          [
+            "Provenance schema",
+            "Specify runtime/model/config/source metadata."
+          ],
+          [
+            "Persistence format",
+            "Describe only actual serialization behavior and reconstruction guarantees."
+          ],
+          [
+            "Versioning/compatibility",
+            "Define schema version and future migration policy."
+          ],
+          [
+            "Concrete serialized example",
+            "Show a real small result tree and access paths."
+          ]
+        ],
+        "representation_task": "Write an independent reader that correctly locates a chosen layer's spectral and factor outputs from a persisted result."
+      },
+      {
+        "id": "docobj_012",
+        "path": "docs/spec/EXECUTION_SPEC.md",
+        "audience": "maintainer/performance integrator",
+        "terminal": "Reader can predict what computation occurs, what is reused or recomputed, and where future caching/parallelization can be added without changing scientific semantics.",
+        "prereq": "Data model and API understood.",
+        "sections": [
+          [
+            "Actual execution order",
+            "Describe current extraction \u2192 metric \u2192 filtration \u2192 analyses path exactly."
+          ],
+          [
+            "Dependency graph",
+            "State computational dependencies independently of whether caching is implemented."
+          ],
+          [
+            "Reuse semantics",
+            "Document what objects are reused within a run."
+          ],
+          [
+            "Invalidation logic",
+            "Explain which upstream configuration changes invalidate which descendants."
+          ],
+          [
+            "Batch/device behavior",
+            "Specify model execution, memory movement, eval/no-grad expectations."
+          ],
+          [
+            "Failure and partial-result behavior",
+            "Specify errors and whether partial work persists."
+          ],
+          [
+            "Performance model",
+            "Identify N, D, layers, control steps, sparse/dense eigensolver scaling concerns."
+          ],
+          [
+            "Caching status",
+            "Clearly separate current implementation from planned extension architecture."
+          ],
+          [
+            "Worked recomputation cases",
+            "Show consequences of changing metric, filtration, or analysis only."
+          ]
+        ],
+        "representation_task": "Given two experiment configurations, predict which computational stages must differ and which results can be reused."
+      },
+      {
+        "id": "docobj_013",
+        "path": "CONTRIBUTING.md",
+        "audience": "new contributor",
+        "terminal": "Contributor can set up development, extend one subsystem correctly, update tests/docs/state, and submit a scientifically and architecturally compliant change.",
+        "prereq": "Basic package concept; Python development competence.",
+        "sections": [
+          [
+            "Development setup",
+            "Clone/install/test commands and supported versions."
+          ],
+          [
+            "Repository architecture",
+            "Locate core subsystems and dependency boundaries."
+          ],
+          [
+            "Extension recipes",
+            "Add metric, reducer, filtration, operator, analysis, visualization, preset."
+          ],
+          [
+            "Testing expectations",
+            "Unit/integration/regression/numerical validation."
+          ],
+          [
+            "Scientific documentation expectations",
+            "Require indication, assumptions, output semantics, interpretive limits."
+          ],
+          [
+            "Persistent-state workflow",
+            "Explain canonical state, manifests, schema evolution, derivative artifacts."
+          ],
+          [
+            "PR checklist",
+            "Specify required updates and validation."
+          ]
+        ],
+        "representation_task": "Add a small custom metric plus tests/docs/state updates following only CONTRIBUTING."
+      },
+      {
+        "id": "docobj_014",
+        "path": "CHANGELOG.md",
+        "audience": "user upgrading or evaluating a release",
+        "terminal": "Reader can determine what capabilities, behaviors, limitations, and breaking/scientific-method changes apply to a release.",
+        "prereq": "None beyond knowing the package.",
+        "sections": [
+          [
+            "Release status",
+            "Version/date/stability."
+          ],
+          [
+            "Added",
+            "User-visible capabilities grouped by subsystem."
+          ],
+          [
+            "Changed",
+            "Behavioral/API/scientific-method changes."
+          ],
+          [
+            "Fixed",
+            "Correctness bugs."
+          ],
+          [
+            "Deprecated/removed",
+            "Migration-relevant changes."
+          ],
+          [
+            "Known limitations",
+            "Unimplemented or caveated behavior."
+          ],
+          [
+            "Scientific interpretation changes",
+            "Changes that affect meaning/comparability of outputs."
+          ]
+        ],
+        "representation_task": "Determine whether a saved experiment remains comparable after upgrading."
+      },
+      {
+        "id": "docobj_015",
+        "path": "SECURITY.md",
+        "audience": "user or vulnerability reporter",
+        "terminal": "Reader can identify relevant trust boundaries, avoid unsafe model/data loading practices, and report a vulnerability through a clear channel.",
+        "prereq": "Basic package use.",
+        "sections": [
+          [
+            "Supported versions",
+            "Know what receives security fixes."
+          ],
+          [
+            "Reporting",
+            "Actionable private reporting path."
+          ],
+          [
+            "Model serialization boundary",
+            "Understand torch/pickle risks."
+          ],
+          [
+            "User-callable extensions",
+            "Understand arbitrary callable/custom metric risk."
+          ],
+          [
+            "Resource exhaustion",
+            "Understand large probe/spectral workloads."
+          ],
+          [
+            "Sensitive probe data",
+            "Understand local data handling responsibilities."
+          ],
+          [
+            "Disclosure process",
+            "Know expected handling lifecycle."
+          ]
+        ],
+        "representation_task": "Given a proposed workflow involving an untrusted model artifact, identify the unsafe step and safer boundary."
+      },
+      {
+        "id": "docobj_016",
+        "path": "CODE_OF_CONDUCT.md",
+        "audience": "contributors/community",
+        "terminal": "Reader knows behavioral expectations, reporting routes, enforcement scope, and project-specific norms for scientific disagreement.",
+        "prereq": "None.",
+        "sections": [
+          [
+            "Expected behavior",
+            "Professional and inclusive conduct."
+          ],
+          [
+            "Unacceptable behavior",
+            "Concrete prohibited conduct."
+          ],
+          [
+            "Scientific disagreement norm",
+            "Evidence/reproducibility over personal conflict."
+          ],
+          [
+            "Scope",
+            "Where policy applies."
+          ],
+          [
+            "Reporting/enforcement",
+            "Who receives reports and how action is handled."
+          ]
+        ],
+        "representation_task": "Know how to report a conduct issue and what process follows."
+      },
+      {
+        "id": "docobj_017",
+        "path": "CITATION.cff",
+        "audience": "researcher citing software",
+        "terminal": "Researcher can produce an accurate citation for the exact software release.",
+        "prereq": "Use of Eigenflow in research.",
+        "sections": [
+          [
+            "Identity",
+            "Canonical title/authors/repository."
+          ],
+          [
+            "Release",
+            "Correct version/date."
+          ],
+          [
+            "Archive",
+            "DOI or archival identifier if present."
+          ],
+          [
+            "Preferred citation",
+            "Machine-readable citation metadata."
+          ]
+        ],
+        "representation_task": "Generate a citation matching the installed/published release."
+      },
+      {
+        "id": "docobj_018",
+        "path": "LICENSE",
+        "audience": "user/contributor/legal reviewer",
+        "terminal": "Reader can determine permissions and obligations unambiguously and see consistent ownership/license metadata across repository surfaces.",
+        "prereq": "None.",
+        "sections": [
+          [
+            "License text",
+            "Preserve standard legal text."
+          ],
+          [
+            "Ownership consistency",
+            "Verify holder/year against package metadata."
+          ]
+        ],
+        "representation_task": "Determine whether intended reuse is permitted under the stated license."
+      },
+      {
+        "id": "docobj_019",
+        "path": "pyproject.toml",
+        "audience": "installer/package-index user and tooling",
+        "terminal": "Package tooling and users can determine install requirements, compatibility, project links, metadata, and optional dependency groups accurately.",
+        "prereq": "Python packaging familiarity.",
+        "sections": [
+          [
+            "Build metadata",
+            "Correct backend/build requirements."
+          ],
+          [
+            "Runtime compatibility",
+            "Python/PyTorch dependency ranges."
+          ],
+          [
+            "Project metadata",
+            "Description/license/authors/keywords/classifiers."
+          ],
+          [
+            "URLs",
+            "Repository/docs/issues/changelog."
+          ],
+          [
+            "Optional dependencies",
+            "Docs/dev/performance groups if supported."
+          ],
+          [
+            "Tooling",
+            "Test/lint/type configuration as adopted."
+          ]
+        ],
+        "representation_task": "Install the intended package configuration and navigate from package metadata to documentation/issues."
+      },
+      {
+        "id": "docobj_020",
+        "path": "project_state/STATE_PROTOCOL.md",
+        "audience": "maintainer/AI collaborator",
+        "terminal": "Maintainer can distinguish canonical semantic state, local Git state, remote state, derivative artifacts, and execute/resume project mutations without losing provenance.",
+        "prereq": "Repository maintenance role.",
+        "sections": [
+          [
+            "Scope",
+            "State clearly that this governs project-development state, not experiment result semantics."
+          ],
+          [
+            "Authority",
+            "Define canonical state versus conversation/derivatives."
+          ],
+          [
+            "Mutation cycle",
+            "Read \u2192 propose \u2192 validate \u2192 persist \u2192 derive \u2192 checkpoint."
+          ],
+          [
+            "Schema evolution",
+            "Migration/deprecation/backfill rules."
+          ],
+          [
+            "Execution manifest",
+            "Resume/invalidation semantics."
+          ],
+          [
+            "Git and remote synchronization",
+            "Differentiate state commit, Git commit, and push."
+          ],
+          [
+            "Documentation task governance",
+            "Explain open-task/audit/objective mechanisms."
+          ]
+        ],
+        "representation_task": "Resume an interrupted project unit and determine whether a local committed change has also reached the remote."
+      }
+    ],
+    "content_dependency_map": {
+      "id": "instr_doc_map_001",
+      "status": "established",
+      "artifact": "docs/CONTENT_DEPENDENCY_MAP.md",
+      "method": "inverse design from document terminal reader state to section-level prerequisites and representation tasks",
+      "created_at": "2026-10-05T01:08:20.908012+00:00"
+    },
+    "trajectory_moves": [
+      {
+        "id": "move_01",
+        "name": "Frame the interpretability problem",
+        "objective": "Recognize Eigenflow as a controlled post hoc interpretability method for population-level relational structure rather than an automatic semantic explanation system."
+      },
+      {
+        "id": "move_02",
+        "name": "Establish the experimental object",
+        "objective": "Understand probe population, layerwise representations, relational geometry, filtration, control scale, and structural observables as the core experimental chain."
+      },
+      {
+        "id": "move_03",
+        "name": "Design identifying probes",
+        "objective": "Construct probe populations whose controlled contrasts make competing latent-feature hypotheses empirically distinguishable."
+      },
+      {
+        "id": "move_04",
+        "name": "Choose measurement geometry",
+        "objective": "Choose representation reduction, metric, filtration, control coordinate, and sites in a way that matches the experimental question."
+      },
+      {
+        "id": "move_05",
+        "name": "Read structural observables",
+        "objective": "Understand component, percolation, spectral, core/community, bridge, and factor-alignment outputs as distinct measurements of relational organization."
+      },
+      {
+        "id": "move_06",
+        "name": "Interpret across layer and scale",
+        "objective": "Read Q(layer, control) as a developmental map of relational organization across network depth and structural scale."
+      },
+      {
+        "id": "move_07",
+        "name": "Apply inferential discipline",
+        "objective": "Separate direct observation, candidate latent-feature inference, alternative explanations, robustness evidence, and unsupported claims."
+      },
+      {
+        "id": "move_08",
+        "name": "Demonstrate applied competence",
+        "objective": "Design, execute, compare, interpret, and report a complete experiment with justified methodological choices and bounded conclusions."
+      }
+    ],
+    "section_trajectory_map": {
+      "id": "instr_section_map_001",
+      "status": "established",
+      "method": "backward-solved document objectives decomposed into conceptually coherent sections; global trajectory moves assigned by prerequisite and instructional function",
+      "documents": [
+        {
+          "path": "README.md",
+          "sections": [
+            {
+              "title": "What Eigenflow is for",
+              "moves": [
+                "move_01"
+              ],
+              "objective": "Establish the problem class and the package's epistemic role."
+            },
+            {
+              "title": "The experimental object",
+              "moves": [
+                "move_02"
+              ],
+              "objective": "Introduce the complete population-level chain before syntax."
+            },
+            {
+              "title": "When Eigenflow is indicated",
+              "moves": [
+                "move_01",
+                "move_03"
+              ],
+              "objective": "Connect research questions to probe-identifiable relational hypotheses."
+            },
+            {
+              "title": "Quick start: one complete experiment",
+              "moves": [
+                "move_02",
+                "move_04",
+                "move_05",
+                "move_08"
+              ],
+              "objective": "Show the smallest end-to-end implementation with conceptual annotations."
+            },
+            {
+              "title": "How to read the first outputs",
+              "moves": [
+                "move_05",
+                "move_06",
+                "move_07"
+              ],
+              "objective": "Teach observation before interpretation using one concrete result bundle."
+            },
+            {
+              "title": "What the choices mean",
+              "moves": [
+                "move_04"
+              ],
+              "objective": "Explain sites, reducers, metrics, filtrations, analyses, and edge density."
+            },
+            {
+              "title": "What you may and may not conclude",
+              "moves": [
+                "move_07"
+              ],
+              "objective": "Define evidential scope and central failure modes."
+            },
+            {
+              "title": "Where to go next",
+              "moves": [
+                "move_08"
+              ],
+              "objective": "Route readers into design, spectral, percolation, interpretation, API, and PCSCS material."
+            }
+          ]
+        },
+        {
+          "path": "docs/index.md",
+          "sections": [
+            {
+              "title": "Choose your path",
+              "moves": [
+                "move_01",
+                "move_08"
+              ],
+              "objective": "Route users by role and goal."
+            },
+            {
+              "title": "Conceptual learning path",
+              "moves": [
+                "move_01",
+                "move_02",
+                "move_03",
+                "move_04",
+                "move_05",
+                "move_06",
+                "move_07",
+                "move_08"
+              ],
+              "objective": "Expose the prerequisite order."
+            },
+            {
+              "title": "Task-based navigation",
+              "moves": [
+                "move_03",
+                "move_04",
+                "move_05",
+                "move_07",
+                "move_08"
+              ],
+              "objective": "Route by experimental action."
+            },
+            {
+              "title": "Reference material",
+              "moves": [
+                "move_08"
+              ],
+              "objective": "Separate instruction from technical reference."
+            }
+          ]
+        },
+        {
+          "path": "docs/concepts/experimental_model.md",
+          "sections": [
+            {
+              "title": "The inverse problem",
+              "moves": [
+                "move_01",
+                "move_07"
+              ],
+              "objective": "Define latent feature organization as unobserved and structural observables as evidence."
+            },
+            {
+              "title": "The population as the unit of analysis",
+              "moves": [
+                "move_02"
+              ],
+              "objective": "Establish why the relational population, not one activation path, is primary."
+            },
+            {
+              "title": "From hypothesis to probe contrast",
+              "moves": [
+                "move_03"
+              ],
+              "objective": "Translate semantic questions into distinguishable empirical hypotheses."
+            },
+            {
+              "title": "Probe factors and experimental control",
+              "moves": [
+                "move_03"
+              ],
+              "objective": "Define manipulated, controlled, nuisance, and observational variables."
+            },
+            {
+              "title": "Factorial and matched designs",
+              "moves": [
+                "move_03",
+                "move_08"
+              ],
+              "objective": "Teach concrete probe construction patterns."
+            },
+            {
+              "title": "Predicting structural outcomes",
+              "moves": [
+                "move_03",
+                "move_05",
+                "move_07"
+              ],
+              "objective": "Require pre-analysis predictions tied to observables."
+            },
+            {
+              "title": "Confounds and competing explanations",
+              "moves": [
+                "move_07"
+              ],
+              "objective": "Enumerate design- and measurement-level alternatives."
+            },
+            {
+              "title": "Robustness as part of the experiment",
+              "moves": [
+                "move_04",
+                "move_07",
+                "move_08"
+              ],
+              "objective": "Plan metric/reducer/probe/resampling checks."
+            },
+            {
+              "title": "Worked inverse-problem examples",
+              "moves": [
+                "move_03",
+                "move_04",
+                "move_05",
+                "move_06",
+                "move_07",
+                "move_08"
+              ],
+              "objective": "Integrate design through bounded inference."
+            }
+          ]
+        },
+        {
+          "path": "docs/concepts/percolation.md",
+          "sections": [
+            {
+              "title": "Why graph growth is useful",
+              "moves": [
+                "move_05"
+              ],
+              "objective": "Motivate percolation-style observables for representation filtrations."
+            },
+            {
+              "title": "Control direction and graph growth",
+              "moves": [
+                "move_04",
+                "move_05"
+              ],
+              "objective": "Relate parameter orientation to edge addition/removal."
+            },
+            {
+              "title": "Native threshold and edge density",
+              "moves": [
+                "move_04",
+                "move_06"
+              ],
+              "objective": "Explain comparable control coordinates."
+            },
+            {
+              "title": "Giant-component fraction",
+              "moves": [
+                "move_05",
+                "move_06"
+              ],
+              "objective": "Teach P\u221e as global coalescence observable."
+            },
+            {
+              "title": "Second-largest component",
+              "moves": [
+                "move_05",
+                "move_06"
+              ],
+              "objective": "Teach competing large-scale structure."
+            },
+            {
+              "title": "Susceptibility",
+              "moves": [
+                "move_05",
+                "move_06"
+              ],
+              "objective": "Teach mesoscale organization and peak interpretation."
+            },
+            {
+              "title": "Cluster-size distributions",
+              "moves": [
+                "move_05",
+                "move_06"
+              ],
+              "objective": "Teach fragmentation/hierarchy signatures."
+            },
+            {
+              "title": "Merge jumps and bridge probes",
+              "moves": [
+                "move_05",
+                "move_07"
+              ],
+              "objective": "Connect structural transitions to pivotal samples."
+            },
+            {
+              "title": "Factor-conditioned percolation",
+              "moves": [
+                "move_03",
+                "move_05",
+                "move_06",
+                "move_07"
+              ],
+              "objective": "Relate graph growth to semantic factors."
+            },
+            {
+              "title": "Finite-size analysis",
+              "moves": [
+                "move_07"
+              ],
+              "objective": "Assess sample-dependence versus stable behavior."
+            },
+            {
+              "title": "Criticality language and limits",
+              "moves": [
+                "move_07"
+              ],
+              "objective": "Bound statistical-physics claims."
+            },
+            {
+              "title": "Worked neural-network interpretation",
+              "moves": [
+                "move_05",
+                "move_06",
+                "move_07",
+                "move_08"
+              ],
+              "objective": "Synthesize multiple curves in context."
+            }
+          ]
+        },
+        {
+          "path": "docs/concepts/spectral_analysis.md",
+          "sections": [
+            {
+              "title": "Why spectra add information",
+              "moves": [
+                "move_05"
+              ],
+              "objective": "Motivate global operator-level structure beyond components."
+            },
+            {
+              "title": "Choosing a graph operator",
+              "moves": [
+                "move_04",
+                "move_05"
+              ],
+              "objective": "Map operators to distinct structural questions."
+            },
+            {
+              "title": "Eigenvalue observables",
+              "moves": [
+                "move_05"
+              ],
+              "objective": "Explain radius, connectivity, gaps, entropy, energy, effective rank."
+            },
+            {
+              "title": "Eigenvectors and eigenspaces",
+              "moves": [
+                "move_05",
+                "move_07"
+              ],
+              "objective": "Interpret structural modes without reifying coordinates."
+            },
+            {
+              "title": "Localization and IPR",
+              "moves": [
+                "move_05",
+                "move_07"
+              ],
+              "objective": "Distinguish distributed from probe-localized structure."
+            },
+            {
+              "title": "Spectral flow across the control parameter",
+              "moves": [
+                "move_05",
+                "move_06"
+              ],
+              "objective": "Teach trajectories rather than isolated spectra."
+            },
+            {
+              "title": "Spectral flow across network depth",
+              "moves": [
+                "move_06"
+              ],
+              "objective": "Interpret emergence/change through layers."
+            },
+            {
+              "title": "Crossings, degeneracy, and correspondence",
+              "moves": [
+                "move_05",
+                "move_07"
+              ],
+              "objective": "Prevent naive eigenvector-index interpretations."
+            },
+            {
+              "title": "Numerical scope and solver choices",
+              "moves": [
+                "move_04",
+                "move_07"
+              ],
+              "objective": "Relate computation to trustworthy measurement."
+            },
+            {
+              "title": "Connecting spectra to probe hypotheses",
+              "moves": [
+                "move_03",
+                "move_05",
+                "move_07"
+              ],
+              "objective": "Make spectral interpretation experimentally grounded."
+            },
+            {
+              "title": "Worked triangulated example",
+              "moves": [
+                "move_05",
+                "move_06",
+                "move_07",
+                "move_08"
+              ],
+              "objective": "Combine spectra with topology and factor alignment."
+            }
+          ]
+        },
+        {
+          "path": "docs/guides/vgg16_probe_experiment.md",
+          "sections": [
+            {
+              "title": "Question and hypothesis",
+              "moves": [
+                "move_01",
+                "move_03"
+              ],
+              "objective": "Start from an interpretability claim that the probe can test."
+            },
+            {
+              "title": "Model and preprocessing",
+              "moves": [
+                "move_02",
+                "move_04"
+              ],
+              "objective": "Make representation generation reproducible."
+            },
+            {
+              "title": "Build the probe population",
+              "moves": [
+                "move_03"
+              ],
+              "objective": "Construct controlled image factors and metadata."
+            },
+            {
+              "title": "Inspect and choose VGG16 sites",
+              "moves": [
+                "move_02",
+                "move_04"
+              ],
+              "objective": "Connect PyTorch modules to representational stages."
+            },
+            {
+              "title": "Choose representation reduction",
+              "moves": [
+                "move_04",
+                "move_07"
+              ],
+              "objective": "Explain flattening/pooling consequences."
+            },
+            {
+              "title": "Choose metric and filtration",
+              "moves": [
+                "move_04"
+              ],
+              "objective": "Justify geometry and control scale."
+            },
+            {
+              "title": "Run the analyses",
+              "moves": [
+                "move_05",
+                "move_08"
+              ],
+              "objective": "Execute the configured experiment."
+            },
+            {
+              "title": "Navigate the result object",
+              "moves": [
+                "move_05",
+                "move_08"
+              ],
+              "objective": "Retrieve actual outputs correctly."
+            },
+            {
+              "title": "Visualize layer \u00d7 control behavior",
+              "moves": [
+                "move_06"
+              ],
+              "objective": "See the population sequence across depth and scale."
+            },
+            {
+              "title": "Interpret the outputs",
+              "moves": [
+                "move_07"
+              ],
+              "objective": "Write observation/inference/alternatives/not-supported."
+            },
+            {
+              "title": "Stress-test the interpretation",
+              "moves": [
+                "move_04",
+                "move_07",
+                "move_08"
+              ],
+              "objective": "Repeat with alternate measurement choices."
+            },
+            {
+              "title": "Save and reproduce",
+              "moves": [
+                "move_08"
+              ],
+              "objective": "Preserve provenance and rerunability."
+            }
+          ]
+        },
+        {
+          "path": "docs/guides/interpreting_results.md",
+          "sections": [
+            {
+              "title": "The interpretation protocol",
+              "moves": [
+                "move_07"
+              ],
+              "objective": "Establish observation \u2192 inference \u2192 alternatives \u2192 unsupported claim."
+            },
+            {
+              "title": "Connected components and merge structure",
+              "moves": [
+                "move_05",
+                "move_06",
+                "move_07"
+              ],
+              "objective": "Interpret coherence, fragmentation, merge order, and bridges."
+            },
+            {
+              "title": "Percolation observables",
+              "moves": [
+                "move_05",
+                "move_06",
+                "move_07"
+              ],
+              "objective": "Interpret graph-growth patterns."
+            },
+            {
+              "title": "Spectral observables",
+              "moves": [
+                "move_05",
+                "move_06",
+                "move_07"
+              ],
+              "objective": "Interpret operator-level structure and modes."
+            },
+            {
+              "title": "Factor and class alignment",
+              "moves": [
+                "move_03",
+                "move_05",
+                "move_07"
+              ],
+              "objective": "Relate structural patterns to controlled variables."
+            },
+            {
+              "title": "Cores, communities, and bridge probes",
+              "moves": [
+                "move_05",
+                "move_07"
+              ],
+              "objective": "Interpret robustness and pivotal examples."
+            },
+            {
+              "title": "Transition summaries",
+              "moves": [
+                "move_05",
+                "move_06",
+                "move_07"
+              ],
+              "objective": "Treat transition detectors as summaries, not semantics."
+            },
+            {
+              "title": "Convergent evidence",
+              "moves": [
+                "move_05",
+                "move_07"
+              ],
+              "objective": "Combine complementary observables."
+            },
+            {
+              "title": "Divergent evidence",
+              "moves": [
+                "move_07"
+              ],
+              "objective": "Diagnose disagreement rather than average it away."
+            },
+            {
+              "title": "Robustness and sensitivity",
+              "moves": [
+                "move_04",
+                "move_07"
+              ],
+              "objective": "Assess dependence on design and measurement choices."
+            },
+            {
+              "title": "Writing a bounded conclusion",
+              "moves": [
+                "move_07",
+                "move_08"
+              ],
+              "objective": "Produce a human-interpretable feature claim with evidential qualifiers."
+            },
+            {
+              "title": "Failure modes",
+              "moves": [
+                "move_07",
+                "move_08"
+              ],
+              "objective": "Recognize experiments that do not identify the intended feature question."
+            }
+          ]
+        },
+        {
+          "path": "examples/basic_mlp.py",
+          "sections": [
+            {
+              "title": "Example objective",
+              "moves": [
+                "move_01"
+              ],
+              "objective": "State what the executable example demonstrates."
+            },
+            {
+              "title": "Deterministic probe population",
+              "moves": [
+                "move_02",
+                "move_03"
+              ],
+              "objective": "Construct a population with interpretable metadata."
+            },
+            {
+              "title": "Inspect representation sites",
+              "moves": [
+                "move_02"
+              ],
+              "objective": "Show where population representations are captured."
+            },
+            {
+              "title": "Configure metric and filtration",
+              "moves": [
+                "move_04"
+              ],
+              "objective": "Tie code choices to the measurement geometry."
+            },
+            {
+              "title": "Run structural analyses",
+              "moves": [
+                "move_05",
+                "move_08"
+              ],
+              "objective": "Demonstrate the actual callable pipeline."
+            },
+            {
+              "title": "Inspect outputs",
+              "moves": [
+                "move_05",
+                "move_06"
+              ],
+              "objective": "Retrieve meaningful values across sites/control."
+            },
+            {
+              "title": "Interpret and modify",
+              "moves": [
+                "move_07",
+                "move_08"
+              ],
+              "objective": "Explain bounds and invite one controlled variation."
+            }
+          ]
+        },
+        {
+          "path": "examples/pcscs_compatibility.py",
+          "sections": [
+            {
+              "title": "PCSCS as a special case",
+              "moves": [
+                "move_01",
+                "move_02"
+              ],
+              "objective": "Map the old method into the general framework."
+            },
+            {
+              "title": "Run the PCSCS preset",
+              "moves": [
+                "move_08"
+              ],
+              "objective": "Provide deterministic compatibility syntax."
+            },
+            {
+              "title": "Expand the preset",
+              "moves": [
+                "move_04"
+              ],
+              "objective": "Expose cosine, threshold filtration, and component analysis explicitly."
+            },
+            {
+              "title": "Inspect PCSCS outputs",
+              "moves": [
+                "move_05",
+                "move_06"
+              ],
+              "objective": "Retrieve layerwise merge/component results."
+            },
+            {
+              "title": "Add spectral/percolation analyses",
+              "moves": [
+                "move_05",
+                "move_08"
+              ],
+              "objective": "Demonstrate the generalization beyond PCSCS."
+            },
+            {
+              "title": "Interpret continuity and limits",
+              "moves": [
+                "move_07"
+              ],
+              "objective": "Clarify what transfers from PCSCS interpretation."
+            }
+          ]
+        },
+        {
+          "path": "docs/spec/API_SPEC.md",
+          "sections": [
+            {
+              "title": "Scope and stability",
+              "moves": [
+                "move_08"
+              ],
+              "objective": "Define the supported public surface."
+            },
+            {
+              "title": "Experiment",
+              "moves": [
+                "move_02",
+                "move_04",
+                "move_08"
+              ],
+              "objective": "Give exact orchestration syntax and semantics."
+            },
+            {
+              "title": "ProbePopulation",
+              "moves": [
+                "move_03",
+                "move_08"
+              ],
+              "objective": "Specify construction/design APIs."
+            },
+            {
+              "title": "Extraction and site selection",
+              "moves": [
+                "move_02",
+                "move_04",
+                "move_08"
+              ],
+              "objective": "Specify model-boundary APIs."
+            },
+            {
+              "title": "Reducers and representation transforms",
+              "moves": [
+                "move_04",
+                "move_08"
+              ],
+              "objective": "Specify feature-vector construction."
+            },
+            {
+              "title": "Metrics",
+              "moves": [
+                "move_04",
+                "move_08"
+              ],
+              "objective": "Specify orientation/configuration/extension."
+            },
+            {
+              "title": "Filtrations",
+              "moves": [
+                "move_04",
+                "move_08"
+              ],
+              "objective": "Specify control semantics and snapshots."
+            },
+            {
+              "title": "Operators",
+              "moves": [
+                "move_05",
+                "move_08"
+              ],
+              "objective": "Specify spectral operator APIs."
+            },
+            {
+              "title": "Analyses and keywords",
+              "moves": [
+                "move_05",
+                "move_08"
+              ],
+              "objective": "Specify available analyses and config mappings."
+            },
+            {
+              "title": "Results and serialization",
+              "moves": [
+                "move_05",
+                "move_08"
+              ],
+              "objective": "Specify navigation/persistence behavior."
+            },
+            {
+              "title": "Visualization",
+              "moves": [
+                "move_06",
+                "move_08"
+              ],
+              "objective": "Specify supported visualization calls."
+            },
+            {
+              "title": "Extension protocols",
+              "moves": [
+                "move_08"
+              ],
+              "objective": "Specify custom component contracts."
+            },
+            {
+              "title": "Errors and validation",
+              "moves": [
+                "move_07",
+                "move_08"
+              ],
+              "objective": "Specify misuse/failure behavior."
+            }
+          ]
+        },
+        {
+          "path": "docs/spec/DATA_MODEL_SPEC.md",
+          "sections": [
+            {
+              "title": "End-to-end object chain",
+              "moves": [
+                "move_02",
+                "move_08"
+              ],
+              "objective": "Define the persistent computational objects."
+            },
+            {
+              "title": "Probe identity and ordering",
+              "moves": [
+                "move_03",
+                "move_08"
+              ],
+              "objective": "Preserve population semantics."
+            },
+            {
+              "title": "Representation shapes",
+              "moves": [
+                "move_02",
+                "move_04",
+                "move_08"
+              ],
+              "objective": "Specify raw/reduced dimensions."
+            },
+            {
+              "title": "Relational matrices",
+              "moves": [
+                "move_04",
+                "move_08"
+              ],
+              "objective": "Specify metric orientation and metadata."
+            },
+            {
+              "title": "Filtration snapshots",
+              "moves": [
+                "move_04",
+                "move_05",
+                "move_08"
+              ],
+              "objective": "Specify graph-family state."
+            },
+            {
+              "title": "Analysis payloads",
+              "moves": [
+                "move_05",
+                "move_08"
+              ],
+              "objective": "Specify result structures by family."
+            },
+            {
+              "title": "Provenance",
+              "moves": [
+                "move_07",
+                "move_08"
+              ],
+              "objective": "Specify lineage required for interpretation/reproduction."
+            },
+            {
+              "title": "Persistence and reconstruction",
+              "moves": [
+                "move_08"
+              ],
+              "objective": "Specify actual save/load behavior."
+            },
+            {
+              "title": "Schema evolution",
+              "moves": [
+                "move_08"
+              ],
+              "objective": "Specify compatibility/migrations."
+            },
+            {
+              "title": "Concrete serialized example",
+              "moves": [
+                "move_05",
+                "move_08"
+              ],
+              "objective": "Make the hierarchy inspectable."
+            }
+          ]
+        },
+        {
+          "path": "docs/spec/EXECUTION_SPEC.md",
+          "sections": [
+            {
+              "title": "Current execution path",
+              "moves": [
+                "move_02",
+                "move_08"
+              ],
+              "objective": "Describe actual ordering."
+            },
+            {
+              "title": "Computational dependency graph",
+              "moves": [
+                "move_04",
+                "move_05",
+                "move_08"
+              ],
+              "objective": "Show what depends on what."
+            },
+            {
+              "title": "Reuse within a run",
+              "moves": [
+                "move_08"
+              ],
+              "objective": "Explain actual reuse semantics."
+            },
+            {
+              "title": "Invalidation by configuration change",
+              "moves": [
+                "move_04",
+                "move_08"
+              ],
+              "objective": "Connect experimental choices to recomputation."
+            },
+            {
+              "title": "Batching, device, and model state",
+              "moves": [
+                "move_02",
+                "move_04",
+                "move_08"
+              ],
+              "objective": "Specify execution boundary."
+            },
+            {
+              "title": "Failure and partial results",
+              "moves": [
+                "move_08"
+              ],
+              "objective": "Specify failure semantics."
+            },
+            {
+              "title": "Performance model",
+              "moves": [
+                "move_04",
+                "move_05",
+                "move_08"
+              ],
+              "objective": "Explain computational scaling."
+            },
+            {
+              "title": "Caching: current versus planned",
+              "moves": [
+                "move_08"
+              ],
+              "objective": "Avoid overstating implementation."
+            },
+            {
+              "title": "Worked recomputation cases",
+              "moves": [
+                "move_04",
+                "move_08"
+              ],
+              "objective": "Demonstrate dependency reasoning."
+            }
+          ]
+        },
+        {
+          "path": "CONTRIBUTING.md",
+          "sections": [
+            {
+              "title": "Development setup",
+              "moves": [
+                "move_08"
+              ],
+              "objective": "Make contribution environment reproducible."
+            },
+            {
+              "title": "Repository architecture",
+              "moves": [
+                "move_02",
+                "move_08"
+              ],
+              "objective": "Orient contributors to subsystem boundaries."
+            },
+            {
+              "title": "Adding a metric",
+              "moves": [
+                "move_04",
+                "move_08"
+              ],
+              "objective": "Concrete extension recipe."
+            },
+            {
+              "title": "Adding a filtration",
+              "moves": [
+                "move_04",
+                "move_08"
+              ],
+              "objective": "Concrete extension recipe."
+            },
+            {
+              "title": "Adding an operator or analysis",
+              "moves": [
+                "move_05",
+                "move_08"
+              ],
+              "objective": "Concrete extension recipe."
+            },
+            {
+              "title": "Testing and numerical validation",
+              "moves": [
+                "move_07",
+                "move_08"
+              ],
+              "objective": "Require evidence for correctness."
+            },
+            {
+              "title": "Scientific documentation requirements",
+              "moves": [
+                "move_07",
+                "move_08"
+              ],
+              "objective": "Require indications and interpretive limits."
+            },
+            {
+              "title": "Persistent-state workflow",
+              "moves": [
+                "move_08"
+              ],
+              "objective": "Explain project governance."
+            },
+            {
+              "title": "Pull-request checklist",
+              "moves": [
+                "move_08"
+              ],
+              "objective": "Operational acceptance criteria."
+            }
+          ]
+        },
+        {
+          "path": "CHANGELOG.md",
+          "sections": [
+            {
+              "title": "Release summary",
+              "moves": [
+                "move_08"
+              ],
+              "objective": "Expose release identity/stability."
+            },
+            {
+              "title": "Added",
+              "moves": [
+                "move_08"
+              ],
+              "objective": "List new user-visible capabilities."
+            },
+            {
+              "title": "Changed",
+              "moves": [
+                "move_04",
+                "move_05",
+                "move_07",
+                "move_08"
+              ],
+              "objective": "Surface changes that alter behavior or interpretation."
+            },
+            {
+              "title": "Fixed",
+              "moves": [
+                "move_08"
+              ],
+              "objective": "Record correctness repairs."
+            },
+            {
+              "title": "Deprecated and removed",
+              "moves": [
+                "move_08"
+              ],
+              "objective": "Support migration."
+            },
+            {
+              "title": "Known limitations",
+              "moves": [
+                "move_07"
+              ],
+              "objective": "Expose current evidential/implementation boundaries."
+            },
+            {
+              "title": "Scientific interpretation changes",
+              "moves": [
+                "move_07",
+                "move_08"
+              ],
+              "objective": "Flag changes affecting comparability or meaning."
+            }
+          ]
+        },
+        {
+          "path": "SECURITY.md",
+          "sections": [
+            {
+              "title": "Supported versions",
+              "moves": [
+                "move_08"
+              ],
+              "objective": "State support boundary."
+            },
+            {
+              "title": "Reporting a vulnerability",
+              "moves": [
+                "move_08"
+              ],
+              "objective": "Provide an actionable route."
+            },
+            {
+              "title": "Model and serialization trust boundary",
+              "moves": [
+                "move_07",
+                "move_08"
+              ],
+              "objective": "Explain untrusted artifact risks."
+            },
+            {
+              "title": "Custom callable boundary",
+              "moves": [
+                "move_07",
+                "move_08"
+              ],
+              "objective": "Explain arbitrary-code risk."
+            },
+            {
+              "title": "Resource exhaustion",
+              "moves": [
+                "move_04",
+                "move_08"
+              ],
+              "objective": "Explain expensive workloads."
+            },
+            {
+              "title": "Sensitive probe data",
+              "moves": [
+                "move_03",
+                "move_08"
+              ],
+              "objective": "Explain data-handling responsibility."
+            },
+            {
+              "title": "Disclosure process",
+              "moves": [
+                "move_08"
+              ],
+              "objective": "Set expectations."
+            }
+          ]
+        },
+        {
+          "path": "CODE_OF_CONDUCT.md",
+          "sections": [
+            {
+              "title": "Our standards",
+              "moves": [
+                "move_08"
+              ],
+              "objective": "Define expected conduct."
+            },
+            {
+              "title": "Unacceptable behavior",
+              "moves": [
+                "move_08"
+              ],
+              "objective": "Define prohibited behavior."
+            },
+            {
+              "title": "Scientific disagreement",
+              "moves": [
+                "move_07",
+                "move_08"
+              ],
+              "objective": "Anchor disagreement in evidence and reproducibility."
+            },
+            {
+              "title": "Scope",
+              "moves": [
+                "move_08"
+              ],
+              "objective": "Define applicability."
+            },
+            {
+              "title": "Reporting and enforcement",
+              "moves": [
+                "move_08"
+              ],
+              "objective": "Define process."
+            }
+          ]
+        },
+        {
+          "path": "CITATION.cff",
+          "sections": [
+            {
+              "title": "Software identity",
+              "moves": [
+                "move_08"
+              ],
+              "objective": "Encode canonical package identity."
+            },
+            {
+              "title": "Release identity",
+              "moves": [
+                "move_08"
+              ],
+              "objective": "Encode version/date."
+            },
+            {
+              "title": "Archival identity",
+              "moves": [
+                "move_08"
+              ],
+              "objective": "Encode DOI if present."
+            },
+            {
+              "title": "Preferred citation",
+              "moves": [
+                "move_08"
+              ],
+              "objective": "Support accurate citation."
+            }
+          ]
+        },
+        {
+          "path": "LICENSE",
+          "sections": [
+            {
+              "title": "License grant",
+              "moves": [
+                "move_08"
+              ],
+              "objective": "Preserve legal terms."
+            },
+            {
+              "title": "Ownership metadata consistency",
+              "moves": [
+                "move_08"
+              ],
+              "objective": "Keep holder/year consistent elsewhere."
+            }
+          ]
+        },
+        {
+          "path": "pyproject.toml",
+          "sections": [
+            {
+              "title": "Build system",
+              "moves": [
+                "move_08"
+              ],
+              "objective": "Specify build backend."
+            },
+            {
+              "title": "Runtime requirements",
+              "moves": [
+                "move_08"
+              ],
+              "objective": "Specify compatibility."
+            },
+            {
+              "title": "Project metadata",
+              "moves": [
+                "move_01",
+                "move_08"
+              ],
+              "objective": "Expose concise indication/identity."
+            },
+            {
+              "title": "Project URLs",
+              "moves": [
+                "move_08"
+              ],
+              "objective": "Route users to docs/issues/source."
+            },
+            {
+              "title": "Optional dependency groups",
+              "moves": [
+                "move_08"
+              ],
+              "objective": "Expose install variants."
+            },
+            {
+              "title": "Development tooling",
+              "moves": [
+                "move_08"
+              ],
+              "objective": "Configure tests/lint/type tools if adopted."
+            }
+          ]
+        },
+        {
+          "path": "project_state/STATE_PROTOCOL.md",
+          "sections": [
+            {
+              "title": "Purpose and scope",
+              "moves": [
+                "move_08"
+              ],
+              "objective": "Separate project-development state from scientific experiment state."
+            },
+            {
+              "title": "Authority",
+              "moves": [
+                "move_08"
+              ],
+              "objective": "Define canonical sources."
+            },
+            {
+              "title": "Mutation cycle",
+              "moves": [
+                "move_08"
+              ],
+              "objective": "Define durable change workflow."
+            },
+            {
+              "title": "Schema evolution",
+              "moves": [
+                "move_08"
+              ],
+              "objective": "Define migration."
+            },
+            {
+              "title": "Execution manifest",
+              "moves": [
+                "move_08"
+              ],
+              "objective": "Define interruption/resumption."
+            },
+            {
+              "title": "Git and remote synchronization",
+              "moves": [
+                "move_08"
+              ],
+              "objective": "Separate state mutation, local commit, and push."
+            },
+            {
+              "title": "Human-facing documentation governance",
+              "moves": [
+                "move_01",
+                "move_07",
+                "move_08"
+              ],
+              "objective": "Persist instructional objectives, audits, and acceptance criteria."
+            }
+          ]
+        }
+      ],
+      "created_at": "2026-10-05T01:13:28.451103+00:00"
+    },
+    "antagonistic_drafting_protocol": {
+      "id": "instr_draft_protocol_001",
+      "status": "committed",
+      "artifact": "project_state/EDITORIAL_DRAFTING_PROTOCOL.md",
+      "authors": [
+        "technical software developer and documentation writer",
+        "academic author preparing a manuscript for a computational interpretability journal",
+        "research methods author writing training materials for research practitioners",
+        "computational statistics professor with a background in computational research design interested in interpretation of results"
+      ],
+      "editorial_board": [
+        "software codebase team lead",
+        "compliance and liability counselor",
+        "clarity and communication editor"
+      ],
+      "rule": "independent drafts -> antagonistic editorial adjudication -> final synthesis"
+    },
+    "editorial_completion": {
+      "status": "complete",
+      "protocol": "instr_draft_protocol_001",
+      "units": [
+        {
+          "path": "README.md",
+          "final_sha256": "3104539e680325543db85a53f54757fdbd26de6f5479cb2c628d2135680db871",
+          "draft_dir": "project_state/editorial/README_md",
+          "board_adjudicated": true
+        },
+        {
+          "path": "docs/index.md",
+          "final_sha256": "b75111da3cdeb22163082f8805aca33184edf2f1ceeef09148dc73ea85508488",
+          "draft_dir": "project_state/editorial/docs__index_md",
+          "board_adjudicated": true
+        },
+        {
+          "path": "docs/concepts/experimental_model.md",
+          "final_sha256": "3eef27ac131faa40cde701699e53d790bdf57f94354ce89805451769cc1f5b18",
+          "draft_dir": "project_state/editorial/docs__concepts__experimental_model_md",
+          "board_adjudicated": true
+        },
+        {
+          "path": "docs/concepts/percolation.md",
+          "final_sha256": "b9f24a3e8a53a753e0bfa942ec6ce7f369c11bc7c6d56438516c5f9980466808",
+          "draft_dir": "project_state/editorial/docs__concepts__percolation_md",
+          "board_adjudicated": true
+        },
+        {
+          "path": "docs/concepts/spectral_analysis.md",
+          "final_sha256": "a5453ab2b0020f1aa2a4cb81dfd2c9f89d3899e5002827d6ca9d3548276f97a1",
+          "draft_dir": "project_state/editorial/docs__concepts__spectral_analysis_md",
+          "board_adjudicated": true
+        },
+        {
+          "path": "docs/guides/vgg16_probe_experiment.md",
+          "final_sha256": "9e08ee9f8de36b39744dfe06eedd3d1531831056f79303f0f6bed1f39c33d493",
+          "draft_dir": "project_state/editorial/docs__guides__vgg16_probe_experiment_md",
+          "board_adjudicated": true
+        },
+        {
+          "path": "docs/guides/interpreting_results.md",
+          "final_sha256": "33d53345d635f1fe799e9f4f06a87bf18b808757819434aa005f4bb6a5cfdc36",
+          "draft_dir": "project_state/editorial/docs__guides__interpreting_results_md",
+          "board_adjudicated": true
+        },
+        {
+          "path": "examples/basic_mlp.py",
+          "final_sha256": "a3cdbb01b7f509f2d23634fc9f1431f2795d1a3501a9170152c0501962312519",
+          "draft_dir": "project_state/editorial/examples__basic_mlp_py",
+          "board_adjudicated": true
+        },
+        {
+          "path": "examples/pcscs_compatibility.py",
+          "final_sha256": "e4b0061a10138736ad6c19375cdb3d3286cce3500e87cb94a3819de465a36e18",
+          "draft_dir": "project_state/editorial/examples__pcscs_compatibility_py",
+          "board_adjudicated": true
+        },
+        {
+          "path": "docs/spec/API_SPEC.md",
+          "final_sha256": "50885b67c7905686d431e4af6ca0a5f5c067cf2b5d03a214332dc5bcf72b041b",
+          "draft_dir": "project_state/editorial/docs__spec__API_SPEC_md",
+          "board_adjudicated": true
+        },
+        {
+          "path": "docs/spec/DATA_MODEL_SPEC.md",
+          "final_sha256": "9807de644e943b947bb0327926a5b2c54a09cdf61b7140515280b5733d076efd",
+          "draft_dir": "project_state/editorial/docs__spec__DATA_MODEL_SPEC_md",
+          "board_adjudicated": true
+        },
+        {
+          "path": "docs/spec/EXECUTION_SPEC.md",
+          "final_sha256": "bcb20bc529c278adc17145f33fd3b467c6b7e7d530fdabeed2d230d1a424e17e",
+          "draft_dir": "project_state/editorial/docs__spec__EXECUTION_SPEC_md",
+          "board_adjudicated": true
+        },
+        {
+          "path": "CONTRIBUTING.md",
+          "final_sha256": "f93a40175bf54a5550a144f62cd593f54a31380e7f7071febc67c1b55b9758cd",
+          "draft_dir": "project_state/editorial/CONTRIBUTING_md",
+          "board_adjudicated": true
+        },
+        {
+          "path": "CHANGELOG.md",
+          "final_sha256": "7a01dba093d10cbba1e3cef4956a2bbb43085ba4e835f70dbb5ed5c190290126",
+          "draft_dir": "project_state/editorial/CHANGELOG_md",
+          "board_adjudicated": true
+        },
+        {
+          "path": "SECURITY.md",
+          "final_sha256": "46cabf48eaeab7db950f6bb6727eb36be0184c0445615caf7b2e3dd04d7eb95f",
+          "draft_dir": "project_state/editorial/SECURITY_md",
+          "board_adjudicated": true
+        },
+        {
+          "path": "CODE_OF_CONDUCT.md",
+          "final_sha256": "d385a040d5ff8f3214d744cfbf53a57278b65f4d09ed96772ba24bd3253c39ed",
+          "draft_dir": "project_state/editorial/CODE_OF_CONDUCT_md",
+          "board_adjudicated": true
+        },
+        {
+          "path": "pyproject.toml",
+          "final_sha256": "460b5f1addc104b3f1ad5f92f31ccd1fd40e70a8576366e9a88f1eb4700af707",
+          "draft_dir": "project_state/editorial/pyproject_toml",
+          "board_adjudicated": true
+        },
+        {
+          "path": "project_state/STATE_PROTOCOL.md",
+          "final_sha256": "29d7e5b970f3f4d91c3d864560229a1138ffdd375fc18fab46cd20d42a8f3f82",
+          "draft_dir": "project_state/editorial/project_state__STATE_PROTOCOL_md",
+          "board_adjudicated": true
+        },
+        {
+          "path": "CITATION.cff",
+          "final_sha256": "69727664e527d6b4c2c849a66921bdf62492763a3fd8a6d0f05c7c083a90c178",
+          "draft_dir": "project_state/editorial/CITATION_cff",
+          "board_adjudicated": true
+        },
+        {
+          "path": "LICENSE",
+          "final_sha256": "7cb8a68432e2ac4f7e44f44e993d1e5ce226e55853071cba9d494e52201ade2f",
+          "draft_dir": "project_state/editorial/LICENSE",
+          "board_adjudicated": true
+        }
+      ],
+      "remaining_authority_fields": []
+    }
+  },
+  "release": {
+    "version": "1.0.0a1",
+    "channel": "GitHub",
+    "release_date": "2026-10-04",
+    "repository": "https://github.com/eigenflowio/eigenflow",
+    "doi": null,
+    "author": "Andrew Hedman",
+    "license": "MIT",
+    "copyright_holder": "Andrew Hedman",
+    "security_reporting": "GitHub Private Vulnerability Reporting / Security Advisories",
+    "conduct_authority": "Andrew Hedman",
+    "communications_policy": "GitHub-native; no email intake; no automated reporting/enforcement workflows"
   }
 }

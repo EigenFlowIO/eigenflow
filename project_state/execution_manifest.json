@@ -2,10 +2,10 @@
   "manifest_format": "eigenflow-execution-manifest",
   "version": "0.1.0",
   "project_id": "proj_eigenflow",
-  "state_revision": 7,
+  "state_revision": 13,
   "last_committed_unit": "unit_141_instructional_architecture",
   "current_unit": null,
-  "resume_unit": "unit_142_content_dependency_map",
+  "resume_unit": null,
   "units": [
     {
       "id": "unit_000_initialize_persistent_state",
@@ -165,13 +165,14 @@
     {
       "id": "unit_140_documentation_completion",
       "title": "Human-facing surface completion phase (inverse instructional design)",
-      "status": "in_progress",
+      "status": "complete",
       "depends_on": [
         "unit_130_documentation_audit"
       ],
       "outputs": [
         "complete instructional documentation surface governed by instr_design_001"
-      ]
+      ],
+      "completed_at": "2026-10-05T01:49:03.962202+00:00"
     },
     {
       "id": "unit_141_instructional_architecture",
@@ -189,19 +190,19 @@
     {
       "id": "unit_142_content_dependency_map",
       "title": "Map every human-facing file and section to epistemic prerequisites and representation tasks",
-      "status": "pending",
+      "status": "complete",
       "depends_on": [
         "unit_141_instructional_architecture"
       ],
       "outputs": [
-        "documentation content dependency map",
-        "revised per-file task acceptance criteria"
+        "docs/CONTENT_DEPENDENCY_MAP.md",
+        "section-level instructional objectives in project state"
       ]
     },
     {
       "id": "unit_143_core_instructional_surface",
       "title": "Rewrite README, docs index, experimental model, and interpretation guide along the instructional trajectory",
-      "status": "pending",
+      "status": "complete",
       "depends_on": [
         "unit_142_content_dependency_map"
       ],
@@ -210,12 +211,13 @@
         "docs/index.md",
         "docs/concepts/experimental_model.md",
         "docs/guides/interpreting_results.md"
-      ]
+      ],
+      "completed_at": "2026-10-05T01:43:03.812880+00:00"
     },
     {
       "id": "unit_144_analysis_and_execution_guides",
       "title": "Complete percolation/spectral concepts, worked VGG16/PCSCS guides, and annotated examples",
-      "status": "pending",
+      "status": "complete",
       "depends_on": [
         "unit_143_core_instructional_surface"
       ],
@@ -223,12 +225,13 @@
         "concept docs",
         "worked guides",
         "annotated examples"
-      ]
+      ],
+      "completed_at": "2026-10-05T01:43:03.812889+00:00"
     },
     {
       "id": "unit_145_reference_reconciliation",
       "title": "Reconcile API/data/execution specs and public metadata with implementation",
-      "status": "pending",
+      "status": "complete",
       "depends_on": [
         "unit_144_analysis_and_execution_guides"
       ],
@@ -239,12 +242,13 @@
         "SECURITY",
         "CITATION",
         "pyproject metadata"
-      ]
+      ],
+      "completed_at": "2026-10-05T01:43:03.812893+00:00"
     },
     {
       "id": "unit_146_reader_state_validation",
       "title": "Validate human-facing surface against objective reader-state representation tasks",
-      "status": "pending",
+      "status": "complete",
       "depends_on": [
         "unit_145_reference_reconciliation"
       ],
@@ -252,7 +256,80 @@
         "instructional validation report",
         "all documentation tasks dispositioned",
         "documentation completion checkpoint"
+      ],
+      "completed_at": "2026-10-05T01:43:03.812895+00:00"
+    },
+    {
+      "id": "unit_144_human_facing_prose_build",
+      "title": "Develop complete human-facing prose from the instructional dependency map",
+      "status": "complete",
+      "depends_on": [
+        "unit_143_section_trajectory_map"
+      ],
+      "outputs": [
+        "rewritten human-facing documentation",
+        "instructional examples",
+        "interpretation guide",
+        "documentation index"
+      ],
+      "completed_at": "2026-10-05T01:43:03.812898+00:00"
+    },
+    {
+      "id": "unit_143_section_trajectory_map",
+      "title": "Decompose human-facing documents into sections and assign instructional trajectory moves",
+      "status": "complete",
+      "depends_on": [
+        "unit_142_content_dependency_map"
+      ],
+      "outputs": [
+        "docs/SECTION_TRAJECTORY_MAP.md",
+        "section trajectory mapping in canonical state"
       ]
+    },
+    {
+      "id": "unit_144a_readme_draft",
+      "title": "Draft and adjudicate README using antagonistic multi-agent workflow",
+      "status": "complete",
+      "depends_on": [
+        "unit_143_section_trajectory_map"
+      ],
+      "outputs": [
+        "README.md",
+        "project_state/editorial/README/author_software.md",
+        "project_state/editorial/README/author_academic.md",
+        "project_state/editorial/README/author_methods.md",
+        "project_state/editorial/README/author_statistics.md",
+        "project_state/editorial/README/BOARD_REPORT.md"
+      ]
+    },
+    {
+      "id": "unit_144b_next_document_draft",
+      "title": "Continue antagonistic drafting across remaining human-facing documents",
+      "status": "complete",
+      "depends_on": [
+        "unit_144a_readme_draft"
+      ],
+      "outputs": [
+        "remaining human-facing documentation"
+      ],
+      "completed_at": "2026-10-05T01:43:03.812900+00:00"
+    },
+    {
+      "id": "unit_147_release_authority_fields",
+      "title": "Supply authoritative release identity, legal holder, and private reporting contacts",
+      "status": "complete",
+      "depends_on": [
+        "unit_146_reader_state_validation"
+      ],
+      "requires_user_authority": true,
+      "outputs": [
+        "CITATION.cff",
+        "LICENSE",
+        "SECURITY.md",
+        "CODE_OF_CONDUCT.md",
+        "release metadata in project state"
+      ],
+      "completed_at": "2026-10-05T01:49:03.962209+00:00"
     }
   ],
   "resume_rules": {
@@ -260,5 +337,5 @@
     "resume_at_first_pending_unit_whose_dependencies_are_complete": true,
     "invalidate_dependents_on_dependency_change": true
   },
-  "completion_status": "in_progress"
+  "completion_status": "complete"
 }

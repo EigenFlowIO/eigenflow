@@ -303,3 +303,8 @@ Open work:
 - Include examples of convergent evidence across multiple observables and robustness checks across metrics/reducers.
 
 **Acceptance:** Experimenters can interpret Eigenflow outputs as evidence about latent feature organization without relying on undocumented intuition.
+
+
+## Current disposition
+
+All non-maintainer documentation tasks identified by this audit have been completed. Tasks requiring authoritative authorship/legal/reporting-channel information remain explicitly blocked in canonical project state. See `docs/DOCUMENTATION_VALIDATION.md` for validation results.
