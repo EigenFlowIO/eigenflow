@@ -1,3 +1,15 @@
+
+## Unreleased - complex-spectrum semantics
+
+- preserve complex eigenpairs for nonsymmetric operators instead of truncating imaginary components;
+- add `SpectralAnalysis(..., complex=...)` with `auto`, `preserve`, `modulus`, `real`, `phase`, `imag`, and `error`;
+- add tolerance-aware complex detection and operator spectral expectations;
+- make eigenspace overlap and IPR complex-safe;
+- add matched complex spectral trajectories and `complex_spectrum_plot`;
+- add policy-aware spectral comparison and explicit projection-specific gap semantics;
+- persist complex eigenvalues and complex spectral eigenvectors losslessly;
+- surface complex/incompatibility status in result summaries.
+
 # Changelog
 
 All notable user-visible changes to Eigenflow should be recorded here.

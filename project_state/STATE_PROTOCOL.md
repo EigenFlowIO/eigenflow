@@ -40,6 +40,25 @@ establish resume point
 
 Do not regenerate valid completed work simply because a new conversation begins.
 
+## Formal planning directives
+
+When the user says **formally plan**, **formally update**, or otherwise explicitly invokes formal project planning, the plan is not complete as conversation prose. It is a canonical-state mutation.
+
+Before describing a formal plan as complete:
+
+1. read the current canonical project state, execution manifest, and relevant protocol sections;
+2. identify every mutated or newly introduced durable entity and its dependency relations;
+3. classify dependent impact as `none`, `review`, `invalidate`, or `regenerate`;
+4. define public-API effects, backward-compatibility consequences, persistence/provenance effects, documentation obligations, test obligations, and pressure-test implications;
+5. add or revise canonical decisions, constraints, unresolved questions, planned outputs, and acceptance criteria;
+6. create an ordered executable work-unit sequence with explicit dependencies, outputs, and resume point;
+7. record schema evolution when the state model itself changes;
+8. increment the canonical state revision and synchronize `execution_manifest.json`;
+9. record provenance for the directive and mutation; and
+10. persist and validate the canonical state artifacts before claiming the formal plan is established.
+
+A chat-only outline may be useful working material, but it is not a formal project plan until these persistence requirements have been satisfied.
+
 ## Stable identifiers
 
 Durable objects receive stable IDs when reference, dependency, provenance, comparison, or revision matters.

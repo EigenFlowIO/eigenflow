@@ -513,10 +513,13 @@ SpectralAnalysis(
     operator="normalized_laplacian",
     k=None,
     vectors=True,
+    complex="auto",
 )
 ```
 
 Returns a `SpectralTrajectory`.
+
+`complex` accepts `"auto"`, `"preserve"`, `"modulus"`, `"real"`, `"phase"`, `"imag"`, or `"error"`. Raw complex eigenpairs are preserved under every policy. `auto` is silent for effectively real spectra and preserves + reports genuinely complex spectra rather than guessing a scalar interpretation. See `docs/COMPLEX_SPECTRA.md`.
 
 ### `EigenspaceAnalysis`
 

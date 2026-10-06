@@ -5,7 +5,7 @@ from .structural import (
     graph_snapshot,combined_layer_dynamics,
 )
 from .spectral import (
-    static_spectrum,spectral_flow,spectral_properties_dashboard,
+    static_spectrum,complex_spectrum_plot,spectral_flow,spectral_properties_dashboard,
     localization_trajectory,eigenspace_stability,eigenspace_overlap_heatmap,
 )
 from .semantic import factor_alignment_trajectory,factor_connectivity,bridge_probe_frequency
@@ -17,7 +17,7 @@ __all__=[
     "observable_curve","layer_control_heatmap","eigenflow_plot",
     "probe_design_view","relational_matrix_heatmap","component_trajectory",
     "component_membership_raster","merge_events","merge_event_plot","dendrogram_view",
-    "graph_snapshot","combined_layer_dynamics","static_spectrum","spectral_flow",
+    "graph_snapshot","combined_layer_dynamics","static_spectrum","complex_spectrum_plot","spectral_flow",
     "spectral_properties_dashboard","localization_trajectory","eigenspace_stability",
     "eigenspace_overlap_heatmap","factor_alignment_trajectory","factor_connectivity",
     "bridge_probe_frequency","robustness_comparison","cross_result_summary",

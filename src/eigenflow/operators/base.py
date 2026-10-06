@@ -9,6 +9,7 @@ class GraphOperator:
     name = "operator"
     space = "node"
     allows_negative_weights = True
+    spectral_expectation = "expected_real"
 
     def _weight_diagnostics(self, snapshot):
         A = snapshot.adjacency

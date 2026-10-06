@@ -1,11 +1,11 @@
 {
   "manifest_format": "eigenflow-execution-manifest",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "project_id": "proj_eigenflow",
-  "state_revision": 21,
-  "last_committed_unit": "unit_141_instructional_architecture",
-  "current_unit": "unit_170_post_development_review",
-  "resume_unit": "unit_170_post_development_review",
+  "state_revision": 28,
+  "last_committed_unit": "unit_177_complex_pressure_test",
+  "current_unit": null,
+  "resume_unit": null,
   "units": [
     {
       "id": "unit_000_initialize_persistent_state",
@@ -407,19 +407,118 @@
     {
       "id": "unit_170_post_development_review",
       "title": "Post-development release/research review",
-      "status": "pending",
+      "status": "superseded",
       "depends_on": [
         "unit_160_development_instrumentation"
       ],
       "outputs": [
         "release decision or next research phase"
-      ]
+      ],
+      "supersession_reason": "User advanced directly into repository issue-exposure and complex-spectrum implementation phase.",
+      "superseded_by": "unit_171_reconcile_repository_state"
+    },
+    {
+      "id": "unit_171_reconcile_repository_state",
+      "title": "Reconcile canonical state with authoritative current Eigenflow repository",
+      "status": "complete",
+      "depends_on": [],
+      "outputs": [
+        "validated baseline commit/tree and 23-test suite"
+      ],
+      "completed_at": "2026-10-06T00:40:31.937787+00:00"
+    },
+    {
+      "id": "unit_172_complex_policy_core",
+      "title": "Implement compact complex-spectrum policy, detection, and operator expectations",
+      "status": "complete",
+      "depends_on": [
+        "unit_171_reconcile_repository_state"
+      ],
+      "outputs": [
+        "complex= API policy",
+        "operator expectations",
+        "warnings/errors/provenance"
+      ],
+      "completed_at": "2026-10-06T00:40:31.937787+00:00"
+    },
+    {
+      "id": "unit_173_complex_observables_math",
+      "title": "Make spectral observables and eigenspace/localization mathematics complex-safe",
+      "status": "complete",
+      "depends_on": [
+        "unit_172_complex_policy_core"
+      ],
+      "outputs": [
+        "complex-safe observables",
+        "projection-specific gaps",
+        "Hermitian eigenspace math",
+        "complex IPR"
+      ],
+      "completed_at": "2026-10-06T00:40:31.937787+00:00"
+    },
+    {
+      "id": "unit_174_complex_visualization",
+      "title": "Add adaptive complex-spectrum visualization behavior",
+      "status": "complete",
+      "depends_on": [
+        "unit_173_complex_observables_math"
+      ],
+      "outputs": [
+        "adaptive spectral plots",
+        "complex_spectrum_plot"
+      ],
+      "completed_at": "2026-10-06T00:40:31.937787+00:00"
+    },
+    {
+      "id": "unit_175_complex_trajectory_comparison",
+      "title": "Implement complex mode trajectories and policy-aware comparisons",
+      "status": "complete",
+      "depends_on": [
+        "unit_173_complex_observables_math"
+      ],
+      "outputs": [
+        "complex-plane mode matching",
+        "phase unwrapping",
+        "structured comparison incompatibilities"
+      ],
+      "completed_at": "2026-10-06T00:40:31.937787+00:00"
+    },
+    {
+      "id": "unit_176_complex_persistence_docs_tests",
+      "title": "Complete complex-spectrum persistence, documentation, and regression suite",
+      "status": "complete",
+      "depends_on": [
+        "unit_174_complex_visualization",
+        "unit_175_complex_trajectory_comparison"
+      ],
+      "outputs": [
+        "complex JSON/NPZ persistence",
+        "docs/COMPLEX_SPECTRA.md",
+        "35-test suite"
+      ],
+      "completed_at": "2026-10-06T00:40:31.937787+00:00"
+    },
+    {
+      "id": "unit_177_complex_pressure_test",
+      "title": "Pressure-test complex-spectrum behavior across the package",
+      "status": "complete",
+      "depends_on": [
+        "unit_176_complex_persistence_docs_tests"
+      ],
+      "outputs": [
+        "self-contained notebook",
+        "pressure-test evidence",
+        "warning attribution",
+        "issue inventory"
+      ],
+      "completed_at": "2026-10-06T00:40:31.937787+00:00"
     }
   ],
   "resume_rules": {
     "do_not_repeat_complete_units": true,
     "resume_at_first_pending_unit_whose_dependencies_are_complete": true,
-    "invalidate_dependents_on_dependency_change": true
+    "invalidate_dependents_on_dependency_change": true,
+    "formal_plan_requires_canonical_state_mutation": true
   },
   "completion_status": "complete"
 }

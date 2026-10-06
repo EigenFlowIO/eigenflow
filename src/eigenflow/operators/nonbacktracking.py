@@ -7,6 +7,7 @@ class NonBacktrackingOperator(GraphOperator):
     name = "nonbacktracking"
     space = "directed_edge"
     allows_negative_weights = True
+    spectral_expectation = "potentially_complex"
 
     def matrix(self, snapshot):
         self.validate(snapshot)

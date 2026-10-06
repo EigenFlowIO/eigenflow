@@ -45,6 +45,7 @@ class NormalizedLaplacianOperator(GraphOperator):
 class RandomWalkOperator(GraphOperator):
     name = "random_walk"
     allows_negative_weights = False
+    spectral_expectation = "conditionally_real"
 
     def matrix(self, snapshot):
         self.validate(snapshot)

@@ -1,7 +1,7 @@
 {
   "state_format": {
     "name": "eigenflow-project-state",
-    "version": "0.2.0",
+    "version": "0.3.0",
     "status": "provisional-stable",
     "schema_evolution_allowed": true
   },
@@ -166,44 +166,128 @@
       "id": "obj_experiment",
       "type": "core_abstraction",
       "name": "Experiment",
-      "status": "planned",
+      "status": "implemented",
       "description": "Top-level declarative orchestration object containing model, probes, extraction configuration, metric, filtration, and analyses."
     },
     {
       "id": "obj_probe_population",
       "type": "core_abstraction",
       "name": "ProbePopulation",
-      "status": "planned"
+      "status": "implemented"
     },
     {
       "id": "obj_rep_collection",
       "type": "core_abstraction",
       "name": "RepresentationCollection",
-      "status": "planned"
+      "status": "implemented"
     },
     {
       "id": "obj_metric",
       "type": "core_abstraction",
       "name": "Metric",
-      "status": "planned"
+      "status": "implemented"
     },
     {
       "id": "obj_filtration",
       "type": "core_abstraction",
       "name": "GraphFiltration",
-      "status": "planned"
+      "status": "implemented"
     },
     {
       "id": "obj_analysis",
       "type": "core_abstraction",
       "name": "Analysis",
-      "status": "planned"
+      "status": "implemented"
     },
     {
       "id": "obj_result",
       "type": "core_abstraction",
       "name": "ExperimentResult",
-      "status": "planned"
+      "status": "implemented"
+    },
+    {
+      "id": "obj_spectral_analysis",
+      "type": "analysis_subsystem",
+      "name": "SpectralAnalysis",
+      "status": "implemented_validated",
+      "description": "Operator-based spectral analysis that will own the compact complex= policy and spectrum characterization."
+    },
+    {
+      "id": "obj_spectral_snapshot",
+      "type": "result_abstraction",
+      "name": "SpectralSnapshot",
+      "status": "implemented_validated",
+      "description": "Canonical spectral result object; complex eigenvalues remain authoritative and derived real/imag/modulus/phase views are non-destructive."
+    },
+    {
+      "id": "obj_complex_policy",
+      "type": "api_policy",
+      "name": "ComplexSpectrumPolicy",
+      "status": "implemented_validated",
+      "description": "Single-keyword user policy with values auto, preserve, modulus, real, phase, imag, error."
+    },
+    {
+      "id": "obj_spectral_expectation",
+      "type": "operator_metadata",
+      "name": "OperatorSpectralExpectation",
+      "status": "implemented_validated",
+      "description": "Internal operator metadata: expected_real, conditionally_real, or potentially_complex."
+    },
+    {
+      "id": "obj_spectral_diagnostics",
+      "type": "analysis_support",
+      "name": "ComplexSpectrumDiagnostics",
+      "status": "implemented_validated",
+      "description": "Tolerance-aware classification and diagnostic metadata including count/fraction complex, max imaginary magnitude, and expectation mismatch."
+    },
+    {
+      "id": "obj_complex_visualization",
+      "type": "visualization_feature",
+      "name": "Complex spectral visualization",
+      "status": "implemented_validated",
+      "description": "Adaptive existing spectral plots plus one canonical complex-plane visualization; plotting defaults follow result policy without new configuration families."
+    },
+    {
+      "id": "obj_spectral_trajectory",
+      "type": "analysis_feature",
+      "name": "Complex spectral trajectories",
+      "status": "implemented_validated",
+      "description": "Complex-plane mode matching across ordered snapshots with scalar projection trajectories and phase unwrapping; distinct from eigenspace tracking."
+    },
+    {
+      "id": "obj_spectral_comparison",
+      "type": "comparison_feature",
+      "name": "Complex spectral comparison",
+      "status": "implemented_validated",
+      "description": "Policy-aware comparisons that prevent semantically incompatible scalar comparisons and preserve explicit complex-aware alternatives."
+    },
+    {
+      "id": "obj_complex_serialization",
+      "type": "persistence_feature",
+      "name": "Complex spectral serialization",
+      "status": "implemented_validated",
+      "description": "Lossless persistence of complex eigenvalues/eigenvectors plus treatment and diagnostic provenance."
+    },
+    {
+      "id": "obj_complex_warning",
+      "type": "diagnostic_feature",
+      "name": "Complex spectrum diagnostics and warnings",
+      "status": "implemented_validated",
+      "description": "Once-per-analysis actionable messages for unspecified or unexpected complex spectra and explicit error behavior."
+    },
+    {
+      "id": "obj_complex_docs",
+      "type": "documentation",
+      "name": "Complex spectra documentation",
+      "status": "implemented_validated",
+      "description": "Focused docs/COMPLEX_SPECTRA.md plus concise README/API references."
+    },
+    {
+      "id": "obj_complex_pressure_test",
+      "type": "validation_artifact",
+      "name": "Complex-spectrum pressure test extension",
+      "status": "implemented_validated",
+      "description": "Deliberately forces genuinely complex non-backtracking spectra and validates every treatment mode and downstream surface."
     }
   ],
   "relations": [
@@ -248,6 +332,84 @@
       "type": "produces",
       "source": "obj_experiment",
       "target": "obj_result"
+    },
+    {
+      "id": "rel_complex_001",
+      "type": "configured_by",
+      "source": "obj_spectral_analysis",
+      "target": "obj_complex_policy"
+    },
+    {
+      "id": "rel_complex_002",
+      "type": "characterized_by",
+      "source": "obj_spectral_snapshot",
+      "target": "obj_spectral_diagnostics"
+    },
+    {
+      "id": "rel_complex_003",
+      "type": "informed_by",
+      "source": "obj_spectral_analysis",
+      "target": "obj_spectral_expectation"
+    },
+    {
+      "id": "rel_complex_004",
+      "type": "drives",
+      "source": "obj_complex_policy",
+      "target": "obj_complex_visualization"
+    },
+    {
+      "id": "rel_complex_005",
+      "type": "drives",
+      "source": "obj_complex_policy",
+      "target": "obj_spectral_trajectory"
+    },
+    {
+      "id": "rel_complex_006",
+      "type": "constrains",
+      "source": "obj_complex_policy",
+      "target": "obj_spectral_comparison"
+    },
+    {
+      "id": "rel_complex_007",
+      "type": "persisted_by",
+      "source": "obj_spectral_snapshot",
+      "target": "obj_complex_serialization"
+    },
+    {
+      "id": "rel_complex_008",
+      "type": "reported_by",
+      "source": "obj_spectral_diagnostics",
+      "target": "obj_complex_warning"
+    },
+    {
+      "id": "rel_complex_009",
+      "type": "documented_by",
+      "source": "obj_complex_policy",
+      "target": "obj_complex_docs"
+    },
+    {
+      "id": "rel_complex_010",
+      "type": "validated_by",
+      "source": "obj_complex_policy",
+      "target": "obj_complex_pressure_test"
+    },
+    {
+      "id": "rel_complex_011",
+      "type": "validated_by",
+      "source": "obj_complex_visualization",
+      "target": "obj_complex_pressure_test"
+    },
+    {
+      "id": "rel_complex_012",
+      "type": "validated_by",
+      "source": "obj_spectral_trajectory",
+      "target": "obj_complex_pressure_test"
+    },
+    {
+      "id": "rel_complex_013",
+      "type": "validated_by",
+      "source": "obj_spectral_comparison",
+      "target": "obj_complex_pressure_test"
     }
   ],
   "decisions": [
@@ -364,7 +526,7 @@
     {
       "id": "dec_021",
       "status": "committed",
-      "decision": "PCSCS visualization parity is a required baseline, generalized by Eigenflow component, percolation, spectral, eigenspace, factor, layer×control, robustness, and interpretation views.",
+      "decision": "PCSCS visualization parity is a required baseline, generalized by Eigenflow component, percolation, spectral, eigenspace, factor, layer\u00d7control, robustness, and interpretation views.",
       "rationale": "Visualization ontology implementation phase."
     },
     {
@@ -390,6 +552,60 @@
       "status": "committed",
       "decision": "Eigenspace overlap and principal-angle trajectories require a common ambient space. Operators such as non-backtracking that act in filtration-dependent directed-edge spaces return structured changing_ambient_space incompatibility records unless an explicit alignment method is supplied.",
       "rationale": "Pressure testing showed that non-backtracking spectra are valid while naive cross-snapshot eigenspace products fail when edge-space dimension changes."
+    },
+    {
+      "id": "dec_complex_001",
+      "status": "committed",
+      "decision": "Complex-spectrum support uses one primary public keyword complex= with values auto, preserve, modulus, real, phase, imag, and error.",
+      "rationale": "Minimize API syntax while allowing researchers to state the interpretation they actually intend."
+    },
+    {
+      "id": "dec_complex_002",
+      "status": "committed",
+      "decision": "complex=\"auto\" is the default. Effectively real spectra remain silent; genuinely complex spectra are preserved and trigger concise actionable guidance when no treatment was declared.",
+      "rationale": "Avoid burdening ordinary users while preventing silent scientific assumptions."
+    },
+    {
+      "id": "dec_complex_003",
+      "status": "committed",
+      "decision": "Raw complex eigenvalues/eigenvectors remain canonical under every policy; scalar treatments are derived analytical views, never destructive transforms.",
+      "rationale": "Preserves evidence and supports later reinterpretation without recomputation."
+    },
+    {
+      "id": "dec_complex_004",
+      "status": "committed",
+      "decision": "Operator spectral expectations are internal metadata, not additional user syntax.",
+      "rationale": "Distinguish expected from surprising complex spectra without API expansion."
+    },
+    {
+      "id": "dec_complex_005",
+      "status": "committed",
+      "decision": "Existing spectral visualizations adapt to the selected complex policy; one additional canonical complex-plane visualization is added rather than a family of plotting APIs.",
+      "rationale": "Keep visualization discoverability high and syntax compact."
+    },
+    {
+      "id": "dec_complex_006",
+      "status": "committed",
+      "decision": "Complex eigenvalue trajectories use explicit cross-snapshot matching in the complex plane; sorted eigenvalue index is not treated as mode identity.",
+      "rationale": "Prevents false continuity through crossings and complex-plane rearrangements."
+    },
+    {
+      "id": "dec_complex_007",
+      "status": "committed",
+      "decision": "Pseudospectra, full nonnormal transient-growth analysis, directed-edge eigenspace alignment, research-preset objects, and complex-specific configuration classes remain deferred.",
+      "rationale": "Deliver scientifically safe complex support without anticipatory API or computational complexity."
+    },
+    {
+      "id": "dec_complex_008",
+      "status": "committed",
+      "decision": "Unexpected complex spectra for expected-real operators are diagnostics rather than automatically harmless or fatal; complex=\"error\" is the explicit strict-assumption mode.",
+      "rationale": "Preserve evidence while making assumption violations visible."
+    },
+    {
+      "id": "dec_governance_formal_plan",
+      "status": "committed",
+      "decision": "Formal planning is a canonical-state operation requiring dependency/downstream/API/docs/tests analysis, executable units, synchronized manifest mutation, provenance, and validation.",
+      "rationale": "User explicitly defined formal planning as persistent project governance rather than conversational planning."
     }
   ],
   "assumptions": [
@@ -516,6 +732,42 @@
         "out_005",
         "out_006"
       ]
+    },
+    {
+      "id": "out_complex_001",
+      "type": "feature_implementation",
+      "status": "implemented",
+      "name": "Compact complex-spectrum policy and operator expectation implementation"
+    },
+    {
+      "id": "out_complex_002",
+      "type": "visualization",
+      "status": "implemented",
+      "name": "Adaptive spectral visualizations and canonical complex-plane plot"
+    },
+    {
+      "id": "out_complex_003",
+      "type": "comparison_trajectory",
+      "status": "implemented",
+      "name": "Complex-aware trajectory matching and comparison semantics"
+    },
+    {
+      "id": "out_complex_004",
+      "type": "documentation",
+      "status": "implemented",
+      "name": "Complex spectra research/API documentation"
+    },
+    {
+      "id": "out_complex_005",
+      "type": "tests",
+      "status": "implemented",
+      "name": "Complex-spectrum unit/integration/regression/visualization/persistence test suite"
+    },
+    {
+      "id": "out_complex_006",
+      "type": "pressure_test",
+      "status": "validated",
+      "name": "Complex-spectrum repository pressure-test run and evidence package"
     }
   ],
   "provenance": {
@@ -946,16 +1198,35 @@
           "sc_003",
           "sc_005"
         ]
+      },
+      {
+        "id": "prov_complex_impl_001",
+        "source_type": "user_directive",
+        "source_description": "User supplied authoritative local repository and directed execution of the formally planned complex-spectrum implementation sequence.",
+        "created_at": "2026-10-06T00:40:31.937787+00:00",
+        "affected_ids": [
+          "plan_complex_spectra_v1",
+          "obj_complex_policy",
+          "obj_spectral_expectation",
+          "obj_spectral_diagnostics",
+          "obj_complex_visualization",
+          "obj_spectral_trajectory",
+          "obj_spectral_comparison",
+          "obj_complex_serialization",
+          "obj_complex_warning",
+          "obj_complex_docs",
+          "obj_complex_pressure_test"
+        ]
       }
     ]
   },
   "execution": {
-    "current_phase": "development_instrumentation_complete",
-    "last_committed_unit": "unit_141_instructional_architecture",
+    "current_phase": "complex_spectrum_support_complete",
+    "last_committed_unit": "unit_177_complex_pressure_test",
     "active_unit": null,
-    "resume_from": "unit_170_post_development_review",
-    "state_revision": 21,
-    "git_note": "Release package will be committed as a child of the known user remote baseline 9ca109c327f0af3fcd99c79f08451748d2b8c839; the parent object is configured as a promisor-object dependency on origin because outbound Git fetch is unavailable in the sandbox."
+    "resume_from": null,
+    "state_revision": 28,
+    "git_note": "Complex-spectrum implementation prepared as uncommitted changes on authoritative user-supplied baseline 66b83c9; user will commit/push after handoff."
   },
   "completion": {
     "project_complete": true,
@@ -998,6 +1269,24 @@
       "python_compile": "passed",
       "pyproject_parse": "passed",
       "adjudication_ledger": "project_state/editorial/ADJUDICATION_LEDGER.md"
+    },
+    "complex_spectra_2026_10_05": {
+      "status": "passed",
+      "pytest": "35 passed",
+      "pressure_test": "passed",
+      "policies": [
+        "auto",
+        "preserve",
+        "modulus",
+        "real",
+        "phase",
+        "imag",
+        "error"
+      ],
+      "visualization_renders": 18,
+      "serialization": "complex eigenvalues JSON + complex eigenvectors NPZ round-trip passed",
+      "repository_baseline_commit": "66b83c9c17a0d51bb29239d7da76799fce5b2fee",
+      "validated_at": "2026-10-06T00:40:31.937787+00:00"
     }
   },
   "documentation_audit": {
@@ -1136,7 +1425,7 @@
         "status": "complete",
         "assessment": "Only states the core idea; does not teach experimental design or inference.",
         "notes": [
-          "Formalize the hypothesis → probe design → representation population → relational geometry → observable → inference workflow.",
+          "Formalize the hypothesis \u2192 probe design \u2192 representation population \u2192 relational geometry \u2192 observable \u2192 inference workflow.",
           "Explain manipulated factors, controls, matched/factorial designs, confounds, probe metadata, sampling balance, and reproducibility.",
           "Provide at least two complete experimental examples with competing hypotheses and predicted structural outcomes.",
           "Discuss the epistemic boundary between structural evidence and claims about latent features, including alternative explanations and robustness checks across metrics/reducers."
@@ -1409,6 +1698,18 @@
       ],
       "backfill": "Existing documentation_audit tasks remain valid and become implementation targets governed by the new instructional design.",
       "validated_at": "2026-10-05T00:59:55.118092+00:00"
+    },
+    {
+      "id": "mig_005_formal_change_plans",
+      "from_version": "0.2.0",
+      "to_version": "0.3.0",
+      "status": "applied",
+      "rationale": "Formal planning directives require durable dependency-aware change plans with implementation/acceptance state.",
+      "introduced_collections": [
+        "change_plans"
+      ],
+      "backfill": "Existing project history retained; complex-spectrum plan is first formal change-plan instance.",
+      "validated_at": "2026-10-06T00:40:31.937787+00:00"
     }
   ],
   "instructional_design": {
@@ -1867,7 +2168,7 @@
           ],
           [
             "Core experimental object",
-            "Represent the method as probe population → layerwise representations → relational geometry → filtration → structural observables → bounded inference."
+            "Represent the method as probe population \u2192 layerwise representations \u2192 relational geometry \u2192 filtration \u2192 structural observables \u2192 bounded inference."
           ],
           [
             "When to use / not use",
@@ -1909,7 +2210,7 @@
           ],
           [
             "Concept dependency map",
-            "Expose the recommended order: experimental model → measurement geometry → structural observables → execution → interpretation."
+            "Expose the recommended order: experimental model \u2192 measurement geometry \u2192 structural observables \u2192 execution \u2192 interpretation."
           ],
           [
             "Task-based navigation",
@@ -1985,7 +2286,7 @@
           ],
           [
             "Giant component",
-            "Explain what P∞ measures and what early/late growth can indicate."
+            "Explain what P\u221e measures and what early/late growth can indicate."
           ],
           [
             "Second-largest component",
@@ -2117,11 +2418,11 @@
           ],
           [
             "Visualize",
-            "Plot at least one layer×control observable and one spectral/percolation trajectory."
+            "Plot at least one layer\u00d7control observable and one spectral/percolation trajectory."
           ],
           [
             "Interpret",
-            "Produce observation → inference → alternatives → unsupported claim."
+            "Produce observation \u2192 inference \u2192 alternatives \u2192 unsupported claim."
           ],
           [
             "Robustness",
@@ -2143,7 +2444,7 @@
         "sections": [
           [
             "Interpretation protocol",
-            "Apply observation → candidate inference → alternatives → unsupported claim."
+            "Apply observation \u2192 candidate inference \u2192 alternatives \u2192 unsupported claim."
           ],
           [
             "Components and merge structure",
@@ -2331,7 +2632,7 @@
         "sections": [
           [
             "Object chain",
-            "Define ProbePopulation → RepresentationCollection → RelationalMatrix → GraphFiltration → AnalysisResult → ExperimentResult."
+            "Define ProbePopulation \u2192 RepresentationCollection \u2192 RelationalMatrix \u2192 GraphFiltration \u2192 AnalysisResult \u2192 ExperimentResult."
           ],
           [
             "Identity/order invariants",
@@ -2381,7 +2682,7 @@
         "sections": [
           [
             "Actual execution order",
-            "Describe current extraction → metric → filtration → analyses path exactly."
+            "Describe current extraction \u2192 metric \u2192 filtration \u2192 analyses path exactly."
           ],
           [
             "Dependency graph",
@@ -2657,7 +2958,7 @@
           ],
           [
             "Mutation cycle",
-            "Read → propose → validate → persist → derive → checkpoint."
+            "Read \u2192 propose \u2192 validate \u2192 persist \u2192 derive \u2192 checkpoint."
           ],
           [
             "Schema evolution",
@@ -2956,7 +3257,7 @@
                 "move_05",
                 "move_06"
               ],
-              "objective": "Teach P∞ as global coalescence observable."
+              "objective": "Teach P\u221e as global coalescence observable."
             },
             {
               "title": "Second-largest component",
@@ -3185,7 +3486,7 @@
               "objective": "Retrieve actual outputs correctly."
             },
             {
-              "title": "Visualize layer × control behavior",
+              "title": "Visualize layer \u00d7 control behavior",
               "moves": [
                 "move_06"
               ],
@@ -3224,7 +3525,7 @@
               "moves": [
                 "move_07"
               ],
-              "objective": "Establish observation → inference → alternatives → unsupported claim."
+              "objective": "Establish observation \u2192 inference \u2192 alternatives \u2192 unsupported claim."
             },
             {
               "title": "Connected components and merge structure",
@@ -4458,7 +4759,7 @@
         "acceptance_criteria": [
           "Runs from a clean Google Colab session against a pinned Eigenflow commit.",
           "Generates every canonical visualization type, including component-count trajectory, merge events, dendrogram, combined-layer view, static spectrum, spectral flow, and spectral-properties view.",
-          "Generates generalized Eigenflow views for factor alignment, graph snapshots, eigenspace stability, and layer×control summaries.",
+          "Generates generalized Eigenflow views for factor alignment, graph snapshots, eigenspace stability, and layer\u00d7control summaries.",
           "Produces numerical outputs and metadata required to reproduce every figure."
         ],
         "completed_at": "2026-10-05T02:37:59.250762+00:00"
@@ -4620,7 +4921,7 @@
           "ProbePopulation.metadata"
         ],
         "required_analysis": "components",
-        "encoding": "probe × control matrix colored by component identity, optionally ordered by factor",
+        "encoding": "probe \u00d7 control matrix colored by component identity, optionally ordered by factor",
         "permitted_inference": "Assess persistence, group stability, and which probes change membership relationships across scale.",
         "common_misinterpretation": "Interpreting component color identity as stable semantic labels when components merge and labels may be arbitrary.",
         "dependencies": [
@@ -4813,7 +5114,7 @@
       },
       {
         "id": "view_015",
-        "name": "Layer × control heatmap",
+        "name": "Layer \u00d7 control heatmap",
         "tier": "primary evidential",
         "question": "Where in network depth and relational scale does a structural observable change?",
         "source_objects": [
@@ -4821,7 +5122,7 @@
           "scalar AnalysisResult observable"
         ],
         "required_analysis": "any scalar trajectory",
-        "encoding": "site/layer × control heatmap",
+        "encoding": "site/layer \u00d7 control heatmap",
         "permitted_inference": "Locate depth-dependent emergence, strengthening, weakening, or movement of structural regimes.",
         "common_misinterpretation": "Treating non-equivalent sites across architectures as metrically interchangeable.",
         "dependencies": [
@@ -4892,7 +5193,7 @@
           "multiple ExperimentResult objects"
         ],
         "required_analysis": "comparison layer",
-        "encoding": "difference heatmaps, aligned trajectories, model × layer summaries",
+        "encoding": "difference heatmaps, aligned trajectories, model \u00d7 layer summaries",
         "permitted_inference": "Compare structural consequences of training state, architecture, or intervention under matched probe designs.",
         "common_misinterpretation": "Attributing differences to architecture/training when probe preprocessing or site alignment also changed.",
         "dependencies": [
@@ -4911,7 +5212,7 @@
           "selected analyses"
         ],
         "required_analysis": "multiple",
-        "encoding": "curated panel combining factor alignment, structural transition, layer×control, selected graph, and robustness evidence",
+        "encoding": "curated panel combining factor alignment, structural transition, layer\u00d7control, selected graph, and robustness evidence",
         "permitted_inference": "Synthesize complementary evidence into a bounded experimental conclusion.",
         "common_misinterpretation": "Treating the dashboard as an automated explanation rather than a structured evidence display.",
         "dependencies": [
@@ -5210,7 +5511,7 @@
         "title": "Implement longitudinal visualizations",
         "priority": "critical",
         "status": "complete",
-        "objective": "Add layer×control×time summaries, checkpoint trajectories, baseline-relative displacement maps, transition-time plots, and structural-change heatmaps.",
+        "objective": "Add layer\u00d7control\u00d7time summaries, checkpoint trajectories, baseline-relative displacement maps, transition-time plots, and structural-change heatmaps.",
         "completed_at": "2026-10-05T03:49:48.315456+00:00"
       },
       {
@@ -5336,5 +5637,269 @@
     "demo_checksum_entries": 27,
     "documentation_links_validated": true,
     "editorial_protocol": "incremental four-author / three-editor adjudication"
-  }
+  },
+  "change_plans": [
+    {
+      "id": "plan_complex_spectra_v1",
+      "title": "First-class complex-spectrum support without public-API explosion",
+      "status": "implemented_validated",
+      "authority": "explicit user directive",
+      "problem_statement": "Eigenflow must preserve and support genuinely complex spectra across research workflows while keeping ordinary real-spectrum usage simple. Researchers who expect complex values need one compact treatment option; researchers who do not expect them need actionable diagnostics rather than silent coercion or excessive configuration.",
+      "researcher_outcomes": [
+        "A researcher studying an operator such as non-backtracking can state the intended complex interpretation with one keyword.",
+        "A researcher using expected-real operators sees no extra complexity unless a materially complex spectrum actually appears.",
+        "Unexpected complex values are preserved and surfaced with enough diagnostic context to decide whether they are mathematically meaningful, numerically suspicious, or assumption-violating.",
+        "Visualizations, comparisons, trajectories, persistence, and summaries remain semantically consistent with the selected treatment.",
+        "Publication/reproducibility artifacts retain the raw complex evidence and the policy/provenance used to summarize it."
+      ],
+      "public_api_contract": {
+        "primary_keyword": "complex",
+        "default": "auto",
+        "allowed_values": [
+          "auto",
+          "preserve",
+          "modulus",
+          "real",
+          "phase",
+          "imag",
+          "error"
+        ],
+        "non_goals": [
+          "No mandatory expect_complex flag.",
+          "No complex configuration object.",
+          "No separate plotting-policy parameter family.",
+          "No destructive projection of stored eigenvalues."
+        ],
+        "behavior": {
+          "auto": "Silent for effectively real spectra. For genuinely complex spectra, preserve raw values, emit concise actionable guidance, and skip summaries that require an undeclared scalar ordering.",
+          "preserve": "Treat complex spectra as intentional; compute only intrinsically complex-safe summaries unless a projection is explicitly requested elsewhere.",
+          "modulus": "Use |lambda| for scalar ordering, gap-like summaries, default 1-D trajectories and comparisons while preserving raw lambda.",
+          "real": "Use Re(lambda) for scalar ordering and compatible summaries while preserving raw lambda.",
+          "phase": "Use arg(lambda) for phase-oriented summaries/trajectories with circular semantics and unwrapping after mode matching.",
+          "imag": "Use Im(lambda) for scalar treatment when explicitly requested; supported but not emphasized as a generic scientific interpretation.",
+          "error": "Raise an explicit assumption violation when a genuinely complex spectrum is detected."
+        }
+      },
+      "internal_semantics": {
+        "complex_detection": "Classify meaningfully complex using absolute + relative tolerance; persist the chosen tolerances and diagnostics.",
+        "operator_expectations": {
+          "expected_real": [
+            "adjacency",
+            "laplacian",
+            "normalized_laplacian",
+            "signed_laplacian",
+            "signed_normalized_laplacian",
+            "modularity"
+          ],
+          "conditionally_real": [
+            "random_walk under current undirected nonnegative graph assumptions"
+          ],
+          "potentially_complex": [
+            "nonbacktracking"
+          ]
+        },
+        "canonical_storage": "Complex eigenvalues/eigenvectors are authoritative. real/imag/modulus/phase are derived views.",
+        "complex_safe_math": [
+          "Hermitian inner products and subspace operations",
+          "Magnitude-based vector normalization and IPR",
+          "Global phase invariance",
+          "Conjugate-pair-aware diagnostics where applicable"
+        ],
+        "scalar_semantics": [
+          "spectral radius remains max |lambda|",
+          "generic gap semantics must not silently change",
+          "projection-specific gaps must be explicitly named/typed"
+        ],
+        "trajectory_semantics": [
+          "match modes across adjacent snapshots by complex-plane assignment rather than sorted index",
+          "unwrap phase only after matching",
+          "eigenvalue tracking remains separate from eigenspace tracking when operator ambient dimension changes"
+        ]
+      },
+      "affected_entities": [
+        {
+          "id": "obj_spectral_analysis",
+          "impact": "regenerate",
+          "reason": "Add complex= policy resolution and classification."
+        },
+        {
+          "id": "obj_spectral_snapshot",
+          "impact": "regenerate",
+          "reason": "Expose canonical complex data and derived coordinates/diagnostics."
+        },
+        {
+          "id": "obj_result",
+          "impact": "review",
+          "reason": "Experiment summaries/provenance must surface complex policy and expectation mismatches."
+        },
+        {
+          "id": "obj_analysis",
+          "impact": "review",
+          "reason": "Shared AnalysisResult status/warning semantics must remain coherent."
+        },
+        {
+          "id": "obj_complex_serialization",
+          "impact": "regenerate",
+          "reason": "Persist raw complex arrays and policy metadata losslessly."
+        },
+        {
+          "id": "obj_complex_visualization",
+          "impact": "regenerate",
+          "reason": "Existing plots adapt; add one canonical complex-plane plot."
+        },
+        {
+          "id": "obj_spectral_trajectory",
+          "impact": "regenerate",
+          "reason": "Implement complex mode matching and phase unwrapping."
+        },
+        {
+          "id": "obj_spectral_comparison",
+          "impact": "regenerate",
+          "reason": "Validate projection compatibility and avoid unlike scalar comparisons."
+        },
+        {
+          "id": "obj_complex_warning",
+          "impact": "regenerate",
+          "reason": "Implement concise expected/unexpected complex diagnostics."
+        },
+        {
+          "id": "obj_complex_docs",
+          "impact": "regenerate",
+          "reason": "Document research interpretation and API contract."
+        },
+        {
+          "id": "obj_complex_pressure_test",
+          "impact": "regenerate",
+          "reason": "Validate each policy and downstream surface under intentionally complex spectra."
+        }
+      ],
+      "downstream_artifact_impacts": [
+        {
+          "artifact": "src/eigenflow/spectra/*",
+          "impact": "regenerate",
+          "notes": "Policy-independent low-level solver continues preserving complex eigenpairs; add/validate characterization helpers."
+        },
+        {
+          "artifact": "src/eigenflow/analyses/*spectral* and eigenspace/localization analyses",
+          "impact": "regenerate",
+          "notes": "Policy resolution, complex-safe observables, warnings/status semantics."
+        },
+        {
+          "artifact": "src/eigenflow/operators.py",
+          "impact": "review",
+          "notes": "Attach or expose internal spectral expectation metadata without new user syntax."
+        },
+        {
+          "artifact": "src/eigenflow/result.py and serialization.py",
+          "impact": "regenerate",
+          "notes": "Persist policy/diagnostics and surface status in summaries."
+        },
+        {
+          "artifact": "src/eigenflow/visualization/*",
+          "impact": "regenerate",
+          "notes": "Adaptive real/complex behavior plus complex-plane plot."
+        },
+        {
+          "artifact": "development/comparison paths",
+          "impact": "review",
+          "notes": "Prevent semantically incompatible scalar spectral comparisons."
+        },
+        {
+          "artifact": "README.md",
+          "impact": "review",
+          "notes": "Only concise complex= example and link; avoid front-page theory expansion."
+        },
+        {
+          "artifact": "docs/COMPLEX_SPECTRA.md",
+          "impact": "regenerate",
+          "notes": "Focused mathematical/research guidance."
+        },
+        {
+          "artifact": "tests/*complex* and spectral regression tests",
+          "impact": "regenerate",
+          "notes": "Detection, policies, operator expectations, downstream behavior, serialization and visualization."
+        },
+        {
+          "artifact": "pressure-test notebook/result schema",
+          "impact": "regenerate",
+          "notes": "Force genuinely complex spectra, exercise all policies, capture warning source/category/location."
+        }
+      ],
+      "backward_compatibility": {
+        "requirement": "Existing real-spectrum calls and outputs continue without syntax changes.",
+        "deprecated_behavior": "Any prior silent .real truncation of genuinely complex nonsymmetric eigenpairs is invalid and must remain removed.",
+        "migration": "No user migration for ordinary real spectra. Researchers relying on implicit real coercion must choose an explicit complex policy.",
+        "serialization": "Older real-only result artifacts remain readable; new complex metadata is additive where possible."
+      },
+      "documentation_plan": [
+        "Create docs/COMPLEX_SPECTRA.md explaining when complex eigenvalues arise, operator expectations, meanings/limits of modulus/phase/real/imag, policy choices, and non-backtracking examples.",
+        "Add one concise README example; do not burden primary quickstart.",
+        "Update API reference for complex= and warning/error behavior.",
+        "Document provenance fields and comparison compatibility rules.",
+        "Document that complex spectral features are structural evidence, not automatic semantic explanations."
+      ],
+      "test_plan": [
+        "Detection: exactly real, numerical-noise imaginary parts, genuinely complex, conjugate-pair spectra.",
+        "Policy matrix: auto, preserve, modulus, real, phase, imag, error.",
+        "Operator expectations: expected-real operators, conditionally-real random walk, potentially-complex non-backtracking.",
+        "Math: Hermitian overlap/principal angles, complex IPR, global-phase invariance, spectral radius, projection-specific gaps.",
+        "Trajectory: assignment through crossings, complex-plane movement, phase unwrap, changing ambient-space eigenspace incompatibility.",
+        "Visualization: real unchanged, policy-adaptive 1-D flow, complex-plane rendering, no coercion crashes.",
+        "Persistence: save/load complex eigenvalues/eigenvectors and policy diagnostics.",
+        "Comparison: compatible policies pass; incompatible scalar semantics return explicit incompatibility rather than silent subtraction.",
+        "UX: warnings once per analysis with operator/site/count/fraction and actionable keyword guidance.",
+        "Regression: current real-spectrum test suite remains numerically stable."
+      ],
+      "pressure_test_plan": [
+        "Construct/identify graph/operator snapshots with demonstrably complex non-backtracking eigenvalues.",
+        "Run every complex= mode through spectra, eigenspaces where defined, localization, result summaries, persistence, and visualization.",
+        "Assert expected-real operators are effectively real within tolerance in their valid domains.",
+        "Intentionally perturb/asymmetrize an expected-real case to verify unexpected-complex diagnostic behavior.",
+        "Verify no NaN/Inf, silent real coercion, unhandled complex serialization, or ambiguous gap computation.",
+        "Capture warning category, filename, module and line number so dependency warnings are attributable."
+      ],
+      "deferred": [
+        "Pseudospectra",
+        "Full nonnormal transient-growth framework",
+        "Directed-edge eigenspace alignment",
+        "Complex-specific configuration classes",
+        "Research-question preset objects",
+        "User-facing tolerance tuning unless empirical need emerges"
+      ],
+      "acceptance_criteria": [
+        "No syntax change required for existing real-spectrum workflows.",
+        "Raw complex eigenpairs are never silently discarded.",
+        "auto is silent for effectively real spectra.",
+        "auto preserves and informs when genuinely complex values appear without a declared treatment.",
+        "Expected complex values support preserve/modulus/real/phase/imag/error behavior with documented semantics.",
+        "Unexpected complex values on expected-real operators produce a stronger diagnostic and preserve evidence.",
+        "Scalar summaries never silently assume a projection.",
+        "Eigenspace/localization operations are complex-safe and phase-invariant.",
+        "Complex values and metadata round-trip through persistence.",
+        "Visualizations adapt without a new configuration family.",
+        "Mode trajectories do not depend on sorted eigenvalue index.",
+        "Comparison logic rejects semantically incompatible scalar treatments.",
+        "Full existing test suite and new complex-spectrum suite pass.",
+        "Pressure test exercises every policy and produces zero uncontrolled numerical/shape/serialization failures."
+      ],
+      "implementation_sequence": [
+        "unit_171_reconcile_repository_state",
+        "unit_172_complex_policy_core",
+        "unit_173_complex_observables_math",
+        "unit_174_complex_visualization",
+        "unit_175_complex_trajectory_comparison",
+        "unit_176_complex_persistence_docs_tests",
+        "unit_177_complex_pressure_test"
+      ],
+      "resume_unit": null,
+      "implementation_result": {
+        "completed_at": "2026-10-06T00:40:31.937787+00:00",
+        "repository_baseline_commit": "66b83c9c17a0d51bb29239d7da76799fce5b2fee",
+        "repository_baseline_tree": "a83d8e8bc55c19bbeb4beab09c293fca7d23c203",
+        "tests": "35 passed before pressure-test evidence packaging",
+        "pressure_test": "passed all seven complex policies with 18 visualization renders and structured policy mismatch behavior",
+        "public_api": "SpectralAnalysis(..., complex=\"auto\")"
+      }
+    }
+  ]
 }

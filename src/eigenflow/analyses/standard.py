@@ -1,4 +1,5 @@
 from __future__ import annotations
+import warnings
 import numpy as np
 import networkx as nx
 from sklearn.metrics import adjusted_rand_score, normalized_mutual_info_score
@@ -6,8 +7,18 @@ from .base import Analysis,AnalysisResult
 from ..graphs import component_labels,component_sizes,bridge_edges,kcore_nodes,communities,degree_array
 from ..percolation import percolation_observables
 from ..operators import resolve_operator
-from ..exceptions import OperatorCompatibilityError
-from ..spectra import solve_spectrum,ipr,spectral_entropy,effective_rank,graph_energy,spectral_gaps,SpectralSnapshot,SpectralTrajectory,eigenspace_overlap,principal_angle_values
+from ..exceptions import (
+    OperatorCompatibilityError,
+    UnspecifiedComplexTreatmentWarning,
+    UnexpectedComplexSpectrumWarning,
+    ComplexSpectrumAssumptionError,
+)
+from ..spectra import (
+    solve_spectrum, ipr, spectral_entropy, effective_rank, graph_energy, spectral_gaps,
+    SpectralSnapshot, SpectralTrajectory, eigenspace_overlap, principal_angle_values,
+    validate_complex_policy, characterize_spectrum, project_eigenvalues,
+    DEFAULT_COMPLEX_ATOL, DEFAULT_COMPLEX_RTOL,
+)
 
 class ComponentsAnalysis(Analysis):
     name="components"
@@ -41,30 +52,110 @@ class PercolationAnalysis(Analysis):
 
 class SpectralAnalysis(Analysis):
     name="spectra"
-    def __init__(self,operator="normalized_laplacian",k=None,vectors=True):
-        self.operator=resolve_operator(operator); self.k=k; self.vectors=vectors
+    def __init__(self,operator="normalized_laplacian",k=None,vectors=True,complex="auto"):
+        self.operator=resolve_operator(operator)
+        self.k=k
+        self.vectors=vectors
+        self.complex=validate_complex_policy(complex)
+
+    def _notify_complex(self, info, ctx, parameter):
+        expectation=getattr(self.operator,"spectral_expectation","expected_real")
+        if not info["complex_detected"]:
+            return
+        msg=(
+            f"{info['complex_count']} complex eigenvalues were detected for "
+            f"{self.operator.name} at site {ctx.site!r}, parameter={parameter:.6g}; "
+            f"max |Im λ|={info['max_abs_imag']:.6g}. "
+        )
+        if self.complex == "error":
+            raise ComplexSpectrumAssumptionError(msg + "complex='error' requires an effectively real spectrum.")
+        if self.complex != "auto":
+            return
+        if expectation in {"expected_real","conditionally_real"}:
+            warnings.warn(
+                msg + "This operator is expected to have an effectively real spectrum in the current regime. "
+                "The full complex spectrum was preserved and ambiguous scalar summaries were skipped. "
+                "Inspect graph/operator assumptions or set complex='preserve', 'modulus', 'real', 'phase', or 'imag' if this is intentional.",
+                UnexpectedComplexSpectrumWarning,
+                stacklevel=3,
+            )
+        else:
+            warnings.warn(
+                msg + "This operator may legitimately produce complex spectra, but no treatment was specified. "
+                "The full complex spectrum was preserved and ambiguous scalar summaries were skipped. "
+                "Set complex='preserve', 'modulus', 'real', 'phase', or 'imag' to state the intended treatment.",
+                UnspecifiedComplexTreatmentWarning,
+                stacklevel=3,
+            )
+
     def run(self,ctx):
         snaps=[]; rec=[]; incompatible=0
+        complex_snapshots=0; unexpected_complex_snapshots=0; complex_notified=False
+        expectation=getattr(self.operator,"spectral_expectation","expected_real")
         for s in ctx.filtration:
             try:
                 M=self.operator.matrix(s)
                 vals,vecs=solve_spectrum(M,k=self.k,vectors=self.vectors)
-                o={"status":"ok","spectral_radius":float(np.max(np.abs(vals))) if len(vals) else 0.,"spectral_entropy":spectral_entropy(vals),"effective_rank":effective_rank(vals),"energy":graph_energy(vals),"gaps":spectral_gaps(vals).tolist(),"ipr":ipr(vecs).tolist() if vecs is not None else None}
+                info=characterize_spectrum(vals)
+                if info["complex_detected"]:
+                    complex_snapshots += 1
+                    if expectation in {"expected_real","conditionally_real"}:
+                        unexpected_complex_snapshots += 1
+                if info["complex_detected"] and not complex_notified:
+                    self._notify_complex(info,ctx,s.parameter)
+                    complex_notified=True
+                projected=project_eigenvalues(vals,self.complex)
+                gaps=spectral_gaps(vals,self.complex)
+                if self.complex == "phase" and projected is not None:
+                    gap_kind="circular_phase_gap"
+                elif self.complex == "modulus":
+                    gap_kind="modulus_gap"
+                elif projected is not None:
+                    gap_kind="real_order_gap" if self.complex in {"auto","preserve","real"} else f"{self.complex}_order_gap"
+                else:
+                    gap_kind=None
+                o={
+                    "status":"ok",
+                    "spectral_radius":float(np.max(np.abs(vals))) if len(vals) else 0.,
+                    "spectral_entropy":spectral_entropy(vals),
+                    "effective_rank":effective_rank(vals),
+                    "energy":graph_energy(vals),
+                    "gaps":None if gaps is None else np.asarray(gaps,float).tolist(),
+                    "gap_kind":gap_kind,
+                    "ipr":ipr(vecs).tolist() if vecs is not None else None,
+                    "complex_policy":self.complex,
+                    "operator_spectral_expectation":expectation,
+                    **info,
+                }
+                if projected is not None:
+                    o["projected_eigenvalues"]=np.asarray(projected,float).tolist()
+                else:
+                    o["projected_eigenvalues"]=None
                 if self.operator.name in {"laplacian","normalized_laplacian","signed_laplacian","signed_normalized_laplacian"}:
-                    o["algebraic_connectivity"]=float(vals[1]) if len(vals)>1 else 0.
-                snaps.append(SpectralSnapshot(s.parameter,vals,vecs,self.operator.name,o))
+                    o["algebraic_connectivity"]=float(np.real(vals[1])) if len(vals)>1 else 0.
+                snaps.append(SpectralSnapshot(s.parameter,vals,vecs,self.operator.name,o,self.complex))
                 rec.append({"parameter":s.parameter,**o,"eigenvalues":vals.tolist()})
             except OperatorCompatibilityError as exc:
                 incompatible += 1
                 o=exc.as_dict()
-                o.update({"spectral_radius":None,"spectral_entropy":None,"effective_rank":None,"energy":None,"gaps":None,"ipr":None})
-                snaps.append(SpectralSnapshot(s.parameter,np.array([]),None,self.operator.name,o))
+                o.update({"spectral_radius":None,"spectral_entropy":None,"effective_rank":None,"energy":None,"gaps":None,"gap_kind":None,"ipr":None,"projected_eigenvalues":None,"complex_policy":self.complex,"operator_spectral_expectation":expectation})
+                snaps.append(SpectralSnapshot(s.parameter,np.array([]),None,self.operator.name,o,self.complex))
                 rec.append({"parameter":s.parameter,**o,"eigenvalues":None})
         return AnalysisResult(
             self.name,
             {"trajectory":SpectralTrajectory(snaps,self.operator.name)},
             rec,
-            {"operator":self.operator.name,"operator_space":getattr(self.operator,"space","node"),"incompatible_snapshots":incompatible},
+            {
+                "operator":self.operator.name,
+                "operator_space":getattr(self.operator,"space","node"),
+                "operator_spectral_expectation":expectation,
+                "complex_policy":self.complex,
+                "complex_tolerance_abs":DEFAULT_COMPLEX_ATOL,
+                "complex_tolerance_rel":DEFAULT_COMPLEX_RTOL,
+                "complex_snapshots":complex_snapshots,
+                "unexpected_complex_snapshots":unexpected_complex_snapshots,
+                "incompatible_snapshots":incompatible,
+            },
         )
 
 class EigenspaceAnalysis(Analysis):

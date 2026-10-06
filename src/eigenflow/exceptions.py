@@ -36,3 +36,19 @@ class OperatorCompatibilityError(EigenflowError):
             "message": str(self),
             **self.details,
         }
+
+
+class ComplexSpectrumWarning(UserWarning):
+    """Base warning for complex-spectrum interpretation diagnostics."""
+
+
+class UnspecifiedComplexTreatmentWarning(ComplexSpectrumWarning):
+    """Complex eigenvalues appeared while ``complex='auto'`` was active."""
+
+
+class UnexpectedComplexSpectrumWarning(ComplexSpectrumWarning):
+    """Complex eigenvalues appeared for an operator expected to be real."""
+
+
+class ComplexSpectrumAssumptionError(EigenflowError):
+    """Raised when ``complex='error'`` encounters a meaningfully complex spectrum."""

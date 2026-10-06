@@ -77,6 +77,7 @@ spectral = SpectralAnalysis(
     operator="laplacian",
     k=None,
     vectors=True,
+    complex="auto",
 )
 
 result = ef.Experiment(
@@ -279,3 +280,8 @@ Together, these observations support a stronger statement than any one curve:
 Still unsupported are claims that the graph eigenmode is a literal neural feature coordinate, that the organization is causally necessary for prediction, or that the transition has a universal critical exponent.
 
 Spectral analysis becomes interpretable when it is triangulated with the probe design and non-spectral observables.
+
+
+## Complex spectra
+
+Nonsymmetric operators can have genuinely complex eigenvalues. Eigenflow preserves them and uses the compact `complex=` policy described in [`../COMPLEX_SPECTRA.md`](../COMPLEX_SPECTRA.md). Existing real-spectrum workflows require no syntax changes.

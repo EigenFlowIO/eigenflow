@@ -17,6 +17,18 @@ Eigenflow is designed for questions such as:
 
 Eigenflow does **not** automatically assign semantics to neurons, prove causal mechanisms, or turn a clustering pattern into a semantic explanation. Its role is narrower and more experimentally useful: it measures population-level structure so that a well-designed probe experiment can provide evidence for or against hypotheses about latent feature organization.
 
+### Complex spectra
+
+Most Eigenflow workflows remain unchanged. When an operator such as non-backtracking is expected to produce complex eigenvalues, state the intended treatment with one keyword:
+
+```python
+from eigenflow.analyses import SpectralAnalysis
+
+spectral = SpectralAnalysis(operator="nonbacktracking", complex="modulus")
+```
+
+The full complex spectrum is always preserved. The default `complex="auto"` stays silent for effectively real spectra and emits actionable guidance only when materially complex values appear. See `docs/COMPLEX_SPECTRA.md` for interpretation, visualization, comparison, and persistence semantics.
+
 ## The experimental object
 
 Start with a probe population
